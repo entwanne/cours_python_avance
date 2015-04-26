@@ -1,0 +1,3 @@
+## Utilisation avancée: le module `itertools`
+
+- itertools: chain, count, cycle, repeat, ...

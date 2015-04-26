@@ -1,0 +1,3 @@
+## TP: staticmethod
+
+- Implémenter staticmethod
