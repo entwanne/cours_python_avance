@@ -7,7 +7,7 @@ Classe liste pointant vers un premier maillon, et méthodes pour accéder/modifi
 
 Nous avons, dans les paragraphes précédents, créé un proxy autour d'une liste pour découvrir le fonctionnement des méthodes décrites.
 
-Dans ce TP, pas à pas, nous créerons notre propre type de liste, à savoir une liste doublement chaînés, c'est à dire composée de maillon reliés entre-eux. Très courantes dans des langages bas-niveau tels que le C, elles le sont beaucoup moins en python, possédant tout de même une implémentation `deque` (*double-ended queue*) dans le module `collections`.
+Dans ce TP, pas à pas, nous créerons notre propre type de liste, à savoir une liste doublement chaînée, c'est-à-dire composée de maillons reliés entre eux. Très courantes dans des langages bas-niveau tels que le C, elles le sont beaucoup moins en python, possédant tout de même une implémentation `deque` (*double-ended queue*) dans le module `collections`.
 
 En plus de nos méthodes d'accès aux éléments, nous implémenteront les méethodes `insert` et `append` afin d'ajouter facilement des éléments à notre liste.
 
@@ -17,7 +17,7 @@ Nous appelerons donc notre classe `Deque`, et à la manière de `list`, le const
 
 Notre liste sera composée de maillons, et nous aurons donc une seconde classe, très simple, pour représenter un maillon: `Node`. un maillon possède une valeur (`value`), un maillon précédent (`prev`), un maillon suivant (`next`), et… c'est tout. `prev` et `next` pouvant être à `None` si l'on est en début ou en fin de liste.
 
-Une seule chose à laquelle penser: quand nous instancions notre maillon, nous voulons que celui-ci référence ses maillons précédent et suivant. Mais aussi, et surtout, que le maillon précédent et le suivant le référencent. Ainsi, le `next` du maillon précédent devra pointer vers notre nouveau maillon, de même pour le `prev` du maillon suivant.
+Une seule chose à laquelle penser : quand nous instancions notre maillon, nous voulons que celui-ci référence ses maillons précédent et suivant. Mais aussi, et surtout, que le maillon précédent et le suivant le référencent. Ainsi, le `next` du maillon précédent devra pointer vers notre nouveau maillon, de même pour le `prev` du maillon suivant.
 
 ```python
 class Node:
@@ -46,13 +46,13 @@ Notre classe `Node` étant achevée, toutes les méthodes qui seront données pa
 
 ### `append` et `insert`
 
-Si vous avez tenté d'instancier notre liste pour le moment (en lui précisant un paramètre), vous avez remarqué que celle-ci levait une erreur: en effet, nous appelons une méthode `append` qui n'est actuellement pas définie.
+Si vous avez tenté d'instancier notre liste pour le moment (en lui précisant un paramètre), vous avez remarqué que celle-ci levait une erreur : en effet, nous appelons une méthode `append` qui n'est actuellement pas définie.
 
-C'est par celle-ci que nous allons commencer, car son comportement est très simple: nous créons un nouveau noeud que nous ajoutons à la fin de la liste, cela peut se résumer en:
+C'est par celle-ci que nous allons commencer, car son comportement est très simple : nous créons un nouveau noeud que nous ajoutons à la fin de la liste. Cela peut se résumer en :
 
-- Création d'un `Node` avec la valeur spécifiée en paramètre, et comme maillon précédent l'actuelle fin de liste
-- Faire pointer la fin de liste sur ce nouveau maillon
-- Et, ne pas oublier, dans le cas où notre liste est actuellement vide, faire pointer le début de liste sur ce maillon
+- Créer un `Node` avec la valeur spécifiée en paramètre, et comme maillon précédent l'actuelle fin de liste ;
+- Faire pointer la fin de liste sur ce nouveau maillon ;
+- Et, ne pas oublier, dans le cas où notre liste est actuellement vide, faire pointer le début de liste sur ce maillon.
 
 ```python
 def append(self, value):
@@ -62,9 +62,9 @@ def append(self, value):
         self.first = node
 ```
 
-Vient maintenant la méthode `insert` permettant d'insérer une nouvelle valeur à n'importe quel endroit de la liste. Nous allons pour cela nous aider d'un première méthode `get_node` pour récupérer un maillon dans la liste (un objet de type `Node`, donc, pas sa valeur), qui nous servira encore beaucoup par la suite.
+Vient maintenant la méthode `insert`, qui permet d'insérer une nouvelle valeur à n'importe quel endroit de la liste. Nous allons pour cela nous aider d'un première méthode `get_node` pour récupérer un maillon dans la liste (un objet de type `Node`, donc, pas sa valeur), qui nous servira encore beaucoup par la suite.
 
-Cette méthode prendra un nombre en paramètre, correspondant à l'indice du maillon que nous voulons extraire, et itérera à partir du premier maillon jusqu'à arriver à celui-ci. Nous nous contenterons pour le moment de gérer les nombres positifs. Nous lèverons de plus une erreur si l'indice ne correspond à aucun maillon.
+Cette méthode prendra un nombre en paramètre, correspondant à l'indice du maillon que nous voulons extraire, et itérera sur les maillons de la liste jusqu'à arriver à celui-ci. Nous nous contenterons pour le moment de gérer les nombres positifs. Nous lèverons de plus une erreur si l'indice ne correspond à aucun maillon.
 
 ```python
 def get_node(self, n):
@@ -111,7 +111,7 @@ def __len__(self):
 
 ### `__getitem__` et `__setitem__`
 
-Dans un premier temps, implémentons ces deux méthodes sans tenir compte des `slice`. Une grande part du travail est déjà réalisé par `get_node`:
+Dans un premier temps, implémentons ces deux méthodes sans tenir compte des `slice`. Une grande part du travail est déjà réalisé par `get_node` :
 
 ```python
 def __getitem__(self, key):
@@ -121,14 +121,14 @@ def __setitem__(self, key, value):
     self.get_node(key).value = value
 ```
 
-Passons maintenant à la gestion des `slice`. Souvenons-nous ce que contient un `slice`, à savoir, un indice de début, un de fin, et un pas. Cela ne vous rappelle pas quelque chose ? Si, c'est exactement ce à quoi correspond `range`. À ceci près que les valeurs `None` n'ont aucune signification pour les `range`.
+Passons maintenant à la gestion des `slice`. Rappelons-nous ce que contient un `slice`, à savoir un indice de début, un indice de fin et un pas. Cela ne vous rappelle pas quelque chose ? Si, c'est exactement ce à quoi correspond `range`. À ceci près que les valeurs `None` n'ont aucune signification pour les `range`.
 
-Mais, l'objet `slice` possède une méthode `indices`, qui, en lui donnant la taille de notre ensemble, retourne les paramètres à passer à `range` (en gérant de plus pour nous les indices négatifs).
+Mais l'objet `slice` possède une méthode `indices`, qui, en lui donnant la taille de notre ensemble, retourne les paramètres à passer à `range` (en gérant de plus pour nous les indices négatifs).
 
-Nous pouvons ainsi obtenir un `range` à l'aide de l'expression `range(*key.indices(len(self)))` (en considérant que `key` est un objet de type `slice`). Il ne nous reste donc plus qu'à itérer sur le `range`, et:
+Nous pouvons ainsi obtenir un `range` à l'aide de l'expression `range(*key.indices(len(self)))` (en considérant que `key` est un objet de type `slice`). Il ne nous reste donc plus qu'à itérer sur le `range`, et :
 
-- Créer une nouvelle liste contenant les éléments extraits dans le cas d'un `__getitem__`
-- Modifier un à un les éléments dans le cas d'un `__setitem__`
+- Créer une nouvelle liste contenant les éléments extraits dans le cas d'un `__getitem__` ;
+- Modifier un à un les éléments dans le cas d'un `__setitem__`.
 
 ```python
 def __getitem__(self, key):
@@ -151,7 +151,7 @@ def __setitem__(self, key, value):
 
 ```
 
-Si vous ne comprenez pas bien ce que fait la fonction `zip`, celle-ci assemble deux listes (nous verrons dans le chapitre suivant que c'est un peu plus large que cela), de la manière suivante:
+Si vous ne comprenez pas bien ce que fait la fonction `zip`, celle-ci assemble deux listes (nous verrons dans le chapitre suivant que c'est un peu plus large que cela), de la manière suivante :
 
 ```python
 >>> list(zip([1, 2, 3], ['a', 'b', 'c']))
@@ -160,9 +160,9 @@ Si vous ne comprenez pas bien ce que fait la fonction `zip`, celle-ci assemble d
 
 ### Aller plus loin
 
-Ce TP touche à sa fin, mais pour aller plus loin, voici une liste non exhaustif de fonctionnalités qu'il nous reste à implémenter:
+Ce TP touche à sa fin, mais pour aller plus loin, voici une liste non exhaustive de fonctionnalités qu'il nous reste à implémenter:
 
-- Gestion des nombres négatifs pour l'indexation.
-- Méthodes spéciales `__str__` et `__repr__` pour afficher facilement notre liste.
+- Gérer des nombres négatifs pour l'indexation.
 - Gérer les cas de `__setitem__` où la liste de valeurs a une taille différente de la taille du `slice`.
 - Implémenter la méthode `__delitem__` pour gérer la suppression de maillons, attention toutefois pour la gestion des `slice`, les indices seront invalidés après chaque suppression.
+- Implémenter les méthodes spéciales `__str__` et `__repr__` pour afficher facilement notre liste.
