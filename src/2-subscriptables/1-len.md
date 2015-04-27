@@ -11,7 +11,7 @@ Traceback (most recent call last):
 TypeError: object of type 'int' has no len()
 ```
 
-Comment cela fonctionne ? C'est très simple. Comme pour de nombreux comportements, python se base sur des méthodes spécial des objets, vous en connaissez déjà probablement, ce sont les méthodes dont les noms débutent et s'achèvent par `__`.
+Comment cela fonctionne ? C'est très simple. Comme pour de nombreux comportements, python se base sur des méthodes spéciales des objets, vous en connaissez déjà probablement, ce sont les méthodes dont les noms débutent et s'achèvent par `__`.
 
 Ici, la fonction `len` de python fait simplement appel à la méthode `__len__` de l'objet, qui doit retourner un nombre entier positif.
 
