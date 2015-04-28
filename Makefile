@@ -6,7 +6,7 @@ FLAGS = --chapters --toc
 GEN = $(PDF)
 
 $(PDF):	$(SRC)
-	pandoc $(SRC) -o $@ $(FLAGS)
+	pandoc -V lang=french -V geometry:margin=1in $(SRC) -o $@ $(FLAGS)
 
 clean:
 	rm -f $(GEN)
