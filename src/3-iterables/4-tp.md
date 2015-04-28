@@ -12,6 +12,8 @@ def __iter__(self):
 
 Cet itérateur contiendra une référence vers un maillon, puis, à chaque appel à `__next__`, renverra la valeur du maillon courant, tout en prenant soin de passer au maillon suivant pour le prochain appel. `StopIteration` sera levée si le maillon courant vaut `None`.
 
+Une pratique courante est aussi d'ajouter une méthode `__iter__` dans l'itérateur, qui retournerait le même itérateur, dans le cas où cet itérateur puisse être utilisé comme un itérable.
+
 ```python
 class DequeIterator:
     def __init__(self, deque):
@@ -23,6 +25,9 @@ class DequeIterator:
         value = self.current.value
         self.current = self.current.next
         return value
+
+    def __iter__(self):
+        return self
 ```
 
 Testons maintenant notre implémentation…
