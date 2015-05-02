@@ -1,6 +1,6 @@
 ## Dessine-moi un générateur
 
-Les générateurs sont donc des itérables, mais en plus de cela des itérateurs, ce qui implique qu'ils se concomment quand on les parcourt.
+Les générateurs sont donc des itérables, mais en plus de cela des itérateurs, ce qui implique qu'ils se concomment quand on les parcourt (et donc nous ne pouvons les parcourir qu'une fois).
 
 Ils sont généralement par des fonctions construites à l'aide du mot clef `yield`. Par abus de langage ces fonctions sont parfois appelées générateurs.
 
@@ -27,6 +27,8 @@ Lors de l'appel, la fonction retournera un générateur, et à chaque appel à `
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 StopIteration
+>>> list(gen) # Tout le générateur a été parcouru
+[]
 ```
 
 Ou avec un `for`:
