@@ -9,11 +9,11 @@ Nous avons, dans les paragraphes précédents, créé un proxy autour d'une list
 
 Dans ce TP, pas à pas, nous créerons notre propre type de liste, à savoir une liste doublement chaînée, c'est-à-dire composée de maillons reliés entre eux. Très courantes dans des langages bas-niveau tels que le C, elles le sont beaucoup moins en python, possédant tout de même une implémentation `deque` (*double-ended queue*) dans le module `collections`.
 
-En plus de nos méthodes d'accès aux éléments, nous implémenteront les méethodes `insert` et `append` afin d'ajouter facilement des éléments à notre liste.
+En plus de nos méthodes d'accès aux éléments, nous implémenterons les méthodes `insert` et `append` afin d'ajouter facilement des éléments à notre liste.
 
 ### Bases
 
-Nous appelerons donc notre classe `Deque`, et à la manière de `list`, le constructeur prendre un objet pour pré-remplir notre liste.
+Nous appellerons donc notre classe `Deque` et, à la manière de `list`, le constructeur pourra prendre un objet pour pré-remplir notre liste.
 
 Notre liste sera composée de maillons, et nous aurons donc une seconde classe, très simple, pour représenter un maillon: `Node`. un maillon possède une valeur (`value`), un maillon précédent (`prev`), un maillon suivant (`next`), et… c'est tout. `prev` et `next` pouvant être à `None` si l'on est en début ou en fin de liste.
 
@@ -62,7 +62,7 @@ def append(self, value):
         self.first = node
 ```
 
-Vient maintenant la méthode `insert`, qui permet d'insérer une nouvelle valeur à n'importe quel endroit de la liste. Nous allons pour cela nous aider d'un première méthode `get_node` pour récupérer un maillon dans la liste (un objet de type `Node`, donc, pas sa valeur), qui nous servira encore beaucoup par la suite.
+Vient maintenant la méthode `insert`, qui permet d'insérer une nouvelle valeur à n'importe quel endroit de la liste. Nous allons pour cela nous aider d'une première méthode `get_node` pour récupérer un maillon dans la liste (un objet de type `Node`, donc, pas sa valeur), qui nous servira encore beaucoup par la suite.
 
 Cette méthode prendra un nombre en paramètre, correspondant à l'indice du maillon que nous voulons extraire, et itérera sur les maillons de la liste jusqu'à arriver à celui-ci. Nous nous contenterons pour le moment de gérer les nombres positifs. Nous lèverons de plus une erreur si l'indice ne correspond à aucun maillon.
 
@@ -81,7 +81,7 @@ Notre méthode `insert` prend deux paramètres: la position et la valeur à ins�
 
 - Dans le premier cas, il nous faudra créer un nouveau maillon, sans précédent, et avec `self.last` comme maillon suivant, puis faire pointer `self.first` sur ce nouveau maillon.
 - Dans les deux autres, il faudra repérer le maillon précédent à l'aide de `get_node`, puis insérer notre maillon à la suite de celui-ci.
-- Dans tous les cas, il faudra faire pointer `self.last` vers notre maillon si celuic-i est en fin de liste.
+- Dans tous les cas, il faudra faire pointer `self.last` vers notre maillon si celui-ci est en fin de liste.
 
 ```python
 def insert(self, i, value):

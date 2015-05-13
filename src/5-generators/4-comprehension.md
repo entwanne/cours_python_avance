@@ -2,7 +2,7 @@
 
 ### Listes en intention
 
-Vous connaissez probablement déjà les listes en intention (*comprehension lists*), mais je permettre un petit rappel.
+Vous connaissez probablement déjà les listes en intention (*comprehension lists*), mais je vais me permettre un petit rappel.
 
 Les listes en intention sont une syntaxe courte pour définir des listes à partir d'un itérable et d'une expression à appliquer à chaque élément (un peu à la manière de map, qui lui ne permet que d'appeler un *callable* avec l'élément).
 
@@ -60,7 +60,7 @@ Vous noterez que les `for` se placent dans l'ordre des dimensions que nous voulo
 
 ### Générateurs en intention
 
-De la même manière que pour les listes, nous pouvont définir des générateurs en intention (*generator expressions*) :
+De la même manière que pour les listes, nous pouvons définir des générateurs en intention (*generator expressions*) :
 
 ```python
 >>> squares = (x**2 for x in range(10))
@@ -68,7 +68,7 @@ De la même manière que pour les listes, nous pouvont définir des générateur
 <generator object <genexpr> at 0x7f8b8a9a7090>
 ```
 
-Et nous pouvons les utiliser de la même manière que tout itérables.
+Et nous pouvons les utiliser de la même manière que tout itérable.
 
 ```python
 >>> list(squares)
