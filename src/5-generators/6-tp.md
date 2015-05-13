@@ -42,7 +42,7 @@ En résumé, donc :
 
 * On construit un frigo à l'aide d'un dictionnaire de recettes et de quantités d'ingrédients.
 * Il est possible d'injecter un nouvel ingrédient à l'aide de `send`, en précisant le nom et la quantité.
-* Chaquel appel à `next` réalise une recette en consommant les ingrédients.
+* Chaque appel à `next` réalise une recette en consommant les ingrédients.
 * Quand plus aucune recette n'est réalisable, le générateur s'arrête.
 
 Voici ma solution:
