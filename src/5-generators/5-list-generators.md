@@ -24,7 +24,7 @@ numbers = (a + b for (a, b) in numbers)
 ```
 
 Ainsi, les éléments du premier générateur ne seront calculés qu'au parcours de `numbers`.
-Il est aussi possible de profiter des avantages de l'un et de l'autre en récupérant une liste en fin de chaîne, par exemple en remplaçant la dernier ligne par :
+Il est aussi possible de profiter des avantages de l'un et de l'autre en récupérant une liste en fin de chaîne, par exemple en remplaçant la dernière ligne par :
 
 ```python
 numbers = [a + b for (a, b) in numbers]
