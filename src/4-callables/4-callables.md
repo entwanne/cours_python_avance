@@ -10,9 +10,9 @@ Nous représenterons ici nos points par des tuples de deux valeurs:
 
 ```python
 >>> points = [(0, 0), (1, 4), (3, 3), (4, 0)]
->>> max(points) # par défaut, python séléectionne suivant le premier élément, soit l'abscisse
+>>> max(points) # par défaut, python sélectionne suivant le premier élément, soit l'abscisse
 (4, 0)
->>> max(points, key=lambda p: p[0]) # Nous précisions ici explicitement la sélection par l'abscisse
+>>> max(points, key=lambda p: p[0]) # Nous précisons ici explicitement la sélection par l'abscisse
 (4, 0)
 >>> max(points, key=lambda p: p[1]) # Par ordonnée
 (1, 4)
@@ -38,4 +38,4 @@ En dehors de `max`, d'autres fonctions python prennent un tel paramètre key, co
 [0, 4, 3, 0]
 ```
 
-Je vous invite une nouvelle fois à jeter un œil aux builtins python, ainsi qu'au module `itertools`, et devoir lesquels peuvent vous faire tirer profit des *callables*.
+Je vous invite une nouvelle fois à jeter un œil aux builtins python, ainsi qu'au module `itertools`, et de voir lesquels peuvent vous faire tirer profit des *callables*.
