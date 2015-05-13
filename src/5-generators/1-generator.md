@@ -1,8 +1,8 @@
 ## Dessine-moi un générateur
 
-Les générateurs sont donc des itérables, mais en plus de cela des itérateurs, ce qui implique qu'ils se concomment quand on les parcourt (et donc nous ne pouvons les parcourir qu'une fois).
+Les générateurs sont donc des itérables, mais en plus de cela des itérateurs, ce qui implique qu'ils se consomment quand on les parcourt (et donc nous ne pouvons les parcourir qu'une fois).
 
-Ils sont généralement par des fonctions construites à l'aide du mot clef `yield`. Par abus de langage ces fonctions sont parfois appelées générateurs.
+Ils sont généralement créés par des fonctions construites à l'aide du mot clef `yield`. Par abus de langage ces fonctions sont parfois appelées générateurs.
 
 ### Le mot-clef `yield`
 
@@ -42,7 +42,7 @@ Ou avec un `for`:
 6
 ```
 
-Bien sûr, notre générateur est très simpliste dans l'exemple, mais toutes les structures de contrôle du python peuvent y être utilisé. De plus, le générateur peut aussi être paramétré *via* les arguments passés à la fonction. Un exemple un peu plus poussé avec un générateur produisant les `n` premiers termes d'une suite de Fibonacci débutant par `a` et `b`:
+Bien sûr, notre générateur est très simpliste dans l'exemple, mais toutes les structures de contrôle du python peuvent y être utilisées. De plus, le générateur peut aussi être paramétré *via* les arguments passés à la fonction. Un exemple un peu plus poussé avec un générateur produisant les `n` premiers termes d'une suite de Fibonacci débutant par `a` et `b`:
 
 ```python
 >>> def fibonacci(n, a=0, b=1):
