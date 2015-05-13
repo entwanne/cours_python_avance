@@ -17,7 +17,7 @@ def function(a, b, c, d=1, e=2):
 function(3, 4, d=5, c=3)
 ```
 
-Nous sommes là dans un appek de fonction, donc les valeurs sont des arguments.
+Nous sommes là dans un appel de fonction, donc les valeurs sont des arguments.
 `3` et `4` sont des arguments positionnels, car ils sont repérés par leur position, et seront donc associés aux deux premiers paramètres de la fonction (`a` et `b`).
 `d=5` et `c=3` sont des arguments nommés, car la valeur est précédée du nom du paramètre associé. Ils peuvent ainsi être placés dans n'importe quel ordre (pour peu qu'ils soient placés après les arguments positionnels).
 
@@ -58,6 +58,7 @@ Cet opérateur permet de récupérer la liste (ou plus précisément le `tuple`)
 ```
 
 La présence d'`*args` n'est pas incompatible avec celle d'autres paramètres, s'ils sont placés avant:
+
 ```python
 >>> def func(foo, bar, *args):
 ...     print(boo)
@@ -101,7 +102,7 @@ def func(*args, **kwargs):
 
 Mais ces opérateurs servent aussi lors de l'appel à une fonction, via ce qu'on appelle l'*unpacking*: il est possible de transformer une liste en arguments positionnels, et un dictionnaire en arguments nommés (ou tout autres itérables compatibles). La seule règle est encore une fois de placer `*` après tous les arguments positionnels, et `**` après tous les nommés.
 
-```python```
+```python
 >>> def addition_3(a, b, c):
 ...     return a + b + c
 ...
