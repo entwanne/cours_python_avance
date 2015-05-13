@@ -2,7 +2,7 @@
 
 Dans ce nouveau TP, nous allons réaliser `itemgetter` à l'aide d'une classe formant des objets *callables*.
 
-Commençons par `itemgetter`, la clef à récupérer est passée à l'instanciation de l'objet, et donc à son constructeur. L'objet depuis lequel nous voulons récupérer la clef lui est passé lors de l'appel (dans la méthode `__call__`, donc).
+Commençons par `itemgetter`, la clef à récupérer est passée à l'instanciation de l'objet, et donc à son constructeur. L'objet depuis lequel nous voulons récupérer la clef est lui passé lors de l'appel (dans la méthode `__call__`, donc).
 Il nous suffit, dans cette méthode, d'appeler l'opérateur `[]` sur l'objet avec la clef enregistrée au moment de la construction:
 
 ```python
