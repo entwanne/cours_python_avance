@@ -4,7 +4,7 @@
 
 En Python, vous en avez peut-être déjà croisés, les décorateurs reposent sur le caractère `@`.
 
-Le principe de la décoration en Python est d'appliquer un décorateur à une fonction, afin de retourner une nouvelle fonction.
+Le principe de la décoration en Python est d'appliquer un décorateur à une fonction, afin de retourner un nouvel objet (généralement appelable).
 Un décorateur est donc une fonction prenant une fonction en paramètre et retournant une fonction.
 
 ```python
@@ -74,3 +74,30 @@ def print_decorator(function):
 ```
 
 Je vous laisse l'essayer sur des fonctions différentes pour vous rendre compte de sa généricité.
+
+Les définitions de fonctions ne sont pas limitées à un seul décorateur : il est possible d'en spécifier autant que vous le souhaitez, en les plaçant les uns à la suite des autres.
+
+```python
+@decorator
+@print_decoration
+def useless():
+    pass
+```
+
+L'ordre dans lequel ils sont spécifiés importe, le code précédent équivaut à :
+
+```python
+def useless():
+    pass
+useless = decorator(print_decorator(useless))
+```
+
+On voit donc que les décorateurs spécifiés en premiers sont ceux qui seront appliqués en derniers.
+
+Enfin, pour rappel, l'application du décorateur n'est pas limité aux fonctions, mais s'étend aussi aux méthodes de classes ou aux classes elles-mêmes:
+
+```python
+@print_decorator
+class MyClass:
+    pass
+```
