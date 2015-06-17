@@ -1,6 +1,6 @@
 ## TP: divers décorateurs
 
-Dans ce TP, nous allons mettre en pratique les décorateurs à l'aide de trois petits exercices qui vous permettront je l'espère de comprendre toutes les possibilités qu'ils offrent.
+Dans ce TP, nous allons mettre en pratique les décorateurs à l'aide de quatre petits exercices qui vous permettront je l'espère de comprendre toutes les possibilités qu'ils offrent.
 
 ### Mémoïsation
 
@@ -54,7 +54,37 @@ def memoize(f):
 ```
 
 
-### Templates
+### Fonctions génériques
+
+Nous avons déjà parlé de [`functools`](https://docs.python.org/3/library/functools.html). à plusieurs reprises dans ce cours. Si vous y avez prêté attention, vous avez remarqué que le décorateur que nous venons d'implémenter ressemble beaucoup à `lru_cache` (à l'exception près que notre version gère les types non-hashables, mais avec une perte de performances).
+
+Nous allons maintenant nous intéresser à `singledispatch`, une implémentation de fonctions génériques permettant de dispatcher l'appel en fonction du type du premier paramètre.
+
+Un décorateur, `singledispatch` prend une fonction en paramètre (c'est la fonction qui sera appelée si aucune spécialisation n'est trouvée), et en retourne un nouvel objet. Cet objet possède une méthode `register` s'utilisera comme un décorateur paramétré en lui précisant le type pour lequel nous voulons spécialiser.
+
+Lors de chaque appel à l'objet, il sera déterminé suivant le type du premier paramètre la fonction à appeler. Nos appels devront donc posséder au minimum un argument positionnel.
+
+Je vous propose pour cette fois de réaliser notre décorateur à l'aide d'une classe.
+
+```python
+class singledispatch:
+    def __init__(self, func):
+        self.default = func
+        self.registry = {}
+    def __call__(self, *args, **kwargs):
+        func = self.registry.get(type(args[0]), self.default)
+        return func(*args, **kwargs)
+    def register(self, type_):
+        def decorator(func):
+            self.registry[type_] = func
+            return func
+        return decorator
+```
+
+Pour aller plus loin, nous pourrions aussi permettre de dispatcher en fonction du type de tous les paramètres, ou encore utiliser les annotations pour préciser les types.
+
+
+### Vérification de types
 
 
 ### Récursivité terminale
