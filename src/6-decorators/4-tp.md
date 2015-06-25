@@ -71,6 +71,7 @@ class singledispatch:
     def __init__(self, func):
         self.default = func
         self.registry = {}
+	functools.update_wrapper(self, func)
     def __call__(self, *args, **kwargs):
         func = self.registry.get(type(args[0]), self.default)
         return func(*args, **kwargs)
@@ -167,3 +168,76 @@ Je vous invite maintenant à tester ce décorateur sur notre précédente foncti
 
 
 ### Récursivité terminale
+
+[La récursivité terminale n'existe pas en python](http://neopythonic.blogspot.com.au/2009/04/tail-recursion-elimination.html). Guido von Rossum le dit lui-même. Mais il nous est possible de la simuler.
+
+Si vous avez déjà tenté d'écrire des fonctions récursives en Python, vous vous êtes rapidement confronté à l'impossibilité de descendre au-delà d'un certain niveau de récursion, à cause de la taille limitée de la pile d'appels. Certains langages implémentent l'optimisation dite de récursivité terminale : si l'appel récursif est la dernière instruction exécutée dans la fonction, il est possible de supprimer de la pile le contexte courant avant d'appeler la fonction suivante, et ainsi ne pas surcharger la pile. Ce n'est pas le cas dans Python.
+
+Mais nous allons voir qu'avec le bon décorateur, il est possible de reproduire ce comportement.
+
+En fait, nous allons nous contenter d'ajouter uné méthode `call` à nos fonctions. Lorsque nous ferons `function.call(...)`, nous n'appellerons pas réellement la fonction, mais enregistrerons l'appel. le *wrapper* de notre fonction sera ensuite chargé de réaliser en boucle tous ces appels.
+
+Il faut bien noter que le retour de la méthode `call` ne sera pas utilisable comme le résultat réel de notre fonction, nous ne pourrons que le retourner pour qu'il soit ensuite évalué par le *wrapper*.
+
+Pour cela, je m'appuie sur une classe `tail_rec_exec`, qui n'est autre qu'un *tuple* comportant la fonction à appeler et ses arguments (`args` et `kwargs`).
+
+```python
+class tail_rec_exec(tuple): pass
+```
+
+Maintenant nous allons réaliser notre décorateur `tail_rec`, j'ai opté pour une classe :
+
+```python
+class tail_rec:
+    def __init__(self, func):
+        self.func = func
+	functools.update_wrapper(self, func)
+
+    def call(self, *args, **kwargs):
+        return tail_rec_exec((self.func, args, kwargs))
+
+    def __call__(self, *args, **kwargs):
+        r = self.func(*args, **kwargs)
+        while isinstance(r, tail_rec_exec):
+            func, args, kwargs = r
+            r = func(*args, **kwargs)
+        return r
+```
+
+Et à l'utilisation :
+
+```python
+@tail_rec
+def my_sum(values, acc=0):
+    if not values:
+        return acc
+    return my_sum.call(values[1:], acc + values[0])
+
+@tail_rec
+def factorial(n, acc=1):
+    if not n:
+        return acc
+    return factorial.call(n - 1, acc * n)
+
+@tail_rec
+def even(n):
+    if not n:
+        return True
+    return odd.call(n - 1)
+
+@tail_rec
+def odd(n):
+    if not n:
+        return False
+    return even.call(n - 1)
+
+print(my_sum(range(5000)))
+print(factorial(5000))
+print(factorial(5))
+print(even(5000))
+print(odd(5000))
+print(even(5001))
+print(odd(5001))
+```
+
+Nous verrons par la suite, dans le chapitre des métaclasses, comment éviter l'appel à une méthode `call` pour effectuer les appels récursifs.
