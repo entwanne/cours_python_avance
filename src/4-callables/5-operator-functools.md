@@ -48,7 +48,7 @@ b
 
 ### `functools`
 
-Nous allons maintenant évoquer le module `functools`, et plus particulièrement la fonction `partial`: celle-ci permet de réaliser un appel partiel de fonction.
+Nous allons maintenant évoquer le module [`functools`](https://docs.python.org/3/library/functools.html), et plus particulièrement la fonction `partial`: celle-ci permet de réaliser un appel partiel de fonction.
 
 Imaginons que nous ayons une fonction prenant divers paramètres, mais que nous voudrions fixer le premier: l'application partielle de la fonction nous créera un nouveau *callable* qui, quand il sera appelé, nous renverra le résultat de la première fonction avec le paramètre fixé.
 
