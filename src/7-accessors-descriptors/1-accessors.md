@@ -32,4 +32,10 @@ class Temperature:
 
 ### dict et slots
 
+Le `__dict__` dont je parle plus haut est le dictionnaire contenant les attributs d'un objet Python. Par défaut, il contient tous les attributs que vous définissez sur un objet (si vous ne modifiez pas le fonctionnement de `setattr`).
+
+https://docs.python.org/3/reference/datamodel.html#slots
+
 ### MRO
+
+https://www.python.org/download/releases/2.3/mro/
