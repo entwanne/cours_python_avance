@@ -30,6 +30,20 @@ class Temperature:
             super().__setattr__(name, value)
 ```
 
+Et à l'utilisation :
+
+```python
+>>> t = Temperature()
+>>> t.celsius = 37
+>>> t.celsius
+37
+>>> t.fahrenheit
+98.6 # Ou valeur approximative
+>>> t.fahrenheit = 212
+>>> t.celsius
+100.0
+```
+
 ### dict et slots
 
 Le `__dict__` dont je parle plus haut est le dictionnaire contenant les attributs d'un objet Python. Par défaut, il contient tous les attributs que vous définissez sur un objet (si vous ne modifiez pas le fonctionnement de `setattr`).
