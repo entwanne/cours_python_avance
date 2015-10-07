@@ -8,7 +8,7 @@ Sachez premièrement que `foo.bar` revient à exécuter
 
 * `getattr(foo, 'bar')`
 
-Il s'agit là de la lecture, deux fonctions sont équivalents pour la modification et la suppression :
+Il s'agit là de la lecture, deux fonctions sont équivalentes pour la modification et la suppression :
 
 * `setattr(foo, 'bar', value)` pour `foo.bar = value`
 * `delattr(foo, 'bar')` pour `del foo.bar`
