@@ -1,7 +1,5 @@
 ## Fonctionnement interne
 
-- __enter__, __exit__
-
 Ça, c'est pour le cas d'utilisation, nous étudierons ici le fonctionnement interne.
 
 Les gestionnaires de contexte sont en fait des objets disposant de deux méthodes spéciales : `__enter__` et `__exit__`, qui seront respectivement appelées à l'entrée et à la sortie du bloc `with`.
@@ -24,7 +22,7 @@ class MyContext:
         print('exit')
 ```
 
-À l'utilisation :
+Et à l'utilisation :
 
 ```python
 >>> with MyContext() as ctx:
