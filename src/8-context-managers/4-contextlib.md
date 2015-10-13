@@ -5,7 +5,7 @@ Vous pourriez trouver une similitude entre les décorateurs et les gestionnaires
 Il existe dans la `contextlib` un outil qui les rapproche. Une classe, `ContextDecorator`, permet de transformer un gestionnaire de contexte en décorateur, et donc de pouvoir l'utiliser comme l'un ou comme l'autre.
 Cela peut s'avérer utile pour créer un module qui mesurerait le temps d'exécution d'un ensemble d'instructions : on peut vouloir sans servir via `with`, ou via un décorateur autour de notre fonction à mesurer.
 
-Cet outil s'utilise très facilement, il suffit que notre gestionnaire de contexte hérite de ̀ ContextDecorator`.
+Cet outil s'utilise très facilement, il suffit que notre gestionnaire de contexte hérite de `ContextDecorator`.
 
 ```python
 from contextlib import ContextDecorator
