@@ -20,6 +20,8 @@ Une classe est donc une instance de la classe `type`. Une classe qui permet d'in
 
 Une métaclasse permet donc de créer des classes, mais pourquoi faire ?
 
+L'intérêt principal des métaclasses est de pouvoir modifier dynamique les classes lors de leur création, en ajoutant de nouvelles méthodes ou auttributs par exemple.
+
 
 ### Héritage et instanciation
 
