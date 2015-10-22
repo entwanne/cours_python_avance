@@ -4,7 +4,7 @@
 
 Les gestionnaires de contexte sont en fait des objets disposant de deux méthodes spéciales : `__enter__` et `__exit__`, qui seront respectivement appelées à l'entrée et à la sortie du bloc `with`.
 
-Le retour de la méthode ̀`__enter__` sera attibué à la variable spécifiée derrière le `as`.
+Le retour de la méthode `__enter__` sera attribué à la variable spécifiée derrière le `as`.
 
 Le bloc `with` est donc un bloc d'instructions très simple, offrant juste un sucre syntaxique autour d'un `try`/`finally`.
 
