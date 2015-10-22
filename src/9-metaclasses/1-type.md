@@ -1,4 +1,4 @@
-## Les fonctionnalités cachées de `type`
+## Quel est donc ce `type` ?
 
 Ainsi, vous l'avez bien compris, `type` n'est pas utile que pour connaître le type d'un objet.
 `type` est une métaclasse, et sert donc à créer de nouvelles classes.

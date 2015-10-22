@@ -1,9 +1,5 @@
 ## Les slices
 
-- écriture des slices
-- objets slice
-- Retour sur __getitem__, __setitem__, __delitem__
-
 Les « slices » se traduisent en français par « tranches ». Cela signifie que l'on va prendre notre objet et le découper en morceaux.
 Par exemple, récupérer la première moitié d'une liste, ou cette même liste en ne conservant qu'un élément sur deux.
 

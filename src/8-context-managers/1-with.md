@@ -1,7 +1,5 @@
 ## `with` or without you
 
-- with, fonctionnement, gestion des ressources
-
 Un contexte est ainsi un scope particulier, avant lequel aura lieu l'allocation des ressources, et leur désallocation en sortie.
 
 Un bloc d'instruction `with` se présente comme suit.

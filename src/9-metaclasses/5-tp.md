@@ -1,7 +1,5 @@
 ## TP: Évaluation paresseuse
 
-- Retour sur tail-rec: objet pour simuler une lazy-evaluation (implémentation de toutes les méthodes spéciales dans la classe car __getattribute__ bypassé)
-
 Dans ce dernier TP, nous nous intéresserons à l'évaluation paresseuse (*lazy evaluation*), et nous reviendrons sur un exemple qu'on avait laissé de côté après le chapitre sur les décorateurs : l'implémentation d'une récursivité terminale en Python.
 
 ### L'évaluation paresseuse, c'est quoi ?
