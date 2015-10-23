@@ -1,5 +1,5 @@
 PDF = cours_python_avance.pdf
-SRC = $(sort $(wildcard src/*/*.md))
+SRC = $(shell ls -v src/*/*.md)
 
 FLAGS = --chapters --toc
 
