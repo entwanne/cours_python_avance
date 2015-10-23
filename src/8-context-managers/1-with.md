@@ -11,7 +11,7 @@ with expr as x:
 
 La syntaxe est assez simple à appréhender, on remplace simplement `x = expr` par `with expr as x`, et la désallocation de la ressource est gérée pour nous, dans tous les cas.
 
-Il est aussi possible d'allouer plusieurs ressources dans un même bloc :
+Il est aussi possible d'allouer plusieurs ressources dans un même bloc :
 
 ```python
 with expr1 as x, expr2 as y:

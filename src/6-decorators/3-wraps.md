@@ -19,7 +19,7 @@ Un exemple pour nous en rendre compte :
 >>> help(addition)
 ```
 
-Alors, que voit-on ? Pas grand chose.
+Alors, que voit-on ? Pas grand chose.
 Le nom qui apparaît est celui de `decorated`, les paramètres sont `*args` et `**kwargs` (sans annotations), et nous avons aussi perdu notre *docstring*.
 Autant dire qu'il ne reste rien pour comprendre ce que fait la fonction.
 

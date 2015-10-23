@@ -1,4 +1,4 @@
-## TP: divers décorateurs
+## TP : divers décorateurs
 
 Dans ce TP, nous allons mettre en pratique les décorateurs à l'aide de quatre petits exercices qui vous permettront je l'espère de comprendre toutes les possibilités qu'ils offrent.
 

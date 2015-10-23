@@ -12,7 +12,7 @@ def decorator(f): # decorator est un décorateur
     return f
 ```
 
-Note: J'utilise ici le terme « fonction » mais cela est applicable à tout *callable*.
+Note : J'utilise ici le terme « fonction » mais cela est applicable à tout *callable*.
 
 Pour appliquer un décorateur, on précède la ligne de définition de la fonction à décorer par une ligne comportant un `@` puis le nom du décorateur à appliquer, par exemple :
 
@@ -94,7 +94,7 @@ useless = decorator(print_decorator(useless))
 
 On voit donc que les décorateurs spécifiés en premiers sont ceux qui seront appliqués en derniers.
 
-Enfin, pour rappel, l'application du décorateur n'est pas limité aux fonctions, mais s'étend aussi aux méthodes de classes ou aux classes elles-mêmes:
+Enfin, pour rappel, l'application du décorateur n'est pas limité aux fonctions, mais s'étend aussi aux méthodes de classes ou aux classes elles-mêmes :
 
 ```python
 @print_decorator

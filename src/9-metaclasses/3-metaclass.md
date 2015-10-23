@@ -19,7 +19,7 @@ Le constructeur d'une métaclasse devra donc prendre les mêmes paramètres que 
 
 Nous avons ainsi créé notre propre métaclasse, et l'avons utilisé pour instancier une nouvelle classe.
 
-Une autre syntaxe est possible, à l'aide du mot clef `class` : la métaclasse à utiliser peut être spécifiée entre les parenthèses derrière le nom de la classe.
+Une autre syntaxe est possible, à l'aide du mot clef `class` : la métaclasse à utiliser peut être spécifiée entre les parenthèses derrière le nom de la classe.
 
 ```python
 >>> class B(metaclass=M):
@@ -31,7 +31,7 @@ Une autre syntaxe est possible, à l'aide du mot clef `class` : la métaclasse �
 
 ### Préparation de la classe
 
-Nous avons étudié dans le chapitre sur les accesseurs l'attribut `__dict__` des classes. Celui-ci est un dictionnaire, mais à quel moment est-il créé ?
+Nous avons étudié dans le chapitre sur les accesseurs l'attribut `__dict__` des classes. Celui-ci est un dictionnaire, mais à quel moment est-il créé ?
 
 Lors de la définition de la classe, dans le corps même de celle-ci, notre classe a déjà été préparée. C'est à dire que le dictionnaire `__dict__` a été instancié, afin d'y stocker tout ce qui sera défini dans le corps.
 
@@ -78,7 +78,7 @@ En héritant d'`Enum`, on hérite aussi de sa métaclasse (`EnumMeta`)
 
 Attention d'ailleurs en héritant de plusieurs calsses de vérifier que celles-ci ont des métaclasses compatibles (la hiérarchie entre les différentes métaclasses doit être linéaire).
 
-Une implémentation simplifiée possible d'`Enum` est la suivante :
+Une implémentation simplifiée possible d'`Enum` est la suivante :
 
 ```python
 class EnumMeta(type):

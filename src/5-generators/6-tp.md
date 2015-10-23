@@ -1,10 +1,10 @@
-## TP: Un petit creux ?
+## TP : Un petit creux ?
 
 Dans ce TP, nous allons réaliser un frigo. Oui, mais pas n'importe quel frigo, j'en ai déjà un et ça ne me servirait pas à grand chose.
-Nous allons créer un frigo magique. Magique ? Oui, notre frigo sera capable de cuisiner tout seul.
+Nous allons créer un frigo magique. Magique ? Oui, notre frigo sera capable de cuisiner tout seul.
 En fait, à chaque ouverture, il nous proposera un met au hasard parmi les recettes qu'il connaît, en fonction des ingrédients disponibles.
 
-Voici comment j'aimerais utiliser ce frigo:
+Voici comment j'aimerais utiliser ce frigo :
 
 ```python
 >>> recettes = {
@@ -40,12 +40,12 @@ StopIteration
 
 En résumé, donc :
 
-* On construit un frigo à l'aide d'un dictionnaire de recettes et de quantités d'ingrédients.
-* Il est possible d'injecter un nouvel ingrédient à l'aide de `send`, en précisant le nom et la quantité.
-* Chaque appel à `next` réalise une recette en consommant les ingrédients.
+* On construit un frigo à l'aide d'un dictionnaire de recettes et de quantités d'ingrédients ;
+* Il est possible d'injecter un nouvel ingrédient à l'aide de `send`, en précisant le nom et la quantité ;
+* Chaque appel à `next` réalise une recette en consommant les ingrédients ;
 * Quand plus aucune recette n'est réalisable, le générateur s'arrête.
 
-Voici ma solution:
+Voici ma solution :
 
 ```python
 from collections import Counter

@@ -3,7 +3,7 @@
 Les fonctions, mais pas seulement. Les classes en sont, les méthodes, les lambdas, etc.
 Sont callables tous les objets derrière lesquels on peut placer une paire de parenthèses, pour les appeler.
 
-En python, on peut vérifier qu'un objet est appelable à l'aide de la fonction `callable`:
+En python, on peut vérifier qu'un objet est appelable à l'aide de la fonction `callable`.
 
 ```python
 >>> callable(print)

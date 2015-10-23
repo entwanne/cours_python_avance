@@ -1,4 +1,4 @@
-## TP: liste chaînée
+## TP : liste chaînée
 
 Itérateur sur listes chaînées
 
@@ -43,4 +43,4 @@ Testons maintenant notre implémentation…
 5
 ```
 
-… Ça marche !
+… Ça marche !

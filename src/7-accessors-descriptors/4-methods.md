@@ -38,10 +38,10 @@ Puis observons à quoi correspondent les différentes utilisations de ces métho
 <bound method type.clsmeth of <class '__main__.A'>>
 ```
 
-On remarque que certains appels retournent des fonctions, et d'autres des *bound methods*, mais quelle différence ?
+On remarque que certains appels retournent des fonctions, et d'autres des *bound methods*, mais quelle différence ?
 En fait, la différence survient lors de l'appel, pour le passage du premier paramètre.
 
-Ne vous êtes-vous jamais demandé comment l'objet courant arrivait dans `self` lors de l'appel d'une méthode ? C'est justement parce qu'il s'agit d'une *bound method*. Il s'agit en fait d'une méthode dont le premier paramètre est déjà préparé, et qu'il n'y aura donc pas besoin de spécifier à l'appel.
+Ne vous êtes-vous jamais demandé comment l'objet courant arrivait dans `self` lors de l'appel d'une méthode ? C'est justement parce qu'il s'agit d'une *bound method*. Il s'agit en fait d'une méthode dont le premier paramètre est déjà préparé, et qu'il n'y aura donc pas besoin de spécifier à l'appel.
 C'est le descripteur qui joue ce rôle, il est le seul à savoir si vous utilisez la méthode depuis une instance ou depuis la classe (`instance` valant `None` dans ce second cas), et connaît toujours le 1er paramètre à passer (`instance`, `owner`, ou rien). Il peut ainsi construire un nouvel objet (*bound method*), qui lorsqu'il sera appelé se chargera de relayer l'appel à la vraie méthode en lui ajoutant le 1er paramètre.
 
 Le même comportement est utilisé pour les méthodes de classes, où la classe de l'objet doit être passée en premier paramètre (`cls`).
@@ -49,7 +49,7 @@ Le cas des méthodes statiques est en fait le plus simple, il ne s'agit que de f
 
 On remarque aussi que, `A.method` retournant une fonction et non une méthode préparée, il nous faudra indiquer une instance lors de l'appel.
 
-Pour rappel, voici comment s'utilisent ces différentes méthodes :
+Pour rappel, voici comment s'utilisent ces différentes méthodes :
 
 ```python
 >>> A.method(a)

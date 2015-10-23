@@ -1,8 +1,8 @@
-## TP: propriétés et méthodes
+## TP : propriétés et méthodes
 
 Pour clore ce chapitre, je vous propose d'implémenter les descripteurs `staticmethod` et `classmethod`. J'ajouterais à cela un descripteur `method` qui reproduirait le comportement par défaut des méthodes en Python.
 
-Pour résumer :
+Pour résumer :
 
 * `my_staticmethod`
     * Retourne la fonction cible, qu'elle soit utilisée depuis la classe ou depuis l'instance

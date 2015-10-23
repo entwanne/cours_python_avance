@@ -1,9 +1,9 @@
-## TP: `itemgetter`
+## TP : `itemgetter`
 
 Dans ce nouveau TP, nous allons réaliser `itemgetter` à l'aide d'une classe formant des objets *callables*.
 
 Commençons par `itemgetter`, la clef à récupérer est passée à l'instanciation de l'objet, et donc à son constructeur. L'objet depuis lequel nous voulons récupérer la clef est lui passé lors de l'appel (dans la méthode `__call__`, donc).
-Il nous suffit, dans cette méthode, d'appeler l'opérateur `[]` sur l'objet avec la clef enregistrée au moment de la construction:
+Il nous suffit, dans cette méthode, d'appeler l'opérateur `[]` sur l'objet avec la clef enregistrée au moment de la construction.
 
 ```python
 class itemgetter:
@@ -14,7 +14,7 @@ class itemgetter:
         return obj[self.key]
 ```
 
-C'est aussi simple que cela, et nous pouvons le tester:
+C'est aussi simple que cela, et nous pouvons le tester :
 
 ```python
 >>> points = [(0, 0), (1, 4), (3, 3), (4, 0)]
@@ -24,7 +24,7 @@ C'est aussi simple que cela, et nous pouvons le tester:
 [(0, 0), (4, 0), (3, 3), (1, 4)]
 ```
 
-Nous aurions aussi pu profiter des fermetures (`closures`) de python pour réaliser `itemgetter` sous la forme d'une fonction retournant une fonction:
+Nous aurions aussi pu profiter des fermetures (`closures`) de python pour réaliser `itemgetter` sous la forme d'une fonction retournant une fonction.
 
 ```python
 def itemgetter(key):
@@ -33,7 +33,7 @@ def itemgetter(key):
     return function
 ```
 
-Si vous vous êtes intéressés de plus près à `operator.itemgetter`, vous avez aussi pu remarquer que celle-ci pouvait prendre plus d'un paramètre:
+Si vous vous êtes intéressés de plus près à `operator.itemgetter`, vous avez aussi pu remarquer que celle-ci pouvait prendre plus d'un paramètre :
 
 ```python
 >>> from operator import itemgetter

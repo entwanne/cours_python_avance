@@ -1,8 +1,8 @@
-## TP: Évaluation paresseuse
+## TP : Évaluation paresseuse
 
-Dans ce dernier TP, nous nous intéresserons à l'évaluation paresseuse (*lazy evaluation*), et nous reviendrons sur un exemple qu'on avait laissé de côté après le chapitre sur les décorateurs : l'implémentation d'une récursivité terminale en Python.
+Dans ce dernier TP, nous nous intéresserons à l'évaluation paresseuse (*lazy evaluation*), et nous reviendrons sur un exemple qu'on avait laissé de côté après le chapitre sur les décorateurs : l'implémentation d'une récursivité terminale en Python.
 
-### L'évaluation paresseuse, c'est quoi ?
+### L'évaluation paresseuse, c'est quoi ?
 
 Lorsque vous entrez une expression Python dans votre interpréteur et que celui-ci vous retourne une valeur, on dit que cette expression est évaluée. Évaluer une expression correspond donc à en calculer le résultat.
 
@@ -10,13 +10,13 @@ L'évaluation paresseuse se différencie par rapport au moment où le calcul a l
 Lors d'une évaluation traditionnelle, le résultat est tout de suite retourné, et peut être manipulé.
 Dans le cas d'une évaluation paresseuse, celui-ci n'est calculé que lorsqu'il est réellement nécessaire (quand on commence à manipuler l'objet), d'où le terme de paresseux.
 
-En Python par exemple, nous avons étudié plus tôt le concept de générateurs, ils correspondent à de l'évaluation paresseuse : ils ne sont pas évalués avant que l'on ne commence à itérer dessus.
+En Python par exemple, nous avons étudié plus tôt le concept de générateurs, ils correspondent à de l'évaluation paresseuse : ils ne sont pas évalués avant que l'on ne commence à itérer dessus.
 
 ### Objectif du TP
 
 Ici, nous voulons réaliser un appel paresseux à une fonction. C'est à dire embarquer la fonction à appeler et ses paramètres, mais ne réaliser l'appel qu'au moment où nous avons besoin du résultat.
 
-Par exemple :
+Par exemple :
 
 ```python
 >>> def square(x): return x ** 2
@@ -95,11 +95,16 @@ class LazyMeta(type):
         '__get__', '__set__', '__delete__',
         '__instancecheck__', '__subclasscheck__',
         '__call__',
-        '__len__', '__length_hint__', '__getitem__', '__missing__', '__setitem__', '__delitem__', '__iter__', '__reversed__', '__contains__',
-        '__add__', '__sub__', '__mul__', '__matmul__', '__truediv__', '__floordiv__', '__mod__', '__divmod__', '__pow__', '__lshift__', '__rshift__', '__and__', '__xor__', '__or__',
-        '__radd__', '__rsub__', '__rmul__', '__rmatmul__', '__rtruediv__', '__rfloordiv__', '__rmod__', '__rdivmod__', '__rpow__', '__rlshift__', '__rrshift__', '__rand__', '__rxor__', '__ror__',
-        '__iadd__', '__isub__', '__imul__', '__imatmul__', '__itruediv__', '__ifloordiv__', '__imod__', '__ipow__', '__ilshift__', '__irshift__', '__iand__', '__ixor__', '__ior__',
-        '__neg__', '__pos__', '__abs__', '__invert__', '__complex__', '__int__', '__float__', '__round__', '__index__',
+        '__len__', '__length_hint__', '__getitem__', '__missing__', '__setitem__', '__delitem__',
+        '__iter__', '__reversed__', '__contains__',
+        '__add__', '__sub__', '__mul__', '__matmul__', '__truediv__', '__floordiv__', '__mod__',
+        '__divmod__', '__pow__', '__lshift__', '__rshift__', '__and__', '__xor__', '__or__',
+        '__radd__', '__rsub__', '__rmul__', '__rmatmul__', '__rtruediv__', '__rfloordiv__', '__rmod__',
+        '__rdivmod__', '__rpow__', '__rlshift__', '__rrshift__', '__rand__', '__rxor__', '__ror__',
+        '__iadd__', '__isub__', '__imul__', '__imatmul__', '__itruediv__', '__ifloordiv__', '__imod__',
+        '__ipow__', '__ilshift__', '__irshift__', '__iand__', '__ixor__', '__ior__',
+        '__neg__', '__pos__', '__abs__', '__invert__', '__complex__', '__int__', '__float__',
+        '__round__', '__index__',
         '__enter__', '__exit__',
         '__await__', '__aiter__', '__anext__', '__aenter__', '__aexit__',
         '__next__'

@@ -2,7 +2,7 @@
 
 Les descripteurs sont une manière d'affecter des comportements plus évolués lors de la récupération/édition/suppression d'un attribut. Un descripteur est un objet assigné à un attribut, et dont des méthodes spéciales (`__get__`, `__set__`, et `__delete__`) seront appelées lorsque des opérations seront réalisées sur l'attribut.
 
-`__get__` prend deux paramètres en plus du `self` : `instance` et `owner`.
+`__get__` prend deux paramètres en plus du `self` : `instance` et `owner`.
 `instance` correspond à l'objet sur lequel l'attribut est défini. Cependant, si l'attribut est récupéré depuis depuis la classe de l'instance (`Foo.attr`), `instance` vaudra `None`.
 C'est dans ce cas que `owner` intervient, ce paramètre contient toujours la classe de l'instance.
 
@@ -39,4 +39,4 @@ class Temperature:
 
 Je vous laisse exécuter à nouveau les exemples précédents pour constater que le comportement est le même.
 
-* https://docs.python.org/3/reference/datamodel.html#implementing-descriptors
+* <https://docs.python.org/3/reference/datamodel.html#implementing-descriptors>

@@ -8,7 +8,7 @@ Ils sont généralement créés par des fonctions construites à l'aide du mot c
 
 Une générateur est donc créé à partir d'une fonction. Mais contrairement aux fonctions habituelles, celle-ci ne comprendra aucun `return`, mais un ou plusieurs `yield`.
 
-Lors de l'appel, la fonction retournera un générateur, et à chaque appel à `next` sur le générateur, le code jusqu'au prochain `yield` sera exécuté. La valeur retournée par `next` sera la valeur apposée au `yield`. Un exemple pour mieux comprendre cela:
+Lors de l'appel, la fonction retournera un générateur, et à chaque appel à `next` sur le générateur, le code jusqu'au prochain `yield` sera exécuté. La valeur retournée par `next` sera la valeur apposée au `yield`. Un exemple pour mieux comprendre cela :
 
 ```python
 >>> def function():
@@ -31,7 +31,7 @@ StopIteration
 []
 ```
 
-Ou avec un `for`:
+Ou avec un `for` :
 
 ```python
 >>> for i in function():
@@ -42,7 +42,7 @@ Ou avec un `for`:
 6
 ```
 
-Bien sûr, notre générateur est très simpliste dans l'exemple, mais toutes les structures de contrôle du python peuvent y être utilisées. De plus, le générateur peut aussi être paramétré *via* les arguments passés à la fonction. Un exemple un peu plus poussé avec un générateur produisant les `n` premiers termes d'une suite de Fibonacci débutant par `a` et `b`:
+Bien sûr, notre générateur est très simpliste dans l'exemple, mais toutes les structures de contrôle du python peuvent y être utilisées. De plus, le générateur peut aussi être paramétré *via* les arguments passés à la fonction. Un exemple un peu plus poussé avec un générateur produisant les `n` premiers termes d'une suite de Fibonacci débutant par `a` et `b`.
 
 ```python
 >>> def fibonacci(n, a=0, b=1):

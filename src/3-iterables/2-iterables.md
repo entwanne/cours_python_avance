@@ -27,7 +27,7 @@ class MyRangeIterator:
         return ret
 ```
 
-Maintenant, testons notre objet, en essayant d'itérer dessus à l'aide d'un `for`:
+Maintenant, testons notre objet, en essayant d'itérer dessus à l'aide d'un `for`.
 
 ```python
 >>> MyRange(5)
@@ -42,7 +42,7 @@ Maintenant, testons notre objet, en essayant d'itérer dessus à l'aide d'un `fo
 4
 ```
 
-Voilà pour l'itération, mais maintenant, testons quelques autres *builtins* dont je parlais plus haut:
+Voilà pour l'itération, mais maintenant, testons quelques autres *builtins* dont je parlais plus haut.
 
 ```python
 >>> sum(MyRange(5)) # sum réalise la somme de tous les éléments, soit 0 + 1 + 2 + 3 + 4
@@ -53,7 +53,7 @@ Voilà pour l'itération, mais maintenant, testons quelques autres *builtins* do
 <map object at 0x7f8b81226cf8>
 ```
 
-Mmmh, que s'est-il passé ? En fait, `map` ne retourne pas une liste, mais un nouvel itérateur. Si nous voulons en voir le contenu, nous pouvons itérer dessus… ou plus simplement, convertir le résultat en liste:
+Mmmh, que s'est-il passé ? En fait, `map` ne retourne pas une liste, mais un nouvel itérateur. Si nous voulons en voir le contenu, nous pouvons itérer dessus… ou plus simplement, convertir le résultat en liste :
 
 ```python
 >>> list(map(str, MyRange(5))
@@ -75,7 +75,9 @@ J'en resterai là pour les exemples, sachez seulement que beaucoup de fonctions 
 
 ### Retour sur `iter`
 
-Nous avons vu dans la section précédente la fonction `iter`, qui crée un itérateur à partir d'un itérable. Sachez que ce n'est pas sa seule utilité. Elle peut aussi créer un itérateur à partir d'une fonction et d'une valeur de fin : c'est-à-dire que la fonction sera appelée tant que la valeur de fin n'a pas été retournée, par exemple:
+Nous avons vu dans la section précédente la fonction `iter`, qui crée un itérateur à partir d'un itérable.
+Sachez que ce n'est pas sa seule utilité. Elle peut aussi créer un itérateur à partir d'une fonction et d'une valeur de fin.
+C'est-à-dire que la fonction sera appelée tant que la valeur de fin n'a pas été retournée, par exemple :
 
 ```python
 >>> n = 0

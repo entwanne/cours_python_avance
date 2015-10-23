@@ -4,7 +4,7 @@ Je vais maintenant vous présenter deux modules, regroupant deux collections de 
 
 ### `operator`
 
-Ce module regroupe l'ensemble des opérateurs python sous forme de fonctions, ainsi, une addition pour se formuler par:
+Ce module regroupe l'ensemble des opérateurs python sous forme de fonctions, ainsi, une addition pour se formuler par :
 
 ```python
 >>> import operator
@@ -33,7 +33,7 @@ b
 
 #### `methodcaller`
 
-`methodcaller` permet d'appeler une méthode prédéterminée d'un objet, avec des paramètres eux aussi déterminés:
+`methodcaller` permet d'appeler une méthode prédéterminée d'un objet, avec des paramètres eux aussi déterminés.
 
 ```python
 >>> dash_spliter = operator.methodcaller('split', '-')
@@ -48,11 +48,11 @@ b
 
 ### `functools`
 
-Nous allons maintenant évoquer le module [`functools`](https://docs.python.org/3/library/functools.html), et plus particulièrement la fonction `partial`: celle-ci permet de réaliser un appel partiel de fonction.
+Nous allons maintenant évoquer le module [`functools`](https://docs.python.org/3/library/functools.html), et plus particulièrement la fonction `partial` : celle-ci permet de réaliser un appel partiel de fonction.
 
-Imaginons que nous ayons une fonction prenant divers paramètres, mais que nous voudrions fixer le premier: l'application partielle de la fonction nous créera un nouveau *callable* qui, quand il sera appelé, nous renverra le résultat de la première fonction avec le paramètre fixé.
+Imaginons que nous ayons une fonction prenant divers paramètres, mais que nous voudrions fixer le premier : l'application partielle de la fonction nous créera un nouveau *callable* qui, quand il sera appelé, nous renverra le résultat de la première fonction avec le paramètre fixé.
 
-Nous allons la tester avec une fonction du module `operator`: la fonction de multiplication. En appliquant partiellement `5` à la fonction `operator.mul`, `partial` nous retourne une fonction réalisant la multiplication par 5 de l'objet passé en paramètre.
+Nous allons la tester avec une fonction du module `operator` : la fonction de multiplication. En appliquant partiellement `5` à la fonction `operator.mul`, `partial` nous retourne une fonction réalisant la multiplication par 5 de l'objet passé en paramètre.
 
 ```python
 >>> from functools import partial
@@ -69,7 +69,7 @@ Imaginons par exemple que nous disposions d'une liste de nombres `[5, 8, 0, 3, 1
 
 `reduce` va nous permettre d'appliquer `operator.add` sur les deux premiers éléments (`5 + 8 = 13`), réappliquer la fonction avec ce premier résultat et le prochain élément de la liste (`13 + 0 = 13`), puis avec ce résultat et l'élément suivant (`13 + 3 = 16`), et enfin, sur ce résultat et le dernier élément (`16 + 1 = 17`).
 
-Ce processus se résume en:
+Ce processus se résume en :
 
 ```python
 >>> from functools import reduce

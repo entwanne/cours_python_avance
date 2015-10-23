@@ -1,9 +1,9 @@
 ## Altérer un générateur avec `send`
 
-Vous devez maintenant être capable de créer pas mal de générateurs. Mais sachez qu'ils sont dotés d'une autre fonctionnalité: on peut communiquer avec eux après leur création.
+Vous devez maintenant être capable de créer pas mal de générateurs. Mais sachez qu'ils sont dotés d'une autre fonctionnalité : on peut communiquer avec eux après leur création.
 
 Pour cela, le générateur est doté d'une méthode `send`. Le paramètre reçu par cette méthode sera transmis au générateur.
-Mais comment le générateur le reçoit ? Au moment où il arrive sur une instruction `yield`, le générateur se met en pause. Mais à l'itération suivante, l'exécution reprend au niveau de ce même `yield`.
+Mais comment le générateur le reçoit ? Au moment où il arrive sur une instruction `yield`, le générateur se met en pause. Mais à l'itération suivante, l'exécution reprend au niveau de ce même `yield`.
 Dans le cas où vous appelez `send`, l'exécution reprend, et `yield` renvoie une valeur, celle passée à `send`. Attention donc, un appel à `send` produit une itération supplémentaire dans le générateur.
 
 ```python
@@ -18,7 +18,7 @@ Dans le cas où vous appelez `send`, l'exécution reprend, et `yield` renvoie un
 2
 ```
 
-Comme je le disais, une valeur peut-être renvoyée par `yield`, modifions quelque peu notre générateur `fibonacci` pour s'en parcevoir:
+Comme je le disais, une valeur peut-être renvoyée par `yield`, modifions quelque peu notre générateur `fibonacci` pour nous en parcevoir.
 
 ```python
 >>> def fibonacci(n, a=0, b=1):
@@ -41,9 +41,9 @@ retour: None
 2
 ```
 
-Nous pouvons voir que lors de notre premier `next`, aucun retour n'est imprimé: c'est normal, le générateur n'étant encore jamais passé dans un `yield`, nous ne sommes encore jamais arrivés jusqu'au premier appel à `print` (qui se trouve après le premier `yield`).
+Nous pouvons voir que lors de notre premier `next`, aucun retour n'est imprimé : c'est normal, le générateur n'étant encore jamais passé dans un `yield`, nous ne sommes encore jamais arrivés jusqu'au premier appel à `print` (qui se trouve après le premier `yield`).
 
-Cela signifie aussi qu'il est impossible d'utiliser `send` avant le premier `yield` (puisqu'il n'existe aucun précédent `yield` qui retournerait la valeur):
+Cela signifie aussi qu'il est impossible d'utiliser `send` avant le premier `yield` (puisqu'il n'existe aucun précédent `yield` qui retournerait la valeur).
 
 ```python
 >>> gen = fibonacci(10)
@@ -64,7 +64,7 @@ def stack(*args):
             elems.append(new)
 ```
 
-Testons un peu pour voir:
+Testons un peu pour voir.
 
 ```python
 >>> s = stack('a', 'b', 'c')
@@ -78,7 +78,7 @@ Testons un peu pour voir:
 'd'
 ```
 
-Et si nous souhaitons itérer sur notre pile:
+Et si nous souhaitons itérer sur notre pile :
 
 ```python
 >>> s = stack('a', 'b', 'c')
@@ -93,9 +93,9 @@ c
 d
 ```
 
-Que se passe-t-il ? En fait, `send` consommant une itération, le `b` n'est pas obtenu via le `for`, mais en retour de `send`, et directement affiché sur la sortie (avant même le `print` de `a` puisque le `send` est fait avant).
+Que se passe-t-il ? En fait, `send` consommant une itération, le `b` n'est pas obtenu via le `for`, mais en retour de `send`, et directement affiché sur la sortie (avant même le `print` de `a` puisque le `send` est fait avant).
 
-Pour obtenir le comportement attendu, nous pourrions avancer dans les itérations uniquement si le dernier `yield` a renvoyé `None`. Comment faire cela ? Par une boucle qui exécute des `yield` tant que ceux-ci ne renvoient pas `None`.
+Pour obtenir le comportement attendu, nous pourrions avancer dans les itérations uniquement si le dernier `yield` a renvoyé `None`. Comment faire cela ? Par une boucle qui exécute des `yield` tant que ceux-ci ne renvoient pas `None`.
 
 ```python
 >>> def stack(*args):

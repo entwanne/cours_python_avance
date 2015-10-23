@@ -46,7 +46,7 @@ En fait, c'est simplement que le paramètre `key` passé ne représente pas un n
 
 Comme vous le voyez, le slice se construit toujours de la même manière, avec 3 nombres pouvant être omis, ou précisés à `None` pour prendre leur valeur par défaut.
 
-L'objet ainsi construit contient 3 attributs: `start`, `stop`, et `step` :
+L'objet ainsi construit contient 3 attributs : `start`, `stop`, et `step`.
 
 ```python
 >>> s = slice(1, 2, 3)

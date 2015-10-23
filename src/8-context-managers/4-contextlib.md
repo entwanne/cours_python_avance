@@ -1,9 +1,9 @@
 ## Simplifions-nous la vie avec la `contextlib`
 
-Vous pourriez trouver une similitude entre les décorateurs et les gestionnaires de contextes : dans les deux cas, on cherche à exécuter quelque chose avant et après un bloc d'instructions.
+Vous pourriez trouver une similitude entre les décorateurs et les gestionnaires de contextes : dans les deux cas, on cherche à exécuter quelque chose avant et après un bloc d'instructions.
 
 Il existe dans la `contextlib` un outil qui les rapproche. Une classe, `ContextDecorator`, permet de transformer un gestionnaire de contexte en décorateur, et donc de pouvoir l'utiliser comme l'un ou comme l'autre.
-Cela peut s'avérer utile pour créer un module qui mesurerait le temps d'exécution d'un ensemble d'instructions : on peut vouloir sans servir via `with`, ou via un décorateur autour de notre fonction à mesurer.
+Cela peut s'avérer utile pour créer un module qui mesurerait le temps d'exécution d'un ensemble d'instructions : on peut vouloir sans servir via `with`, ou via un décorateur autour de notre fonction à mesurer.
 
 Cet outil s'utilise très facilement, il suffit que notre gestionnaire de contexte hérite de `ContextDecorator`.
 
@@ -18,7 +18,7 @@ class spent_time(ContextDecorator):
         print('Elapsed {:.3}s'.format(time.time() - self.start))
 ```
 
-Et s'utilise comme suit :
+Et s'utilise comme suit :
 
 ```python
 >>> with spent_time():

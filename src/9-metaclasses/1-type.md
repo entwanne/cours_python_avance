@@ -1,12 +1,12 @@
-## Quel est donc ce `type` ?
+## Quel est donc ce `type` ?
 
 Ainsi, vous l'avez bien compris, `type` n'est pas utile que pour connaître le type d'un objet.
 `type` est une métaclasse, et sert donc à créer de nouvelles classes.
 
-Ses paramètres sont au nombre de 3 :
+Ses paramètres sont au nombre de 3 :
 
-- Une chaîne de caractères représentant le nom de la classe ;
-- Un tuple contenant les classes dont nous héritons (`object` est implicite) ;
+- Une chaîne de caractères représentant le nom de la classe ;
+- Un tuple contenant les classes dont nous héritons (`object` est implicite) ;
 - Le dictionnaire des attributs et méthodes de la classe.
 
 ```python
