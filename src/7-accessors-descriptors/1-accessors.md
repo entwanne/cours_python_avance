@@ -1,7 +1,9 @@
 ## L'attribut de Dana
 
 Que font réellement `getattr`, `setattr` et `delattr` ? Elles appellent des méthodes spéciales de l'objet.
-`setattr` et `delattr` sont les cas les plus simples, la correspondance est faite avec les méthodes `__setattr__` et `__delattr__` de l'objet. Ces deux méthodes prennent respectivement les mêmes paramètres (en plus de `self`) que les fonctions auxquelles elles correspondent. `__setattr__` prendra donc le nom de l'attribut et sa nouvelle valeur, et `__delattr__` le nom de l'attribut.
+
+`setattr` et `delattr` sont les cas les plus simples, la correspondance est faite avec les méthodes `__setattr__` et `__delattr__`.
+Ces deux méthodes prennent respectivement les mêmes paramètres (en plus de `self`) que les fonctions auxquelles elles correspondent. `__setattr__` prendra donc le nom de l'attribut et sa nouvelle valeur, et `__delattr__` le nom de l'attribut.
 
 Quant à `getattr`, la chose est un pleu complexe, car deux méthodes spéciales lui correspondent : `__getattribute__` et `__getattr__`. Ces deux méthodes prennent en paramètre le nom de l'attribut.
 La première est appelée lors de la récupération de tout attribut. La seconde est réservée aux cas où l'attribut n'existe pas (si `__getattribute__` lève une `AttributeError` par exemple).
@@ -26,7 +28,7 @@ class Temperature:
             self.value = value
         elif name == 'fahrenheit':
             self.value = (value - 32) / 1.8
-	else:
+        else:
             super().__setattr__(name, value)
 ```
 
@@ -44,27 +46,27 @@ Et à l'utilisation :
 100.0
 ```
 
-### dict et slots
+### *dict* et *slots*
 
 Le `__dict__` dont je parle plus haut est le dictionnaire contenant les attributs d'un objet Python. Par défaut, il contient tous les attributs que vous définissez sur un objet (si vous ne modifiez pas le fonctionnement de `setattr`).
 En effet, chaque fois que vous créez un attribut (`foo.bar = value`), celui-ci est enregistré dans le dictionnaire des attributs de l'objet (`foo.__dict__['bar'] = value`). La méthode `__getattribute__` de l'objet se contente donc de rechercher l'attribut dans le dictionnaire de l'objet et de ses parents (type de l'objet et classes dont ce type hérite).
 
-Les slots sont une seconde manière de procéder, en vue de pouvoir optimiser le stockage de l'objet. Par défaut, lors de la création d'un objet, le dictionnaire `__dict__` est créé afin de pouvoir y stocker l'ensemble des attributs. Si la classe définit un énumérable `__slots__` contenant l'ensemble des attributs possibles de l'objet, le `__dict__` n'aura plus besoin d'être instancié lors de la création d'un nouvel objet.
+Les slots sont une seconde manière de procéder, en vue de pouvoir optimiser le stockage de l'objet. Par défaut, lors de la création d'un objet, le dictionnaire `__dict__` est créé afin de pouvoir y stocker l'ensemble des attributs. Si la classe définit un itérable `__slots__` contenant l'ensemble des attributs possibles de l'objet, le `__dict__` n'aura plus besoin d'être instancié lors de la création d'un nouvel objet.
 Notez tout de même que si votre classe définit un `__slots__`, vous ne pourrez plus par défaut définir d'attributs autres sur l'objet que ceux décrits dans les slots.
 
 Je vous invite à consulter la section de la documentation consacrée aux slots pour plus d'informations :
-
-* <https://docs.python.org/3/reference/datamodel.html#slots>
+<https://docs.python.org/3/reference/datamodel.html#slots>
 
 ### MRO
 
 J'évoquais précédemment le comportement de `__getattribute__`, qui consiste à consulter le dictionnaire de l'objet puis de ces parents. Ce mécanisme est appelé *method resolution order* ou plus généralement *MRO*.
 
 Chaque classe que vous définissez possède une méthode `mro`. Elle retourne une liste contenant l'ordre des classes à interroger lors de la résolution d'un appel sur l'objet.
-C'est ce *MRO* qui définit la priorité des classes parentes lors d'un héritage multiple (quelle classe interroger en priorité), c'est encore lui qui est utilisé lors d'un appel à `super`, afin de savoir à quelle classe `super` fait référece.
+C'est ce *MRO* qui définit la priorité des classes parentes lors d'un héritage multiple (quelle classe interroger en priorité), c'est encore lui qui est utilisé lors d'un appel à `super`, afin de savoir à quelle classe `super` fait référence.
 En interne, la méthode `mro` fait appel à l'attribut `__mro__` de la classe.
 
 Le comportement par défaut de `foo.__getattribute__('bar')` est donc assez simple :
+
 1. On recherche dans `foo.__dict__` la présence d'une clef `'bar'`, dont on retourne la valeur si la clef existe ;
 2. On recherche dans les `__dict__` de toutes les classes référencées par `type(foo).mro()`, en s'arrêtant à la première valeur trouvée ;
 3. On lève une exception `AttributeError` si l'attribut n'a pu être trouvé.
@@ -99,13 +101,14 @@ Puis observons.
 >>> E.mro()
 (<class 'toto.E'>, <class 'toto.B'>, <class 'toto.A'>, <class 'toto.C'>, <class 'object'>)
 >>> F.mro()
-(<class 'toto.F'>, <class 'toto.D'>, <class 'toto.E'>, <class 'toto.B'>, <class 'toto.A'>, <class 'toto.C'>, <class 'object'>)
+(<class 'toto.F'>, <class 'toto.D'>, <class 'toto.E'>, <class 'toto.B'>, <class 'toto.A'>,
+<class 'toto.C'>, <class 'object'>)
 >>> G.mro()
-(<class 'toto.G'>, <class 'toto.E'>, <class 'toto.B'>, <class 'toto.D'>, <class 'toto.A'>, <class 'toto.C'>, <class 'object'>)
+(<class 'toto.G'>, <class 'toto.E'>, <class 'toto.B'>, <class 'toto.D'>, <class 'toto.A'>,
+<class 'toto.C'>, <class 'object'>)
 ```
 
 On constate bien que les classes les plus à gauche sont proritaires lors d'un héritage, mais aussi que le mécanisme de *MRO* évite la présence de doublons dans la hiérarchie.
 
-Si vous souhaitez en connaître davantage sur le *MRO*, c'est plutôt vers la documentation de python 2.3 qu'il faut s'orienter :
-
-* <https://www.python.org/download/releases/2.3/mro/>
+Si vous souhaitez en connaître davantage sur le *MRO*, je vous renvoie à la page la documentation de python 2.3 qui annonce son implémentation :
+<https://www.python.org/download/releases/2.3/mro/>

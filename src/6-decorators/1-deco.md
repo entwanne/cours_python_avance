@@ -1,7 +1,5 @@
 ## D&CO, une semaine pour tout changer
 
-- Principe, fonctionnement interne, équivalence (func = decorator(func))
-
 En Python, vous en avez peut-être déjà croisés, les décorateurs reposent sur le caractère `@`.
 
 Le principe de la décoration en Python est d'appliquer un décorateur à une fonction, afin de retourner un nouvel objet (généralement appelable).
@@ -33,9 +31,10 @@ addition = decorator(addition)
 
 On voit donc bien que le décorateur est appliqué à la création de la fonction, et non lors de ses appels.
 Nous utilisons ici un décorateur très simple qui retourne la même fonction, mais il se pourrait très bien qu'il en retourne une autre, qui pourrait être créée à la volée.
+
 Disons que nous aimerions modifier notre fonction `addition` pour afficher les opérandes puis le résultat, sans toucher au corps de notre fonction. Nous pouvons réalier un décorateur qui retournera une nouvelle fonction se chargeant d'afficher les paramètres, d'appeler notre fonction originale, puis d'afficher le retour et de le retourner (afin de conserver le comportement original).
 
-Ainsi, notre décorateur devient
+Ainsi, notre décorateur devient :
 
 ```python
 def print_decorator(function):
@@ -94,7 +93,7 @@ useless = decorator(print_decorator(useless))
 
 On voit donc que les décorateurs spécifiés en premiers sont ceux qui seront appliqués en derniers.
 
-Enfin, pour rappel, l'application du décorateur n'est pas limité aux fonctions, mais s'étend aussi aux méthodes de classes ou aux classes elles-mêmes :
+Enfin, pour rappel, l'application du décorateur n'est pas limitée aux fonctions, mais s'étend aussi aux méthodes de classes ou aux classes elles-mêmes :
 
 ```python
 @print_decorator

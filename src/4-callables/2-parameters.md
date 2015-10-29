@@ -126,9 +126,9 @@ Ainsi, il est possible de relayer les paramètres reçus par une fonction à une
 >>> def proxy_addition_3(*args, **kwargs):
 ...     return addition_3(*args, **kwargs)
 ...
->>> addition_3(1, 2, 3)
+>>> proxy_addition_3(1, 2, 3)
 6
->>> addition_3(1, c=3, b=2)
+>>> proxy_addition_3(1, c=3, b=2)
 6
 ```
 

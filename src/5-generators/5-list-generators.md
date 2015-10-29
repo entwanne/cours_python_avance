@@ -13,7 +13,7 @@ Une question qui revient souvent est celle de savoir quand choisir une liste et 
 ...         n += 1
 ```
 
-* Les générateurs ne sont pas indexables : on ne peut associer à un élément particulier (il faut itérer jusque cet élément) ;
+* Les générateurs ne sont pas indexables : on ne peut accéder à un élément particulier (il faut itérer jusque cet élément) ;
 * Les générateurs ont une durée de vie plus courte (ils ne contiennent plus rien une fois qu'ils ont été itérés en entier) ;
 * Du fait que les générateurs n'occupent que peu de place en mémoire, on peut les enchaîner sans crainte.
 

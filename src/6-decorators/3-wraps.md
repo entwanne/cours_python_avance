@@ -54,7 +54,8 @@ def decorator(f):
 ```
 
 Mais une autre fonction nous sera bien plus utile car plus concise, et recommandée par la documentation Python pour ce cas, il s'agit de `wraps`, qui retourne un décorateur lorsqu'appelé avec une fonction.
-La fonction décorée par `wraps` prendra les informations de la fonction passé à l'appel de `wraps`.
+
+La fonction décorée par `wraps` prendra les informations de la fonction passée à l'appel de `wraps`.
 Ainsi, nous n'aurons qu'à précéder toutes nos fonctions decorées par `@functools.wraps(fonction_a_decorer)`. Dans notre exemple :
 
 ```python
@@ -67,4 +68,4 @@ def decorator(f):
     return decorated
 ```
 
-Vous pouvez maintenant redéfinir notre fonction `addition`, et tester à nouveau l'appel à `help` pour constater les différences.
+Vous pouvez maintenant redéfinir la fonction `addition`, et tester à nouveau l'appel à `help` pour constater les différences.

@@ -1,6 +1,6 @@
 ## La fonction `open`
 
-L'un des gestionnaires de contexte plus connus est probablement le fichier, tel que retourné par la fonction `open`.
+L'un des gestionnaires de contexte les plus connus est probablement le fichier, tel que retourné par la fonction `open`.
 Jusque là, vous avez pu l'utiliser de la manière suivante :
 
 ```python

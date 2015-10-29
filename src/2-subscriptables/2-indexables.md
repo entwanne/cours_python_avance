@@ -1,4 +1,4 @@
-## Objets indexables
+## Objets *indexables*
 
 Nous voilà bien avancés, nous savons accéder à la taille d'un objet, mais *quid* des éléments ?
 

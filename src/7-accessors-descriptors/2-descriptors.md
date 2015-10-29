@@ -14,7 +14,7 @@ Pour reprendre notre exemple précédent sur les températures, nous pourrions a
 class Celsius:
     def __get__(self, instance, owner):
         # Dans le cas où on appellerait `Temperature.celsius`
-	# On préfère retourner l'attribut lui-même
+        # On préfère retourner l'attribut lui-même
         if instance is None:
             return self
         return instance.value
@@ -39,4 +39,5 @@ class Temperature:
 
 Je vous laisse exécuter à nouveau les exemples précédents pour constater que le comportement est le même.
 
-* <https://docs.python.org/3/reference/datamodel.html#implementing-descriptors>
+Pour plus d'informations sur les descripteurs :
+<https://docs.python.org/3/reference/datamodel.html#implementing-descriptors>

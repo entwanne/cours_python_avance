@@ -1,6 +1,6 @@
 ## Les métaclasses
 
-Nous avons vu qu'une métaclasse était simplement une classe héritant de `type` et permettant de créer des classes.
+Nous avons vu qu'une métaclasse était simplement une classe héritant de `type` et permettant d'instancier des classes.
 Puisque nous voulons altérer la création et non l'initialisation, c'est dans le constructeur que le tout va s'opérer.
 
 Le constructeur d'une métaclasse devra donc prendre les mêmes paramètres que `type`, et faire appel à ce dernier pour créer notre objet.
@@ -17,7 +17,7 @@ Le constructeur d'une métaclasse devra donc prendre les mêmes paramètres que 
 <class '__main__.M'>
 ```
 
-Nous avons ainsi créé notre propre métaclasse, et l'avons utilisé pour instancier une nouvelle classe.
+Nous avons ainsi créé notre propre métaclasse, et l'avons utilisée pour instancier une nouvelle classe.
 
 Une autre syntaxe est possible, à l'aide du mot clef `class` : la métaclasse à utiliser peut être spécifiée entre les parenthèses derrière le nom de la classe.
 
@@ -76,7 +76,7 @@ En héritant d'`Enum`, on hérite aussi de sa métaclasse (`EnumMeta`)
 <class 'enum.EnumMeta'>
 ```
 
-Attention d'ailleurs en héritant de plusieurs calsses de vérifier que celles-ci ont des métaclasses compatibles (la hiérarchie entre les différentes métaclasses doit être linéaire).
+Attention d'ailleurs, lorsque vous héritez de plusieurs classes, assurez-vous toujours que leurs métaclasses soient compatibles (la hiérarchie entre les différentes métaclasses doit être linéaire).
 
 Une implémentation simplifiée possible d'`Enum` est la suivante :
 

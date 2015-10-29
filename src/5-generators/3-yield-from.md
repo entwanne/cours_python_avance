@@ -14,7 +14,7 @@ def gen2():
     yield 4
 ```
 
-Celui-ci agit comme si nous itérions sur `gen1()` depuis `gen2`, tout en *yieldant* toutes les valeurs.
+Celui-ci agit comme si nous itérions sur `gen1()` depuis `gen2`, tout en *yieldant* toutes ses valeurs.
 
 ```python
 def gen2():

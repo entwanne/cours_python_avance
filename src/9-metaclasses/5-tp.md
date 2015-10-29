@@ -6,7 +6,7 @@ Dans ce dernier TP, nous nous intéresserons à l'évaluation paresseuse (*lazy 
 
 Lorsque vous entrez une expression Python dans votre interpréteur et que celui-ci vous retourne une valeur, on dit que cette expression est évaluée. Évaluer une expression correspond donc à en calculer le résultat.
 
-L'évaluation paresseuse se différencie par rapport au moment où le calcul a lieu.
+L'évaluation paresseuse se différencie de l'évluation standard par rapport au moment où le calcul a lieu.
 Lors d'une évaluation traditionnelle, le résultat est tout de suite retourné, et peut être manipulé.
 Dans le cas d'une évaluation paresseuse, celui-ci n'est calculé que lorsqu'il est réellement nécessaire (quand on commence à manipuler l'objet), d'où le terme de paresseux.
 
@@ -30,9 +30,9 @@ True
 Nous n'avons réellement besoin des valeurs `a`, `b` et `c` qu'en ligne 5.
 
 Si nous ne voulons pas calculer tout de suite le résultat, il faudra tout de même que notre fonction `square` retourne quelque chose.
-Et dans notre exemple, l'objet retourné devra posséder les méthodes `__add__` et `__eq__`. Méthodes qui se chargeront du calcul du carré.
+Et dans notre exemple, l'objet retourné devra posséder les méthodes `__add__` et `__eq__`. Méthodes qui se chargeront d'effectuer le calcul du carré.
 
-Ce ne sont ici que deux opérateurs, mais il en existe beaucoup d'autres, dont l'énumération serait [...], et il va nous falloir tous les gérer.
+Ce ne sont ici que deux opérateurs, mais il en existe beaucoup d'autres, *dont l'énumération serait inutile et fastidieuse*, et il va nous falloir tous les gérer.
 
 ### Opérateurs et méthodes spéciales
 
@@ -76,10 +76,12 @@ Une liste de méthodes spéciales nous est fournie dans la documentation Python�
 * `__enter__`, `__exit__`
 * `__await__`, `__aiter__`, `__anext__`, `__aenter__`, `__aexit__`
 
-Mais celle-ci n'est pas complète, `__next__` n'y figure pas. Je n'ai pas trouvé de liste exhaustive, et c'est donc celle-ci que nous utiliserons. Nous ometterons cependant la première ligne (constructeur, initialisateur et destructeur), car les objets que nous recevrons seront déjà construits.
+Mais celle-ci n'est pas complète, `__next__` n'y figure par exemple pas.
+Je n'ai pas trouvé de liste exhaustive, et c'est donc celle-ci que nous utiliserons.
+Nous ometterons cependant la première ligne (constructeur, initialisateur et destructeur), car les objets que nous recevrons seront déjà construits.
 
 Il nous faut aussi différencier les opérateurs des autres méthodes spéciales. Habituellement, si une méthode spéciale est implémentée pour un opérateur et que l'opération n'est pas réalisable, celle-ci est censée retourner `NotImplemented`.
-Le module `operator` nous permettra facilement de savoir si la méthode spéciale est un décorateur, et donc d'agir en conséquence (en vérifiant que la méthode est présente dans `operator.__dict__` par exemple).
+Le module `operator` nous permettra facilement de savoir si la méthode spéciale est un opérateur, et donc d'agir en conséquence (en vérifiant que la méthode est présente dans `operator.__dict__` par exemple).
 
 La solution que je propose est la suivante.
 
@@ -121,10 +123,12 @@ class LazyMeta(type):
             return getattr(value, methname)(*args, **kwargs)
         return meth
 
-    def __new__(cls, name, bases, dict):
+    @classmethod
+    def __prepare__(cls, name, bases):
+        methods = {}
         for methname in cls.specials:
-            dict[methname] = cls.get_meth(methname)
-        return super().__new__(cls, name, bases, dict)
+            methods[methname] = cls.get_meth(methname)
+        return methods
 
 class Lazy(metaclass=LazyMeta):
     def __init__(self, expr):

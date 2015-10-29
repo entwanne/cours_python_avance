@@ -6,19 +6,19 @@ Dans ce TP, nous allons mettre en pratique les décorateurs à l'aide de quatre 
 
 Un des exemples les plus courants de mise en pratique des décorateurs est la réalisation d'un système de mise en cache (mémoïsation) : sauvegarder les résultats d'un calcul pour éviter de le refaire à chaque appel.
 
-Nous allons débuter par une version simple : pour chaque appel, nous enregistrerons la valeur de retour asociée au couple `(args, kwargs)` si celle-ci n'existe pas déjà. Dans le cas contraire, il nous suffira de retourner la valeur existante.
+Nous allons débuter par une version simple : pour chaque appel, nous enregistrerons la valeur de retour associée au couple `(args, kwargs)` si celle-ci n'existe pas déjà. Dans le cas contraire, il nous suffira de retourner la valeur existante.
 
-Seul bémol, nous ne pouvons pas stocker directement `(args, kwargs)` comme clef de notre dictionnaire, car certains objets n'y sont pas hashables (car modifiables). Nous procéderons donc à l'aide d'une sérialisation via `pickle`.
+Seul bémol, nous ne pouvons pas stocker directement `(args, kwargs)` comme clef de notre dictionnaire, car certains objets n'y sont pas hashables (car modifiables, tel que le dictionnaire).
+Nous procéderons donc à l'aide d'une sérialisation via `repr` pour obtenir la représentation de nos paramètres sous forme d'une chaîne de caractères.
 
 ```python
 import functools
-import pickle
 
 def memoize(f):
     cache = {}
     @functools.wraps(f)
     def decorated(*args, **kwargs):
-        key = pickle.dumps((args, kwargs))
+        key = repr((args, kwargs))
         if not key in cache:
             cache[key] = f(*args, **kwargs)
         return cache[key]
@@ -46,7 +46,7 @@ def memoize(f):
     @functools.wraps(f)
     def decorated(*args, **kwargs):
         bind = sig.bind(*args, **kwargs)
-        key = pickle.dumps((bind.args, bind.kwargs))
+        key = repr((bind.args, bind.kwargs))
         if not key in cache:
             cache[key] = f(*args, **kwargs)
         return cache[key]
@@ -58,9 +58,10 @@ def memoize(f):
 
 Nous avons déjà parlé de [`functools`](https://docs.python.org/3/library/functools.html). à plusieurs reprises dans ce cours. Si vous y avez prêté attention, vous avez remarqué que le décorateur que nous venons d'implémenter ressemble beaucoup à `lru_cache` (à l'exception près que notre version gère les types non-hashables, mais avec une perte de performances).
 
-Nous allons maintenant nous intéresser à `singledispatch`, une implémentation de fonctions génériques permettant de dispatcher l'appel en fonction du type du premier paramètre.
+Nous allons maintenant nous intéresser à `singledispatch`, une implémentation de fonctions génériques permettant de *dispatcher* l'appel en fonction du type du premier paramètre.
 
-Un décorateur, `singledispatch` prend une fonction en paramètre (c'est la fonction qui sera appelée si aucune spécialisation n'est trouvée), et en retourne un nouvel objet. Cet objet possède une méthode `register` s'utilisera comme un décorateur paramétré en lui précisant le type pour lequel nous voulons spécialiser.
+Un décorateur, `singledispatch` prend une fonction en paramètre (c'est la fonction qui sera appelée si aucune spécialisation n'est trouvée), et en retourne un nouvel objet.
+Cet objet possède une méthode `register` qui s'utilisera comme un décorateur paramétré en lui précisant le type pour lequel nous voulons spécialiser.
 
 Lors de chaque appel à l'objet, il sera déterminé suivant le type du premier paramètre la fonction à appeler. Nos appels devront donc posséder au minimum un argument positionnel.
 
@@ -71,7 +72,7 @@ class singledispatch:
     def __init__(self, func):
         self.default = func
         self.registry = {}
-	functools.update_wrapper(self, func)
+        functools.update_wrapper(self, func)
     def __call__(self, *args, **kwargs):
         func = self.registry.get(type(args[0]), self.default)
         return func(*args, **kwargs)
@@ -82,7 +83,7 @@ class singledispatch:
         return decorator
 ```
 
-Pour aller plus loin, nous pourrions aussi permettre de dispatcher en fonction du type de tous les paramètres, ou encore utiliser les annotations pour préciser les types.
+Pour aller plus loin, nous pourrions aussi permettre de *dispatcher* en fonction du type de tous les paramètres, ou encore utiliser les annotations pour préciser les types.
 
 
 ### Vérification de types
@@ -93,7 +94,7 @@ La vérification ne pourra ainsi se faire que sur les paramètres possédant un 
 Notre décorateur va donc se charger d'analyser les paramètres lors de chaque appel à la fonction, et de les comparer un à un avec les annotations de notre fonction.
 Pour accéder aux annotations, nous allons à nouveau utiliser la fonction `signature`. La signature retournée comportant un attribut `parameters` contenant la liste des paramètres.
 
-Ces paramètres peuvent-être de différents types, suivant leur placement dans la ligne de définition de la fonction.
+Ces paramètres peuvent-être de différents types, suivant leur emplacement dans la ligne de définition de la fonction.
 Par exemple, si notre fonction se définit par :
 
 ```python
@@ -171,7 +172,8 @@ Je vous invite maintenant à tester ce décorateur sur notre précédente foncti
 
 [La récursivité terminale n'existe pas en python](http://neopythonic.blogspot.com.au/2009/04/tail-recursion-elimination.html). Guido von Rossum le dit lui-même. Mais il nous est possible de la simuler.
 
-Si vous avez déjà tenté d'écrire des fonctions récursives en Python, vous vous êtes rapidement confronté à l'impossibilité de descendre au-delà d'un certain niveau de récursion, à cause de la taille limitée de la pile d'appels. Certains langages implémentent l'optimisation dite de récursivité terminale : si l'appel récursif est la dernière instruction exécutée dans la fonction, il est possible de supprimer de la pile le contexte courant avant d'appeler la fonction suivante, et ainsi ne pas surcharger la pile. Ce n'est pas le cas dans Python.
+Si vous avez déjà tenté d'écrire des fonctions récursives en Python, vous vous êtes rapidement confronté à l'impossibilité de descendre au-delà d'un certain niveau de récursion, à cause de la taille limitée de la pile d'appels.
+Certains langages implémentent l'optimisation dite de récursivité terminale : si l'appel récursif est la dernière instruction exécutée dans la fonction, il est possible de supprimer de la pile le contexte courant avant d'appeler la fonction suivante, et ainsi ne pas surcharger la pile. Ce n'est pas le cas avec Python.
 
 Mais nous allons voir qu'avec le bon décorateur, il est possible de reproduire ce comportement.
 
@@ -191,7 +193,7 @@ Maintenant nous allons réaliser notre décorateur `tail_rec`, j'ai opté pour u
 class tail_rec:
     def __init__(self, func):
         self.func = func
-	functools.update_wrapper(self, func)
+        functools.update_wrapper(self, func)
 
     def call(self, *args, **kwargs):
         return tail_rec_exec((self.func, args, kwargs))

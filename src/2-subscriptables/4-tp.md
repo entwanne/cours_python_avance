@@ -49,7 +49,7 @@ C'est par celle-ci que nous allons commencer, car son comportement est très sim
 
 - Créer un `Node` avec la valeur spécifiée en paramètre, et comme maillon précédent l'actuelle fin de liste ;
 - Faire pointer la fin de liste sur ce nouveau maillon ;
-- Et, ne pas oublier, dans le cas où notre liste est actuellement vide, faire pointer le début de liste sur ce maillon.
+- Et, ne pas oublier, dans le cas où notre liste est actuellement vide, de faire pointer le début de liste sur ce maillon.
 
 ```python
 def append(self, value):
@@ -131,7 +131,7 @@ Nous pouvons ainsi obtenir un `range` à l'aide de l'expression `range(*key.indi
 def __getitem__(self, key):
     if isinstance(key, slice):
         new_list = Deque()
-	indices = range(*key.indices(len(self)))
+        indices = range(*key.indices(len(self)))
         for i in indices:
             new_list.append(self[i])
         return new_list
@@ -140,7 +140,7 @@ def __getitem__(self, key):
 
 def __setitem__(self, key, value):
     if isinstance(key, slice):
-	indices = range(*key.indices(len(self)))
+        indices = range(*key.indices(len(self)))
         for i, v in zip(indices, value):
             self[i] = v
     else:

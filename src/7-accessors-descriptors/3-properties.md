@@ -4,7 +4,7 @@ Les propriétés (ou *properties*) sont un moyen de simplifier l'écriture de de
 
 En effet, `property` est une classe qui, à la création d'un objet, prend en paramètre les fonctions `fget`, `fset` et `fdel` qui seront respectivement appelées par `__get__`, `__set__` et `__delete__`.
 
-On pourrait ainsi définir une version simplifiée de `property` comme :
+On pourrait ainsi définir une version simplifiée de `property` comme ceci :
 
 ```python
 class my_property:

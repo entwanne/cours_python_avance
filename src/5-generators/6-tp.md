@@ -22,17 +22,17 @@ Voici comment j'aimerais utiliser ce frigo :
 ...         'oeufs': 3
 ...     }
 ... }
->>> frigo = new_frigo(recettes, ('oeufs', 12), ('farine', 300), ('eau', 100), ('beurre', 250))
+>>> f = frigo(recettes, ('oeufs', 12), ('farine', 300), ('eau', 100), ('beurre', 250))
 >>> # Oui, nous rangeons la farine au frigo !
->>> next(frigo)
+>>> next(f)
 'choux'
->>> next(frigo)
+>>> next(f)
 'omelette'
->>> frigo.send(('oeufs', 3))
->>> frigo.send(('farine', 500))
->>> next(frigo)
+>>> f.send(('oeufs', 3))
+>>> f.send(('farine', 500))
+>>> next(f)
 'choux'
->>> next(frigo)
+>>> next(f)
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
 StopIteration
@@ -66,17 +66,17 @@ def simple_frigo(recettes):
             stock[ingredient] += n
             ret = yield
         try:
-	    # Choisit une recette aléatoire parmi les éligibles
+            # Choisit une recette aléatoire parmi les éligibles
             name, recette = choice([(name, r) for name, r in recettes.items() if eligible(r, stock)])
         except IndexError:
-	    # IndexError est levé quand choice reçoit une liste vide
-	    # Aucune recette n'était éligible, on sort du générateur
+            # IndexError est levé quand choice reçoit une liste vide
+            # Aucune recette n'était éligible, on sort du générateur
             break
         for ingredient, n in recette.items(): # Consommation des ingrédients de la recette
             stock[ingredient] -= n
         ret = yield name
 
-def new_frigo(recettes, *ingredients):
+def frigo(recettes, *ingredients):
     "Crée un frigo à l'aide de recettes et d'ingrédients de base"
     frigo = simple_frigo(recettes) # Instancie un frigo simple
     next(frigo) # Premier next afin de pouvoir commencer à envoyer des ingrédients
@@ -85,4 +85,4 @@ def new_frigo(recettes, *ingredients):
     yield from frigo # Puis passage au comportement normal de notre frigo
 ```
 
-J'ai ici choisi de séparer le générateur en deux fonctions, afin de ne pas avoir à répéter l'étape de remplissage des stocks (afin la première recette, puis à chaque send).
+J'ai ici choisi de séparer le générateur en deux fonctions, afin de ne pas avoir à répéter l'étape de remplissage des stocks (à la première recette, puis à chaque send).

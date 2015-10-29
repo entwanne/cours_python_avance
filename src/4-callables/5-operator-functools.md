@@ -1,10 +1,11 @@
 ## Modules `operator` et `functools`
 
-Je vais maintenant vous présenter deux modules, regroupant deux collections de *callables*.
+Passons maintenant à la présentation de deux modules, contenant deux collections de *callables*.
 
 ### `operator`
 
-Ce module regroupe l'ensemble des opérateurs python sous forme de fonctions, ainsi, une addition pour se formuler par :
+Ce module regroupe l'ensemble des opérateurs python sous forme de fonctions.
+Ainsi, une addition pourrait se formuler par :
 
 ```python
 >>> import operator
@@ -27,13 +28,13 @@ b
 >>> get_second(range(3,10))
 4
 >>> get_x = operator.itemgetter('x')
->>> get_name({'x': 5, 'y': 1})
+>>> get_x({'x': 5, 'y': 1})
 5
 ```
 
 #### `methodcaller`
 
-`methodcaller` permet d'appeler une méthode prédéterminée d'un objet, avec des paramètres eux aussi déterminés.
+`methodcaller` permet d'appeler une méthode prédéterminée d'un objet, avec ses arguments.
 
 ```python
 >>> dash_spliter = operator.methodcaller('split', '-')
@@ -48,9 +49,9 @@ b
 
 ### `functools`
 
-Nous allons maintenant évoquer le module [`functools`](https://docs.python.org/3/library/functools.html), et plus particulièrement la fonction `partial` : celle-ci permet de réaliser un appel partiel de fonction.
+Je tenais ensuite à évoquer le module [`functools`](https://docs.python.org/3/library/functools.html), et plus particulièrement la fonction `partial` : celle-ci permet de réaliser un appel partiel de fonction.
 
-Imaginons que nous ayons une fonction prenant divers paramètres, mais que nous voudrions fixer le premier : l'application partielle de la fonction nous créera un nouveau *callable* qui, quand il sera appelé, nous renverra le résultat de la première fonction avec le paramètre fixé.
+Imaginons que nous ayons une fonction prenant divers paramètres, mais que nous voudrions fixer le premier : l'application partielle de la fonction nous créera un nouveau *callable* qui, quand il sera appelé avec de nouveaux arguments, nous renverra le résultat de la première fonction avec l'ensemble des arguments.
 
 Nous allons la tester avec une fonction du module `operator` : la fonction de multiplication. En appliquant partiellement `5` à la fonction `operator.mul`, `partial` nous retourne une fonction réalisant la multiplication par 5 de l'objet passé en paramètre.
 
@@ -63,7 +64,7 @@ Nous allons la tester avec une fonction du module `operator` : la fonction de m
 'zzzzz'
 ```
 
-Ce module comprend aussi la fonction `reduce`, un outil tiré du fonctionnel permettant de transformer un itérable en une valeur unique, en appliquant une fonction prenant un élément et le dernier résultat.
+Ce module comprend aussi la fonction `reduce`, un outil tiré du fonctionnel permettant de transformer un itérable en une valeur unique, en appliquant une fonction sur le prochain élément et le dernier résultat.
 
 Imaginons par exemple que nous disposions d'une liste de nombres `[5, 8, 0, 3, 1]` et que nous voulions en calculer la somme. Nous savons faire la somme de deux nombres, il s'agit d'une addition, donc de la fonction `operator.add`.
 

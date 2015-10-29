@@ -2,9 +2,11 @@
 
 De même que pour les itérables, les *callables* sont au cœur de python en pouvant être utilisés avec un grand nombre de builtins.
 
-Par exemple, la fonction `max` évoquée dans un précédent chapitre : en plus de prendre un itérable sur lequel trouver le maximum, elle peut aussi prendre un paramètre `key` contenant un *callable* expliquant comment trouver ce maximum.
-Si l'itérable ne contient que des entiers, c'est plutôt simple à déterminer le maximum, mais si nous avons une liste de points 2D par exemple ?
+Par exemple, la fonction `max` évoquée dans un précédent chapitre : en plus de prendre un itérable sur lequel trouver le maximum, elle peut aussi prendre un paramètre `key`. Ce paramètre est un *callable* expliquant comment extraire le maximum depuis les arguments passés à `max`.
+Si l'itérable ne contient que des entiers, il est plutôt simple de déterminer le maximum, mais si nous avons une liste de points 2D par exemple ?
 Le maximum pourrait être le point avec la plus grande abscisse, la plus grande ordonnée, le point le plus éloigné de l'origine du repère, ou encore bien d'autres choses.
+
+Le *callable* `key` est donc chargé de calculer une valeur numérique pour chacun des paramètres, et pouvoir ainsi les comparer entre-eux. Le paramètre ayant la plus grande valeur sera le maximum.
 
 Nous représenterons ici nos points par des tuples de deux valeurs.
 
