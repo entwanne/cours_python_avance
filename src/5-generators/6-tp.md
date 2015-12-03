@@ -86,5 +86,3 @@ def frigo(recettes, **ingredients):
 ```
 
 J'ai ici choisi de séparer le générateur en deux fonctions, afin de ne pas avoir à répéter l'étape de remplissage des stocks (à la première recette, puis à chaque send).
-
-Je profite aussi de la fin de ce chapitre pour vous conseiller cet article de Nohar sur les coroutines, une utilisation possible des générateurs : [https://zestedesavoir.com/articles/152/la-puissance-cachee-des-coroutines](https://zestedesavoir.com/articles/152/la-puissance-cachee-des-coroutines).

@@ -59,4 +59,4 @@ L'objet ainsi construit contient 3 attributs : `start`, `stop`, et `step`.
 3
 ```
 
-Je vous conseille ce tutoriel de pascal.ortiz pour en savoir plus sur les slices : [https://zestedesavoir.com/tutoriels/582/les-slices-en-python/](https://zestedesavoir.com/tutoriels/582/les-slices-en-python/).
+Je vous conseille ce tutoriel de pascal.ortiz pour en savoir plus sur les slices : <https://zestedesavoir.com/tutoriels/582/les-slices-en-python/>

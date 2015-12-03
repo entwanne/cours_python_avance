@@ -24,6 +24,11 @@ manifest = {
 
 trans = str.maketrans('','','#*_`\n')
 
+def reduce_title_level(line):
+    if line.startswith('###'):
+        return line[2:]
+    return line
+
 with ZipFile(archive_name, 'w') as archive:
     for section in (manifest['introduction'], manifest['conclusion']):
         with open(section, 'r') as f:
@@ -37,10 +42,13 @@ with ZipFile(archive_name, 'w') as archive:
         part = parts.setdefault(part_name, {'object': 'container', 'slug': part_name, 'title': part_name, 'children': []})
         with open(section, 'r') as f:
             title = next(f).translate(trans).strip()
-            archive.writestr(section, f.read())
+            content = ''.join(reduce_title_level(line) for line in f)
+            archive.writestr(section, content)
         if sec_name.startswith('0'):
             part['introduction'] = section
             part['title'] = title
+        elif sec_name.endswith('-conclusion'):
+            part['conclusion'] = section
         else:
             part['children'].append({'object': 'extract', 'slug': sec_name, 'title': title, 'text': section})
 

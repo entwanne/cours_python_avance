@@ -38,6 +38,3 @@ class Temperature:
 ```
 
 Je vous laisse exécuter à nouveau les exemples précédents pour constater que le comportement est le même.
-
-Pour plus d'informations sur les descripteurs :
-<https://docs.python.org/3/reference/datamodel.html#implementing-descriptors>

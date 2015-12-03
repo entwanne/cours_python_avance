@@ -109,6 +109,3 @@ Puis observons.
 ```
 
 On constate bien que les classes les plus à gauche sont proritaires lors d'un héritage, mais aussi que le mécanisme de *MRO* évite la présence de doublons dans la hiérarchie.
-
-Si vous souhaitez en connaître davantage sur le *MRO*, je vous renvoie à la page la documentation de python 2.3 qui annonce son implémentation :
-<https://www.python.org/download/releases/2.3/mro/>
