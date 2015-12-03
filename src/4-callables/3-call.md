@@ -54,3 +54,25 @@ Nous avons là une classe `MyCallable`, dont les instances sont des *callables*,
 >>> MyCallable(6)(3)
 9
 ```
+
+Il y a différents intérêts à créer un type *callable*. Le premier serait simplement de rendre compatible notre objet à l'interface utilisée par de nombreuses fonctions Python que nous verrons dans la section suivante.
+Aussi, utiliser une classe pour cela est un moyen simple de sauvegarder un état, permettant d'avoir un comportement différent à chaque appel.
+
+```python
+>>> class Increment:
+...     def __init__(self):
+...         self.n = 0
+...     def __call__(self):
+...         self.n += 1
+...         return self.n
+...
+>>> incr = Increment()
+>>> incr()
+1
+>>> incr()
+2
+>>> Increment()() # Les deux objets sont bien indépendants
+1
+>>> incr()
+3
+```
