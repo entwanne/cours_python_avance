@@ -49,17 +49,17 @@ class MyList:
 Nous pouvons tester notre objet, celui-ci a bien le comportement voulu :
 
 ```python
->>> numbers = MyList([1, 2, 3, 4, 5, 6])
+>>> numbers = MyList('123456')
 >>> len(numbers)
 6
 >>> numbers[1]
-2
->>> numbers[1] = 0
+'2'
+>>> numbers[1] = '0'
 >>> numbers[1]
-0
+'0'
 >>> del numbers[1]
 >>> len(numbers)
 5
 >>> numbers[1]
-3
+'3'
 ```

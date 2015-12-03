@@ -6,13 +6,13 @@ Par exemple, récupérer la première moitié d'une liste, ou cette même liste 
 Les *slices* sont une syntaxe particulière pour l'indexation, à l'aide du caractère `:` lors des appels à `[]`.
 
 ```python
->>> letters = ['a', 'b', 'c', 'd', 'e', 'f']
+>>> letters = ('a', 'b', 'c', 'd', 'e', 'f')
 >>> letters[0:4]
-['a', 'b', 'c', 'd']
+('a', 'b', 'c', 'd')
 >>> letters[1:-2]
-['b', 'c', 'd']
+('b', 'c', 'd')
 >>> letters[::2]
-['a', 'c', 'e']
+('a', 'c', 'e')
 ```
 
 Je pense que vous êtes déjà familier avec cette syntaxe. Le *slice* peut prendre jusqu'à 3 nombres :
@@ -24,7 +24,8 @@ Je pense que vous êtes déjà familier avec cette syntaxe. Le *slice* peut pren
 Parfois moins connu, les *slices* peuvent aussi servir pour la modification et la suppression :
 
 ```python
-letters[::2] = 'x', 'y', 'z'
+>>> letters = ['a', 'b', 'c', 'd', 'e', 'f']
+>>> letters[::2] = 'x', 'y', 'z'
 >>> letters
 ['x', 'b', 'y', 'd', 'z', 'f']
 >>> del letters[0:3]
@@ -57,3 +58,5 @@ L'objet ainsi construit contient 3 attributs : `start`, `stop`, et `step`.
 >>> s.step
 3
 ```
+
+Je vous conseille ce tutoriel de pascal.ortiz pour en savoir plus sur les slices : [https://zestedesavoir.com/tutoriels/582/les-slices-en-python/](https://zestedesavoir.com/tutoriels/582/les-slices-en-python/).
