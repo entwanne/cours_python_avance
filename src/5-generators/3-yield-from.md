@@ -3,34 +3,56 @@
 Il est aussi possible de déléguer l'itération à un sous-générateur, à l'aide du mot clef `yield from`.
 
 ```python
-def gen1():
-    yield 1
-    yield 2
-    yield 3
-
-def gen2():
+def big_queue():
     yield 0
-    yield from gen1()
+    yield from queue(1, 2, 3)
     yield 4
 ```
 
 Celui-ci agit comme si nous itérions sur `gen1()` depuis `gen2`, tout en *yieldant* toutes ses valeurs.
 
 ```python
-def gen2():
+def big_queue():
     yield 0
-    for value in gen1():
+    for value in queue(1, 2, 3):
         yield value
     yield 4
 ```
 
-À la différence près qu'avec `yield from`, les paramètres passés avec `send` sont aussi relégués aux sous-générateurs.
+À la différence près qu'avec `yield from`, les paramètres passés lors d'un `send` sont aussi relégués aux sous-générateurs.
 
-On peut aussi noter que `yield from` n'attend pas nécessairement un générateur, mais n'importe quel type d'itérable. `gen1` pourrait donc plus simplement s'écrire :
+Dans notre première version, nous pouvons nous permettre ceci :
 
 ```python
-def gen1():
+>>> q = big_queue()
+>>> next(q)
+0
+>>> next(q)
+1
+>>> q.send('foo')
+>>> next(q)
+2
+>>> next(q)
+3
+>>> next(q)
+'foo'
+>>> next(q)
+4
+>>> next(q)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+StopIteration
+```
+
+Je vous laisse essayer avec la seconde implémentation de `big_queue` (sans `yield from`), pour bien observer l'effet de la délégation du `send`.
+
+On peut aussi noter que `yield from` n'attend pas nécessairement un générateur, mais n'importe quel type d'itérable.
+
+```python
+def gen_iterables():
     yield from [1, 2, 3]
+    yield from 'abcdef'
+    yield from {'x': 1, 'y': -1}
 ```
 
 Et par exemple, si nous voulions réécrire la fonction `itertools.chain`, nous pourrions procéder ainsi :

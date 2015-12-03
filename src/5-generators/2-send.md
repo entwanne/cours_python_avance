@@ -5,8 +5,8 @@ Vous devez maintenant être capable de créer pas mal de générateurs. Mais sac
 Pour cela, le générateur est doté d'une méthode `send`. Le paramètre reçu par cette méthode sera transmis au générateur.
 Mais comment le reçoit-il ?
 
-Au moment où il arrive sur une instruction `yield`, le générateur se met en pause. Mais à l'itération suivante, l'exécution reprend au niveau de ce même `yield`.
-Dans le cas où vous appelez `send`, l'exécution reprend, et `yield` renvoie une valeur, celle passée lors du `send`.
+Au moment où il arrive sur une instruction `yield`, le générateur se met en pause. Lors de l'itération suivante, l'exécution reprend au niveau de ce même `yield`.
+Dans le cas où vous appelez `send`, l'exécution reprend, et `yield` retourne une valeur, celle passée lors du `send`.
 
 Attention donc, un appel à `send` produit une itération supplémentaire dans le générateur.
 
@@ -22,7 +22,8 @@ Attention donc, un appel à `send` produit une itération supplémentaire dans l
 2
 ```
 
-Comme je le disais, une valeur peut-être renvoyée par `yield`, modifions quelque peu notre générateur `fibonacci` pour nous en apercevoir.
+Comme je le disais, une valeur peut-être retournée par l'instruction `yield`, c'est à dire dans le corps même de la fonction génératrice.
+Modifions quelque peu notre générateur `fibonacci` pour nous en apercevoir.
 
 ```python
 >>> def fibonacci(n, a=0, b=1):
@@ -104,14 +105,16 @@ Nous pouvons assigner le retour de `q.send` afin d'éviter que l'interpréteur n
 Pour obtenir le comportement attendu, nous pourrions avancer dans les itérations uniquement si le dernier `yield` a renvoyé `None`. Comment faire cela ? Par une boucle qui exécute des `yield` tant que ceux-ci ne renvoient pas `None`.
 
 ```python
->>> def queue(*args):
-...     elems = list(args)
-...     while elems:
-...         new = yield elems.pop(0)
-...         while new is not None:
-...             elems.append(new)
-...             new = yield
-...
+def queue(*args):
+    elems = list(args)
+    while elems:
+        new = yield elems.pop(0)
+        while new is not None:
+            elems.append(new)
+            new = yield
+```
+
+```python
 >>> q = queue('a', 'b', 'c')
 >>> for letter in q:
 ...     if letter == 'a':

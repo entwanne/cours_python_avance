@@ -42,6 +42,16 @@ Ou avec un `for` :
 6
 ```
 
+Le générateur en lui-même ne retourne rien (il n'est pas *callable*), il produit des valeurs à l'aide de `yield`.
+Pour bien faire la différence entre notre générateu et sa fonction génératrice, on peut regarder ce qu'en dit Python.
+
+```python
+>>> gen
+<generator object function at 0x7f008dfb0570>
+>>> function
+<function function at 0x7f008dce2ea0>
+```
+
 Bien sûr, notre générateur est très simpliste dans l'exemple, mais toutes les structures de contrôle du python peuvent y être utilisées. De plus, le générateur peut aussi être paramétré *via* les arguments passés à la fonction. Un exemple un peu plus poussé avec un générateur produisant les `n` premiers termes d'une suite de Fibonacci débutant par `a` et `b`.
 
 ```python

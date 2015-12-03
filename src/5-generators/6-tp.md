@@ -22,7 +22,7 @@ Voici comment j'aimerais utiliser ce frigo :
 ...         'oeufs': 3
 ...     }
 ... }
->>> f = frigo(recettes, ('oeufs', 12), ('farine', 300), ('eau', 100), ('beurre', 250))
+>>> f = frigo(recettes, oeufs=12, farine=300, eau=100, beurre=250)
 >>> # Oui, nous rangeons la farine au frigo !
 >>> next(f)
 'choux'
@@ -76,13 +76,15 @@ def simple_frigo(recettes):
             stock[ingredient] -= n
         ret = yield name
 
-def frigo(recettes, *ingredients):
+def frigo(recettes, **ingredients):
     "Crée un frigo à l'aide de recettes et d'ingrédients de base"
-    frigo = simple_frigo(recettes) # Instancie un frigo simple
-    next(frigo) # Premier next afin de pouvoir commencer à envoyer des ingrédients
-    for i in ingredients:
-        frigo.send(i) # Envoi des ingrédients de base
-    yield from frigo # Puis passage au comportement normal de notre frigo
+    sfrigo = simple_frigo(recettes) # Instancie un frigo simple
+    next(sfrigo) # Premier next afin de pouvoir commencer à envoyer des ingrédients
+    for item in ingredients.items():
+        sfrigo.send(item) # Envoi des ingrédients de base
+    yield from sfrigo # Puis passage au comportement normal de notre frigo
 ```
 
 J'ai ici choisi de séparer le générateur en deux fonctions, afin de ne pas avoir à répéter l'étape de remplissage des stocks (à la première recette, puis à chaque send).
+
+Je profite aussi de la fin de ce chapitre pour vous conseiller cet article de Nohar sur les coroutines, une utilisation possible des générateurs : [https://zestedesavoir.com/articles/152/la-puissance-cachee-des-coroutines](https://zestedesavoir.com/articles/152/la-puissance-cachee-des-coroutines).
