@@ -1,6 +1,6 @@
 ## Utilisation des callables
 
-De même que pour les itérables, les *callables* sont au cœur de python en pouvant être utilisés avec un grand nombre de builtins.
+De même que pour les itérables, les *callables* sont au cœur de Python en pouvant être utilisés avec un grand nombre de builtins.
 
 Par exemple, la fonction `max` évoquée dans un précédent chapitre : en plus de prendre un itérable sur lequel trouver le maximum, elle peut aussi prendre un paramètre `key`. Ce paramètre est un *callable* expliquant comment extraire le maximum depuis les arguments passés à `max`.
 Si l'itérable ne contient que des entiers, il est plutôt simple de déterminer le maximum, mais si nous avons une liste de points 2D par exemple ?
@@ -12,7 +12,7 @@ Nous représenterons ici nos points par des tuples de deux valeurs.
 
 ```python
 >>> points = [(0, 0), (1, 4), (3, 3), (4, 0)]
->>> max(points) # par défaut, python sélectionne suivant le premier élément, soit l'abscisse
+>>> max(points) # par défaut, Python sélectionne suivant le premier élément, soit l'abscisse
 (4, 0)
 >>> max(points, key=lambda p: p[0]) # Nous précisons ici explicitement la sélection par l'abscisse
 (4, 0)
@@ -22,7 +22,7 @@ Nous représenterons ici nos points par des tuples de deux valeurs.
 (3, 3)
 ```
 
-En dehors de `max`, d'autres fonctions python prennent un tel paramètre key, comme `min` ou encore `sorted` :
+En dehors de `max`, d'autres fonctions Python prennent un tel paramètre key, comme `min` ou encore `sorted` :
 
 ```python
 >>> sorted(points, key=lambda p: p[1])
@@ -40,4 +40,4 @@ En dehors de `max`, d'autres fonctions python prennent un tel paramètre key, co
 [0, 4, 3, 0]
 ```
 
-Je vous invite une nouvelle fois à jeter un œil aux builtins python, ainsi qu'au module `itertools`, et de voir lesquels peuvent vous faire tirer profit des *callables*.
+Je vous invite une nouvelle fois à jeter un œil aux builtins Python, ainsi qu'au module `itertools`, et de voir lesquels peuvent vous faire tirer profit des *callables*.

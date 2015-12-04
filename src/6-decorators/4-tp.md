@@ -170,7 +170,7 @@ Je vous invite maintenant à tester ce décorateur sur notre précédente foncti
 
 ### Récursivité terminale
 
-[La récursivité terminale n'existe pas en python](http://neopythonic.blogspot.com.au/2009/04/tail-recursion-elimination.html). Guido von Rossum le dit lui-même. Mais il nous est possible de la simuler.
+[La récursivité terminale n'existe pas en Python](http://neopythonic.blogspot.com.au/2009/04/tail-recursion-elimination.html). Guido von Rossum le dit lui-même. Mais il nous est possible de la simuler.
 
 Si vous avez déjà tenté d'écrire des fonctions récursives en Python, vous vous êtes rapidement confronté à l'impossibilité de descendre au-delà d'un certain niveau de récursion, à cause de la taille limitée de la pile d'appels.
 Certains langages implémentent l'optimisation dite de récursivité terminale : si l'appel récursif est la dernière instruction exécutée dans la fonction, il est possible de supprimer de la pile le contexte courant avant d'appeler la fonction suivante, et ainsi ne pas surcharger la pile. Ce n'est pas le cas avec Python.

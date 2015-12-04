@@ -4,7 +4,7 @@ Passons maintenant à la présentation de deux modules, contenant deux collectio
 
 ### `operator`
 
-Ce module regroupe l'ensemble des opérateurs python sous forme de fonctions.
+Ce module regroupe l'ensemble des opérateurs Python sous forme de fonctions.
 Ainsi, une addition pourrait se formuler par :
 
 ```python

@@ -10,7 +10,7 @@ True
 False
 ```
 
-Comment cela fonctionne ? C'est très simple. Comme pour de nombreux comportements, python se base sur des méthodes spéciales des objets, vous en connaissez déjà probablement, ce sont les méthodes dont les noms débutent et s'achèvent par `__`.
+Comment cela fonctionne ? C'est très simple. Comme pour de nombreux comportements, Python se base sur des méthodes spéciales des objets, vous en connaissez déjà probablement, ce sont les méthodes dont les noms débutent et s'achèvent par `__`.
 
 Ici, l'opérateur `in` fait simplement appel à la méthode `__contains__` de l'objet, qui prend en paramètre l'opérande gauche, et retourne un booléen.
 

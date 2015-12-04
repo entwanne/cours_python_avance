@@ -30,7 +30,7 @@ Les annotations n'ont aucune utilité à proprement parler, je veux dire par là
 Mais vous pouvez choisir de leur donner un sens, nous le ferons dans le TP suivant.
 Une utilisation courante est de préciser dans les annotation les types des paramètres et le type de retour.
 
-Tout ce qu'il y a à savoir pour le moment, c'est qu'une annotation peut-être n'importe quel objet python (ici nous annotons avec l'objet `<class 'int'>`, le type entier, donc.
+Tout ce qu'il y a à savoir pour le moment, c'est qu'une annotation peut-être n'importe quel objet Python (ici nous annotons avec l'objet `<class 'int'>`, le type entier, donc.
 Les annotations sont utilisabes pour toutes fonctions et méthodes (mais pas pour les lambdas par exemple). Les paramètres peuvent être annotés en leur ajoutant un `:` suivi de l'annotation.
 La fonction dans son ensemble peut-être annotée à l'aide d'un `->` derrière la liste des paramètres de la définition.
 

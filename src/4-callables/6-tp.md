@@ -25,7 +25,7 @@ C'est aussi simple que cela, et nous pouvons le tester :
 [(0, 0), (4, 0), (3, 3), (1, 4)]
 ```
 
-Nous aurions aussi pu profiter des fermetures (`closures`) de python pour réaliser `itemgetter` sous la forme d'une fonction retournant une fonction.
+Nous aurions aussi pu profiter des fermetures (`closures`) de Python pour réaliser `itemgetter` sous la forme d'une fonction retournant une fonction.
 
 ```python
 def itemgetter(key):

@@ -4,7 +4,7 @@
 
 Nous avons, dans les paragraphes précédents, créé un proxy autour d'une liste pour découvrir le fonctionnement des méthodes décrites.
 
-Dans ce TP, pas à pas, nous créerons notre propre type de liste, à savoir une liste doublement chaînée, c'est-à-dire composée de maillons reliés entre eux. Très courantes dans des langages bas-niveau tels que le C, elles le sont beaucoup moins en python, possédant tout de même une implémentation `deque` (*double-ended queue*) dans le module `collections`.
+Dans ce TP, pas à pas, nous créerons notre propre type de liste, à savoir une liste doublement chaînée, c'est-à-dire composée de maillons reliés entre eux. Très courantes dans des langages bas-niveau tels que le C, elles le sont beaucoup moins en Python, possédant tout de même une implémentation `deque` (*double-ended queue*) dans le module `collections`.
 
 En plus de nos méthodes d'accès aux éléments, nous implémenterons les méthodes `insert` et `append` afin d'ajouter facilement des éléments à notre liste.
 

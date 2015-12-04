@@ -52,7 +52,7 @@ Pour bien faire la différence entre notre générateu et sa fonction génératr
 <function function at 0x7f008dce2ea0>
 ```
 
-Bien sûr, notre générateur est très simpliste dans l'exemple, mais toutes les structures de contrôle du python peuvent y être utilisées. De plus, le générateur peut aussi être paramétré *via* les arguments passés à la fonction. Un exemple un peu plus poussé avec un générateur produisant les `n` premiers termes d'une suite de Fibonacci débutant par `a` et `b`.
+Bien sûr, notre générateur est très simpliste dans l'exemple, mais toutes les structures de contrôle du Python peuvent y être utilisées. De plus, le générateur peut aussi être paramétré *via* les arguments passés à la fonction. Un exemple un peu plus poussé avec un générateur produisant les `n` premiers termes d'une suite de Fibonacci débutant par `a` et `b`.
 
 ```python
 >>> def fibonacci(n, a=0, b=1):
