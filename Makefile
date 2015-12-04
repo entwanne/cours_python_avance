@@ -6,8 +6,8 @@ FLAGS = --chapters --toc
 
 GEN = $(PDF) $(ZIP)
 
-$(PDF):	$(SRC)
-	pandoc -V lang=french -V geometry:margin=1in $(SRC) -o $@ $(FLAGS)
+$(PDF):	title.md $(SRC)
+	pandoc -V lang=french -V geometry:margin=1in $^ -o $@ $(FLAGS)
 
 $(ZIP): $(SRC)
 	./gen_archive.py $@ $^
