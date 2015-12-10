@@ -10,8 +10,7 @@ f = open('filename', 'r')
 f.close()
 ```
 
-Mais sachez que ça n'est pas la meilleure façon de procéder. En effet, si une exception survient pendant le traitement, la méthode `close` ne sera par exemple jamais appelée.
-Le fichier sera tout de même fermé à la fin de l'exécution du programme, mais pour peu que vous rattrapiez l'exception plus haut, celle-ci n'est pas forcément imminente.
+Mais sachez que ça n'est pas la meilleure façon de procéder. En effet, si une exception survient pendant le traitement, la méthode `close` ne sera par exemple jamais appelée, et les dernières données écrites pourraient être perdues.
 
 Il est donc conseillé de plutôt procéder de la sorte, avec `with` :
 
