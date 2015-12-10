@@ -1,23 +1,24 @@
 ## D&CO, une semaine pour tout changer
 
-En Python, vous en avez peut-être déjà croisés, les décorateurs reposent sur le caractère `@`.
+En Python, vous en avez peut-être déjà croisé, les décorateurs se repèrent au caractère `@`.
 
 Le principe de la décoration en Python est d'appliquer un décorateur à une fonction, afin de retourner un nouvel objet (généralement appelable).
-Un décorateur est donc une fonction prenant une fonction en paramètre et retournant une fonction.
+Un décorateur est donc un *callable* prenant une fonction en paramètre et retournant un *callable*.
 
 ```python
 def decorator(f): # decorator est un décorateur
+    print(f.__name__)
     return f
 ```
-
-Note : J'utilise ici le terme « fonction » mais cela est applicable à tout *callable*.
 
 Pour appliquer un décorateur, on précède la ligne de définition de la fonction à décorer par une ligne comportant un `@` puis le nom du décorateur à appliquer, par exemple :
 
 ```python
-@decorator
-def addition(a, b):
-    return a + b
+>>> @decorator
+... def addition(a, b):
+...     return a + b
+...
+addition
 ```
 
 Cela a pour effet de remplacer `addition` par le retour de la fonction `decorator` appelée avec `addition` en paramètre, c'est donc strictement équivalent à :
@@ -29,7 +30,7 @@ def addition(a, b):
 addition = decorator(addition)
 ```
 
-On voit donc bien que le décorateur est appliqué à la création de la fonction, et non lors de ses appels.
+On voit donc bien que le décorateur est appliqué à la définition de la fonction, et non lors de ses appels.
 Nous utilisons ici un décorateur très simple qui retourne la même fonction, mais il se pourrait très bien qu'il en retourne une autre, qui pourrait être créée à la volée.
 
 Disons que nous aimerions modifier notre fonction `addition` pour afficher les opérandes puis le résultat, sans toucher au corps de notre fonction. Nous pouvons réalier un décorateur qui retournera une nouvelle fonction se chargeant d'afficher les paramètres, d'appeler notre fonction originale, puis d'afficher le retour et de le retourner (afin de conserver le comportement original).
@@ -46,7 +47,7 @@ def print_decorator(function):
     return new_function # Ne pas oublier de retourner notre nouvelle fonction
 ```
 
-Testons maintenant d'appliquer ce décorateur à une fonction d'addition :
+Si on applique maintenant ce décorateur à notre fonction d'addition :
 
 ```python
 >>> @print_decorator
@@ -59,7 +60,7 @@ Retour: 3
 3
 ```
 
-Mais notre décorateur est ici très sépcialisé, il ne fonctionne qu'avec les fonctions prenant deux paramètres, et affichera « Addition » dans tous les cas. Nous pouvons le modifier pour le rendre plus générique (souvenez vous d'`*args` et `**kwargs`).
+Mais notre décorateur est ici très spécialisé, il ne fonctionne qu'avec les fonctions prenant deux paramètres, et affichera « Addition » dans tous les cas. Nous pouvons le modifier pour le rendre plus générique (souvenez vous d'`*args` et `**kwargs`).
 
 ```python
 def print_decorator(function):
@@ -93,10 +94,13 @@ useless = decorator(print_decorator(useless))
 
 On voit donc que les décorateurs spécifiés en premiers sont ceux qui seront appliqués en derniers.
 
-Enfin, pour rappel, l'application du décorateur n'est pas limitée aux fonctions, mais s'étend aussi aux méthodes de classes ou aux classes elles-mêmes :
+J'ai dit plus haut que les décorateurs s'appliquaient aux fonctions. C'est aussi valable pour les fonctions définies à l'intérieur de classes (les méthodes, donc).
+Mais sachez enfin que les décorateurs s'étendent aux déclarations de classes.
 
 ```python
 @print_decorator
 class MyClass:
-    pass
+    @decorator
+    def method(self):
+        pass
 ```
