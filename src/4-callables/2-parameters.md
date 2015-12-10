@@ -2,7 +2,7 @@
 
 ### Paramètres et arguments
 
-Revenons un peu aux paramètres de fonctions (et plus généralement de *callables*). Les paramètres sont décrits lors de la définition de la fonction, ils possèdent un nom, et potentiellement une valeur par défaut.
+Parlons un peu des paramètres de fonctions (et plus généralement de *callables*). Les paramètres sont décrits lors de la définition de la fonction, ils possèdent un nom, et potentiellement une valeur par défaut.
 
 Il faut les distinguer des arguments : les arguments sont les valeurs passées lors de l'appel.
 
@@ -165,3 +165,5 @@ Voyons maintenant ce que nous permet l'opérateur *splat* :
 >>> last
 9
 ```
+
+Notons enfin que les possibilités offertes par l'opérateur *splat* ont encore été étendues avec Python 3.5, pour en savoir plus : <https://zestedesavoir.com/articles/175/sortie-de-python-3-5/#2-principales-nouveautes>

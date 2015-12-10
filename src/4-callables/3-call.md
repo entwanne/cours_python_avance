@@ -29,7 +29,7 @@ Mais, vous devez vous dire, si on peut appeler `func.__call__`, c'est qu'il s'ag
 Cela s'explique par le fait que `__call__` est une méthode, donc un *callable*.
 En interne, Python est capable d'identifier qu'il s'agit d'une fonction et d'en exécuter le code, pour ne pas avoir à appeler indéfiniment des `__call__`.
 
-Maintenant, testons d'implémenter `__call__` dans un objet de notre création :
+Ensuite, implémentons `__call__` dans un objet de notre création :
 
 ```python
 class MyCallable:

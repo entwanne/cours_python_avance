@@ -84,3 +84,5 @@ qui revient donc à faire
 >>> operator.add(operator.add(operator.add(operator.add(5, 8), 0), 3), 1)
 17
 ```
+
+Bien sûr, en pratique, `sum` est déjà là pour répondre à ce problème.

@@ -24,6 +24,4 @@ True
 True
 >>> callable(A())
 False
->>> callable(A().__repr__)
-True
 ```
