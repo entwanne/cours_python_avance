@@ -1,3 +1,3 @@
 # Générateurs
 
-Nous étudierons dans ce chapitre les générateurs, un nouveau type d'itérables.
+Nous étudierons dans ce chapitre les générateurs, un nouveau type d'itérable.

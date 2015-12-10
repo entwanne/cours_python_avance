@@ -9,7 +9,7 @@ def big_queue():
     yield 4
 ```
 
-Celui-ci agit comme si nous itérions sur `gen1()` depuis `gen2`, tout en *yieldant* toutes ses valeurs.
+Celui-ci agit comme si nous itérions sur `queue(1, 2, 3)` depuis `big_queue`, tout en *yieldant* toutes ses valeurs.
 
 ```python
 def big_queue():

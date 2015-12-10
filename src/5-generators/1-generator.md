@@ -2,27 +2,31 @@
 
 Les générateurs sont donc des itérables, mais aussi des itérateurs, ce qui implique qu'ils se consomment quand on les parcourt (et donc nous ne pouvons les parcourir qu'une fois).
 
-Ils sont généralement créés par des fonctions construites à l'aide du mot clef `yield`. Par abus de langage ces fonctions sont parfois appelées générateurs.
+Ils sont généralement créés par des fonctions construites à l'aide du mot clef `yield`. Par abus de langage ces fonctions génératrices sont parfois appelées générateurs.
 
 ### Le mot-clef `yield`
 
 Une générateur est donc créé à partir d'une fonction. Mais contrairement aux fonctions habituelles, celle-ci ne comprendra aucun `return`, mais un ou plusieurs `yield`.
 
-Lors de l'appel, la fonction retournera un générateur, et à chaque appel à `next` sur le générateur, le code jusqu'au prochain `yield` sera exécuté. La valeur retournée par `next` sera la valeur apposée au `yield`. Un exemple pour mieux comprendre cela :
+Lors de l'appel, la fonction retournera un générateur, et à chaque appel à la fonction *builtin* `next` sur le générateur, le code jusqu'au prochain `yield` sera exécuté.
+
+`yield` peut-être ou non suivi d'une expression. La valeur retournée par `next` sera celle apposée au `yield`, ou `None` dans le cas où aucune valeur n'est spécifiée.
+
+Un exemple pour mieux comprendre cela :
 
 ```python
 >>> def function():
 ...     yield 4
-...     yield 5
-...     yield 6
+...     yield
+...     yield 'hej'
 ...
 >>> gen = function()
 >>> next(gen)
 4
 >>> next(gen)
-5
+None
 >>> next(gen)
-6
+'hej'
 >>> next(gen)
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
@@ -38,8 +42,8 @@ Ou avec un `for` :
 ...     print(i)
 ...
 4
-5
-6
+None
+hej
 ```
 
 Le générateur en lui-même ne retourne rien (il n'est pas *callable*), il produit des valeurs à l'aide de `yield`.
@@ -52,7 +56,8 @@ Pour bien faire la différence entre notre générateu et sa fonction génératr
 <function function at 0x7f008dce2ea0>
 ```
 
-Bien sûr, notre générateur est très simpliste dans l'exemple, mais toutes les structures de contrôle du Python peuvent y être utilisées. De plus, le générateur peut aussi être paramétré *via* les arguments passés à la fonction. Un exemple un peu plus poussé avec un générateur produisant les `n` premiers termes d'une suite de Fibonacci débutant par `a` et `b`.
+Bien sûr, notre générateur est très simpliste dans l'exemple, mais toutes les structures de contrôle du Python peuvent y être utilisées. De plus, le générateur peut aussi être paramétré *via* les arguments passés à la fonction.
+Voici un exemple un peu plus poussé avec un générateur produisant les `n` premiers termes d'une [suite de Fibonacci](https://fr.wikipedia.org/wiki/Suite_de_Fibonacci) débutant par `a` et `b`.
 
 ```python
 >>> def fibonacci(n, a=0, b=1):
