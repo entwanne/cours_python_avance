@@ -1,6 +1,7 @@
 # Accesseurs et descripteurs
 
-En Python, tout est dynamique, vous pouvez donc interférer à peu près n'importe où. Ainsi, par exemple, quand on accède à l'attribut `bar` d'un objet `toto` via `foo.bar`, divers mécanismes entrent en jeu pour nous fournir la valeur demandée.
+L'expression `foo.bar` est en apparence très simple : on accède à l'attribut `bar` d'un objet `foo`.
+Cependant, divers mécanismes entrent en jeu pour nous retourner cette valeur, nous permettant d'accéder à des attributs définis à la volée.
 
 Nous allons découvrir dans ce chapitre quels sont ces mécanismes, et comment les manipuler.
 

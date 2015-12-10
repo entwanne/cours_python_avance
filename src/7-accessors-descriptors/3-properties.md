@@ -20,8 +20,8 @@ class my_property:
         return self.fdel(instance)
 ```
 
-Pour faire de `my_property` un clone parfait de `property`, il nous faudrait rendre les paramètres du constructeur optionnels, ou encore la gestion de `__get__` quand `instance` vaut `None`.
-Ce qui permet à `property` d'être utilisé en tant que décorateur.
+Pour faire de `my_property` un clone parfait de `property`, il nous faudrait gérer le cas où `instance` vaut `None` dans la méthode `__get__` ;
+et permettre à `my_property` d'être utilisé en tant que décorateur autour du *getter*.
 
 Logiquement, en rendant les paramètres `fset` et `fdel` optionnels, lorsque `my_property` serait appelée en tant que décorateur autour d'une fonction, cette fonction correspondrait à `fget`, et un objet `my_property` serait donc instancié puis retourné.
 

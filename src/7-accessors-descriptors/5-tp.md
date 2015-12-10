@@ -36,6 +36,8 @@ class my_classmethod:
 ```
 
 ```python
+from types import MethodType
+
 class my_method:
     def __init__(self, func):
         self.func = func
