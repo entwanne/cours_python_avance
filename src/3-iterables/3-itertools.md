@@ -2,7 +2,7 @@
 
 Nous l'avons vu, les itérables sont au cœur des fonctions élémentaires de Python. Je voudrais maintenant vous présenter un module qui vous sera propablement très utile : [`itertools`](https://docs.python.org/3/library/itertools.html).
 
-Ce module met à disposition de nombreux itérateurs plutôt variés, dont :
+Ce module met à disposition de nombreux itérables plutôt variés, dont :
 
 - `chain(p, q, ...)` — Met bout à bout plusieurs itérables ;
 - `islice(p, start, stop, step)` — Fait un travail semblable aux slices, mais en travaillant avec des itérables (nul besoin de pouvoir indexer notre objet) ;

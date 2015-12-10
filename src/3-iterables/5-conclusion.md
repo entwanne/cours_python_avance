@@ -1,6 +1,6 @@
-## Conclusion
+## Liens utiles
 
-Passons maintenant aux ressources de la documentation concernant les itérables et itérateurs :
+Passons enfin aux ressources de la documentation concernant les itérables et itérateurs :
 
 * <https://docs.python.org/3/glossary.html#term-iterable>
 * <https://docs.python.org/3/glossary.html#term-iterator>
