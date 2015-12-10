@@ -92,9 +92,24 @@ def insert(self, i, value):
         self.last = node
 ```
 
+### `__contains__`
+
+Pour faire de notre liste un conteneur, il nous faut implémenter l'opération `in` et donc la méthode `__contains__`. Celle-ci, à la manière de `get_node`, itérera sur tous les maillons jusqu'à en trouver un correspondant à la valeur passée en paramètre et ainsi retourner `True`.
+Si après avoir itéré sur toute la liste sans trouver la valeur, il convient alors de retourner `False`.
+
+```python
+def __contains__(self, value):
+    node = self.first
+    while node is not None:
+        if node.value == value:
+            return True
+        node = node.next
+    return False
+```
+
 ### `__len__`
 
-Passons maintenant à la première méthode qui nous intéresse, afin de pouvoir calculer la taille de notre liste. La méthode `__len__` va pouvoir reprendre une bonne partie du code de `get_node`, elle itère simplement du début à la fin en comptant le nombre de noeuds.
+Nous souhaitons maintenant pouvoir calculer la taille de notre liste. La méthode `__len__` sera aussi très similaire aux précédentes, elle itère simplement du début à la fin en comptant le nombre de noeuds.
 
 ```python
 def __len__(self):
@@ -118,7 +133,7 @@ def __setitem__(self, key, value):
     self.get_node(key).value = value
 ```
 
-Passons maintenant à la gestion des `slice`. Rappelons-nous ce que contient un `slice`, à savoir un indice de début, un indice de fin et un pas. Cela ne vous rappelle pas quelque chose ? Si, c'est exactement ce à quoi correspond `range`. À ceci près que les valeurs `None` n'ont aucune signification pour les `range`.
+Puis vient la gestion des `slice`. Rappelons-nous ce que contient un `slice`, à savoir un indice de début, un indice de fin et un pas. Cela ne vous rappelle pas quelque chose ? Si, c'est exactement ce à quoi correspond `range`. À ceci près que les valeurs `None` n'ont aucune signification pour les `range`.
 
 Mais l'objet `slice` possède une méthode `indices`, qui, en lui donnant la taille de notre ensemble, retourne les paramètres à passer à `range` (en gérant de plus pour nous les indices négatifs).
 

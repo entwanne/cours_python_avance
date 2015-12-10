@@ -1,6 +1,6 @@
-## Conclusion
+## Liens utiles
 
-Le premier chapite touche maintenant à fin. En guise de conclusion, je vais vous fournir une liste de sources tirées de la documentation officielle permettant d'aller plus loin sur ces sujets.
+Nous sommes maintenant à la fin du premier chapitre. En guise de conclusion, je vais vous fournir une liste de sources tirées de la documentation officielle permettant d'aller plus loin sur ces sujets.
 
 * <https://docs.python.org/3/glossary.html#term-sequence>
 * <https://docs.python.org/3/glossary.html#term-mapping>
