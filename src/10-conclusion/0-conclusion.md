@@ -1,7 +1,7 @@
 # Conclusion
 
 Ce cours touche maintenant à sa fin.
-Puisse-t-il vous avoir fait découvrir de nouveaux concepts de Python, où l'envie de voir encore plus loin.
+Puisse-t-il vous avoir fait découvrir de nouveaux concepts de Python, ou l'envie de voir encore plus loin.
 
 Ce cours ne couvre en effet qu'un nombre restreint de domaines, qui pourraient chacun être plus approfondis.
 Il y aurait encore tant à dire, sur les coroutines, sur les utilisations de l'interpréteur, sur les outils, les librairies, les frameworks.
