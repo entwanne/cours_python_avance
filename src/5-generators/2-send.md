@@ -1,14 +1,14 @@
 ## Altérer un générateur avec `send`
 
-Vous devez maintenant être capable de créer pas mal de générateurs. Mais sachez qu'ils sont dotés d'une autre fonctionnalité : on peut communiquer avec eux après leur création.
+Vous devez déjà être capable de créer un certain nombre de générateurs. Mais sachez qu'ils sont dotés d'une autre fonctionnalité : il est possible de communiquer avec eux après leur création.
 
 Pour cela, le générateur est doté d'une méthode `send`. Le paramètre reçu par cette méthode sera transmis au générateur.
 Mais comment le reçoit-il ?
 
 Au moment où il arrive sur une instruction `yield`, le générateur se met en pause. Lors de l'itération suivante, l'exécution reprend au niveau de ce même `yield`.
-Dans le cas où vous appelez `send`, l'exécution reprend, et `yield` retourne une valeur, celle passée lors du `send`.
+Lorsque vous appelez la méthode `send` du générateur, en lui précisant un argument, l'exécution reprend ; et `yield` retourne la valeur passée à `send`.
 
-Attention donc, un appel à `send` produit une itération supplémentaire dans le générateur.
+Attention donc, un appel à `send` produit une itération supplémentaire dans le générateur. `send` retourne alors la valeur de la prochaine itération comme le ferait `next`.
 
 ```python
 >>> gen = fibonacci(10)
@@ -46,7 +46,7 @@ retour: None
 2
 ```
 
-Nous pouvons voir que lors de notre premier `next`, aucun retour n'est imprimé : c'est normal, le générateur n'étant encore jamais passé dans un `yield`, nous ne sommes encore jamais arrivés jusqu'au premier appel à `print` (qui se trouve après le premier `yield`).
+Nous pouvons voir que lors de notre premier `next`, aucun retour n'est imprimé : c'est normal, le générateur n'étant encore jamais passé dans un `yield`, nous ne sommes pas encore arrivés jusqu'au premier appel à `print` (qui se trouve après le premier `yield`).
 
 Cela signifie aussi qu'il est impossible d'utiliser `send` avant le premier `yield` (puisqu'il n'existe aucun précédent `yield` qui retournerait la valeur).
 
@@ -58,7 +58,8 @@ Traceback (most recent call last):
 TypeError: can't send non-None value to a just-started generator
 ```
 
-Pour comprendre un peu mieux l'intérêt de `send`, nous allons implémenter une file (queue) par l'intermédiaire d'un générateur. Celle-ci sera construite à l'aide des arguments donnés  à l'appel, retournera le premier élément à chaque itération (en le retirant de la file), et on pourra ajouter de nouveaux éléments via `send`.
+Pour comprendre un peu mieux l'intérêt de `send`, nous allons implémenter une file (queue) par l'intermédiaire d'un générateur. Celle-ci sera construite à l'aide des arguments donnés  à l'appel, retournera le premier élément à chaque itération (en le retirant de la file).
+On pourra aussi ajouter de nouveaux éléments à cette queue *via* `send`.
 
 ```python
 def queue(*args):
@@ -102,7 +103,8 @@ Que se passe-t-il ? En fait, `send` consommant une itération, le `b` n'est pas
 
 Nous pouvons assigner le retour de `q.send` afin d'éviter que l'interpréteur n'en imprime le résultat, mais cela ne changerait pas tellement le problème : nous ne tomberons jamais sur `'b'` dans nos itérations du `for`.
 
-Pour obtenir le comportement attendu, nous pourrions avancer dans les itérations uniquement si le dernier `yield` a renvoyé `None`. Comment faire cela ? Par une boucle qui exécute des `yield` tant que ceux-ci ne renvoient pas `None`.
+Pour obtenir le comportement attendu, nous pourrions avancer dans les itérations uniquement si le dernier `yield` a renvoyé `None` (un `yield` renvoyant `None` étant considéré comme un `next`).
+Comment faire cela ? Par une boucle qui exécute `yield` jusqu'à ce qu'il retourne `None`. Ce `yield` ne prendra pas de paramètre spécifique, puisqu'il s'agit de la valeur renvoyée par `send`, que nous ignorons.
 
 ```python
 def queue(*args):

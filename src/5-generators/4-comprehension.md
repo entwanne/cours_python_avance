@@ -4,7 +4,7 @@
 
 Vous connaissez probablement déjà les listes en intension (*comprehension lists*), mais je vais me permettre un petit rappel.
 
-Les listes en intension sont une syntaxe courte pour définir des listes à partir d'un itérable et d'une expression à appliquer à chaque élément (un peu à la manière de map, qui lui ne permet que d'appeler un *callable* avec l'élément).
+Les listes en intension sont une syntaxe courte pour définir des listes à partir d'un itérable et d'une expression à appliquer sur chaque élément (un peu à la manière de `map`, qui lui ne permet que d'appeler un *callable* pour chaque l'élément).
 
 Une expression étant en Python tout ce qui possède une valeur (même `None`), c'est à dire ce qui n'est pas une instruction (`if`, `while`, etc.).
 Il faut noter que les ternaires sont des expressions (`a if predicat() else b`), et peuvent donc y être utilisés.
@@ -25,9 +25,15 @@ for x in range(10):
     squres.append(x**2)
 ```
 
+ou encore de
+
+```python
+squares = list(map(lambda x: x**2, range(10)))
+```
+
 Le gain en lisibilité est net.
 
-cette syntaxe permet aussi d'appliquer des filtres, par exemple si nous ne voulions que les carrés supérieurs à 10 :
+Cette syntaxe permet aussi d'appliquer des filtres, à la manière de `filter`. Par exemple si nous ne voulions que les carrés supérieurs à 10 :
 
 ```python
 >>> [x**2 for x in range(10) if x**2 >= 10]
@@ -52,7 +58,7 @@ Enfin, il est possible de parcourir plusieurs niveaux de listes dans une seule l
 
 ```python
 >>> matrix = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]
->>> [i + 1 for line in matrix for i in line]
+>>> [elem + 1 for line in matrix for elem in line]
 [1, 2, 3, 4, 5, 6, 7, 8, 9]
 ```
 
@@ -68,7 +74,7 @@ De la même manière que pour les listes, nous pouvons définir des générateur
 <generator object <genexpr> at 0x7f8b8a9a7090>
 ```
 
-Et nous pouvons les utiliser de la même manière que tout itérable.
+Et nous pouvons les utiliser tel que les autres itérables.
 
 ```python
 >>> list(squares)

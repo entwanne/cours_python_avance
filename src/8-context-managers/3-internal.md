@@ -6,10 +6,12 @@ Les gestionnaires de contexte sont en fait des objets disposant de deux méthode
 
 Le retour de la méthode `__enter__` sera attribué à la variable spécifiée derrière le `as`.
 
-Le bloc `with` est donc un bloc d'instructions très simple, offrant juste un sucre syntaxique autour d'un `try`/`finally`.
+Le bloc `with` est donc un bloc d'instructions très simple, offrant juste un sucre syntaxique autour d'un `try`/`except`/`finally`.
 
 `__enter__` ne prend aucun paramètre, contrairement à `__exit__` qui en prend 3 : `exc_type`, `exc_value`, et `traceback` qui correspondent au type de l'exception levée, à sa valeur, et à son *traceback*.
 Dans le cas où aucune exception n'est survenue pendant le traitement de la ressource, ces 3 paramètres valent `None`.
+
+`__exit__` retourne un booléen, intervenant dans la propagation des exceptions. En effet, si `True` est retourné, l'exception survenue dans le contexte sera attrapée.
 
 Nous pouvons maintenant créer notre propre type de contexte, contentons-nous pour le moment de quelque chose d'assez simple qui afficherait un message à l'entrée et à la sortie.
 

@@ -20,7 +20,7 @@ Une classe est donc une instance de la classe `type`. Une classe qui permet d'in
 
 ### À quoi sert une métaclasse ?
 
-Ainsi, une métaclasse permet de créer de nouvelles classes, mais pourquoi faire ?
+Une métaclasse permet ainsi de créer de nouvelles classes, mais pour quoi faire ?
 
 L'intérêt principal des métaclasses est de pouvoir modifier les classes lors de leur création, en ajoutant de nouvelles méthodes ou attributs par exemple.
 
@@ -62,7 +62,7 @@ Nous verrons par la suite comment nous pouvons instancier `type`.
 Toutes les classes étant des instances de `type`, on en déduit qu'il faut passer par `type` pour toute construction de classe.
 Une métaclasse est donc une classe héritant de `type`.
 
-Enfin, dans les cas où nous créons une classe par héritage, c'est en interne un appel à `type` qui est réalisé.
+Dans les cas où nous créons une classe par héritage, c'est aussi une instanciation de `type` qui est réalisée en interne.
 
 J'en profite pour vous relayer un bon article expliquant ces concepts d'instanciation et d'héritage :
 <http://www.cafepy.com/article/python_types_and_objects>

@@ -85,4 +85,4 @@ def frigo(recettes, **ingredients):
     yield from sfrigo # Puis passage au comportement normal de notre frigo
 ```
 
-J'ai ici choisi de séparer le générateur en deux fonctions, afin de ne pas avoir à répéter l'étape de remplissage des stocks (à la première recette, puis à chaque send).
+J'ai ici choisi de séparer le générateur en deux fonctions, afin de ne pas avoir à répéter l'étape de remplissage des stocks (à la première recette, puis à chaque `send`).

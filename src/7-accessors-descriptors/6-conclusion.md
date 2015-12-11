@@ -1,4 +1,4 @@
-## Conclusion
+## Liens utiles
 
 La documentation est cette fois bien plus fournie, je vous souhaite donc une bonne lecture.
 Les liens de ce chapitre sont particulièrement intéressants, notamment conernant le protocole des descripteurs et le *MRO*.

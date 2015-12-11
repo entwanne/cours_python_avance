@@ -1,6 +1,6 @@
 ## Objets *indexables*
 
-Nous voilà bien avancés, nous savons accéder à la taille d'un objet, mais *quid* des éléments ?
+Nous voilà bien avancés, nous savons mesurer à la taille d'un objet, mais *quid* des éléments ?
 
 L'accès aux éléments se fait via l'opérateur `[]`. De même que la modification et la suppression, quand celles-ci sont possibles (c'est-à-dire que l'objet est mutable).
 
@@ -16,7 +16,7 @@ L'accès aux éléments se fait via l'opérateur `[]`. De même que la modificat
 [5, 6]
 ```
 
-De même que pour la taille, le comportement interne est régi par 3 méthodes : `__getitem__`, `__setitem__`, et `__delitem__`.
+Le comportement interne est ici régi par 3 méthodes : `__getitem__`, `__setitem__`, et `__delitem__`.
 
 ```python
 >>> numbers = [4, 7, 6]
@@ -30,7 +30,7 @@ De même que pour la taille, le comportement interne est régi par 3 méthodes 
 [5, 6]
 ```
 
-De la même manière que pour `len`, nous pouvons implémenter ces méthodes dans un nouveau type. Nous allons ici nous contenter de faire un proxy autour d'une liste existante, à l'aide de l'exemple suivant :
+Comme précédemment, nous pouvons donc implémenter ces méthodes dans un nouveau type. Nous allons ici nous contenter de faire un proxy autour d'une liste existante, à l'aide de l'exemple suivant :
 
 ```python
 class MyList:

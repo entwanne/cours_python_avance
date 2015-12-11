@@ -6,10 +6,20 @@ Que font réellement `getattr`, `setattr` et `delattr` ? Elles appellent des m�
 Ces deux méthodes prennent respectivement les mêmes paramètres (en plus de `self`) que les fonctions auxquelles elles correspondent. `__setattr__` prendra donc le nom de l'attribut et sa nouvelle valeur, et `__delattr__` le nom de l'attribut.
 
 Quant à `getattr`, la chose est un pleu complexe, car deux méthodes spéciales lui correspondent : `__getattribute__` et `__getattr__`. Ces deux méthodes prennent en paramètre le nom de l'attribut.
-La première est appelée lors de la récupération de tout attribut. La seconde est réservée aux cas où l'attribut n'existe pas (si `__getattribute__` lève une `AttributeError` par exemple).
-Par défaut, `__getattribute__` se charge de retourner les attributs contenus dans `__dict__`. Si vous voulez ajouter des attributs dynamiques, il vous faut donc plutôt passer par `__getattr__`.
+La première est appelée lors de la récupération de tout attribut. La seconde est réservée aux cas où l'attribut n'a pas été trouvé (si `__getattribute__` lève une `AttributeError`).
 
-Ainsi, pour définir dynamiquement un attribut, il nous suffit de coupler ces méthodes, tout en pensant à y utiliser `super` pour faire appel au comportement par défaut dans le cas où nous agissons sur un attribut « normal ».
+Ces méthodes sont chargées de retourner la valeur de l'attribut demandé.
+Il est en cela possible d'implémenter des attributs dynamiquement, en modifiant le comportement des méthodes : par exemple une condition sur le nom de l'attribut pour retourner une valeur particulière.
+
+Par défaut, `__getattribute__` retourne les attributs définis dans l'objet (contenus dans son dictionnaire `__dict__` que nous verrons plus loin), et lève une `AttributeError` si l'attribut ne l'est pas.
+`__getattr__` n'est pas présente de base dans l'objet, et n'a donc pas de comportement par défaut.
+Il est plutôt conseillé de passer par cette dernière pour implémenter nos attributs dynamiques.
+
+Ainsi, il nous suffit de coupler les méthodes de lecture, d'écriture, et/ou de suppression pour disposer d'attributs dynamiques.
+Il faut aussi penser à relayer les appels au méthodes parentes *via* `super` pour utiliser le comportement par défaut quand on ne sait pas gérer l'attribut en question.
+
+Le cas de `__getattr__` est un peu plus délicat : n'étant pas implémentée dans la classe `object`, il n'est pas toujours possible de relayer l'appel.
+Il convient alors de travailler au cas par cas, en utilisant `super` si la classe parente implémente `__getattr__`, ou en levant une `AttributeError` sinon.
 
 ```python
 class Temperature:
@@ -21,7 +31,7 @@ class Temperature:
             return self.value
         if name == 'fahrenheit':
             return self.value * 1.8 + 32
-        return super().__getattr__(name)
+        raise AttributeError(name)
 
     def __setattr__(self, name, value):
         if name == 'celsius':
@@ -61,7 +71,7 @@ Je vous invite à consulter la section de la documentation consacrée aux slots 
 
 J'évoquais précédemment le comportement de `__getattribute__`, qui consiste à consulter le dictionnaire de l'objet puis de ces parents. Ce mécanisme est appelé *method resolution order* ou plus généralement *MRO*.
 
-Chaque classe que vous définissez possède une méthode `mro`. Elle retourne une liste contenant l'ordre des classes à interroger lors de la résolution d'un appel sur l'objet.
+Chaque classe que vous définissez possède une méthode `mro`. Elle retourne un *tuple* contenant l'ordre des classes à interroger lors de la résolution d'un appel sur l'objet.
 C'est ce *MRO* qui définit la priorité des classes parentes lors d'un héritage multiple (quelle classe interroger en priorité), c'est encore lui qui est utilisé lors d'un appel à `super`, afin de savoir à quelle classe `super` fait référence.
 En interne, la méthode `mro` fait appel à l'attribut `__mro__` de la classe.
 
@@ -73,7 +83,7 @@ Le comportement par défaut de `foo.__getattribute__('bar')` est donc assez simp
 
 Pour bien comprendre le fonctionnement du *MRO*, je vous propose de regarder quelques exemples d'héritage.
 
-Premièrement, définissons quelques classes :
+Premièrement, définissons plusieurs classes :
 
 ```python
 class A: pass
@@ -91,21 +101,44 @@ Puis observons.
 >>> object.mro()
 (<class 'object'>,)
 >>> A.mro()
-(<class 'toto.A'>, <class 'object'>)
+(<class '__main__.A'>, <class 'object'>)
 >>> B.mro()
-(<class 'toto.B'>, <class 'toto.A'>, <class 'object'>)
+(<class '__main__.B'>, <class '__main__.A'>, <class 'object'>)
 >>> C.mro()
-(<class 'toto.C'>, <class 'object'>)
+(<class '__main__.C'>, <class 'object'>)
 >>> D.mro()
-(<class 'toto.D'>, <class 'toto.A'>, <class 'toto.C'>, <class 'object'>)
+(<class '__main__.D'>, <class '__main__.A'>, <class '__main__.C'>, <class 'object'>)
 >>> E.mro()
-(<class 'toto.E'>, <class 'toto.B'>, <class 'toto.A'>, <class 'toto.C'>, <class 'object'>)
+(<class '__main__.E'>, <class '__main__.B'>, <class '__main__.A'>, <class '__main__.C'>,
+<class 'object'>)
 >>> F.mro()
-(<class 'toto.F'>, <class 'toto.D'>, <class 'toto.E'>, <class 'toto.B'>, <class 'toto.A'>,
-<class 'toto.C'>, <class 'object'>)
+(<class '__main__.F'>, <class '__main__.D'>, <class '__main__.E'>, <class '__main__.B'>,
+<class '__main__.A'>, <class '__main__.C'>, <class 'object'>)
 >>> G.mro()
-(<class 'toto.G'>, <class 'toto.E'>, <class 'toto.B'>, <class 'toto.D'>, <class 'toto.A'>,
-<class 'toto.C'>, <class 'object'>)
+(<class '__main__.G'>, <class '__main__.E'>, <class '__main__.B'>, <class '__main__.D'>,
+<class '__main__.A'>, <class '__main__.C'>, <class 'object'>)
 ```
 
 On constate bien que les classes les plus à gauche sont proritaires lors d'un héritage, mais aussi que le mécanisme de *MRO* évite la présence de doublons dans la hiérarchie.
+
+On remarque qu'en cas de doublon, les classes sont placées le plus loin possible du début de la liste : par exemple, `A` est placée après `B` et non après `D` dans le *MRO* de `E`.
+
+Cela peut nous poser problème dans certains cas.
+
+```python
+>>> class H(A, B): pass
+...
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: Cannot create a consistent method resolution
+order (MRO) for bases B, A
+```
+
+En effet, nous cherchons à hériter d'abord de `A` en la plaçant à gauche, mais `A` étant aussi la mère de `B`, le *MRO* souheterait la placer à la fin, ce qui provoque le conflit.
+
+Tout fonctionne très bien dans l'autre sens :
+
+```python
+>>> class H(B, A): pass
+...
+```

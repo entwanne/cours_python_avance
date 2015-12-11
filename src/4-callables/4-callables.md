@@ -1,6 +1,6 @@
 ## Utilisation des callables
 
-De même que pour les itérables, les *callables* sont au cœur de Python en pouvant être utilisés avec un grand nombre de builtins.
+De même que pour les itérables, les *callables* sont au cœur de Python en pouvant être utilisés avec un grand nombre de *builtins*.
 
 Par exemple, la fonction `max` évoquée dans un précédent chapitre : en plus de prendre un itérable sur lequel trouver le maximum, elle peut aussi prendre un paramètre `key`. Ce paramètre est un *callable* expliquant comment extraire le maximum depuis les arguments passés à `max`.
 Si l'itérable ne contient que des entiers, il est plutôt simple de déterminer le maximum, mais si nous avons une liste de points 2D par exemple ?
@@ -40,4 +40,4 @@ En dehors de `max`, d'autres fonctions Python prennent un tel paramètre key, co
 [0, 4, 3, 0]
 ```
 
-Je vous invite une nouvelle fois à jeter un œil aux builtins Python, ainsi qu'au module `itertools`, et de voir lesquels peuvent vous faire tirer profit des *callables*.
+Je vous invite une nouvelle fois à jeter un œil aux *builtins* Python, ainsi qu'au module `itertools`, et de voir lesquels peuvent vous faire tirer profit des *callables*.

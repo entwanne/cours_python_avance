@@ -78,7 +78,7 @@ Une liste de méthodes spéciales nous est fournie dans la documentation Python�
 
 Mais celle-ci n'est pas complète, `__next__` n'y figure par exemple pas.
 Je n'ai pas trouvé de liste exhaustive, et c'est donc celle-ci que nous utiliserons.
-Nous ometterons cependant la première ligne (constructeur, initialisateur et destructeur), car les objets que nous recevrons seront déjà construits.
+Nous omettrons cependant la première ligne (constructeur, initialisateur et destructeur), car les objets que nous recevrons seront déjà construits.
 
 Il nous faut aussi différencier les opérateurs des autres méthodes spéciales. Habituellement, si une méthode spéciale est implémentée pour un opérateur et que l'opération n'est pas réalisable, celle-ci est censée retourner `NotImplemented`.
 Le module `operator` nous permettra facilement de savoir si la méthode spéciale est un opérateur, et donc d'agir en conséquence (en vérifiant que la méthode est présente dans `operator.__dict__` par exemple).
@@ -89,6 +89,7 @@ La solution que je propose est la suivante.
 import operator
 
 class LazyMeta(type):
+    # Référencement de toutes les méthodes spéciales, ou presque
     specials = [
         '__repr__', '__str__', '__bytes__', '__format__',
         '__lt__', '__le__', '__eq__', '__ne__', '__gt__', '__ge__',
@@ -111,31 +112,43 @@ class LazyMeta(type):
         '__await__', '__aiter__', '__anext__', '__aenter__', '__aexit__',
         '__next__'
     ]
+
     def get_meth(methname):
+        "Fonction utilisée pour créer une méthode dynamiquement"
         def meth(self, *args, **kwargs):
+            # On tente d'accéder à l'objet évalué (value)
             try:
                 value = object.__getattribute__(self, 'value')
+            # S'il n'existe pas, il nous faut alors le calculer puis le stocker
             except AttributeError:
                 value = object.__getattribute__(self, 'expr')()
                 object.__setattr__(self, 'value', value)
+            # Appel à l'opérateur si la méthode est un opérateur
             if methname in operator.__dict__:
                 return getattr(operator, methname)(value, *args, **kwargs)
+            # Sinon, appel à la méthode de l'objet
             return getattr(value, methname)(*args, **kwargs)
         return meth
 
     @classmethod
     def __prepare__(cls, name, bases):
+        # On prépare la classe en lui ajoutant toutes les méthodes référencées
         methods = {}
         for methname in cls.specials:
             methods[methname] = cls.get_meth(methname)
         return methods
 
+# Le type Lazy est celui que nous utiliserons pour l'évaluation paresseuse
 class Lazy(metaclass=LazyMeta):
     def __init__(self, expr):
+        # Il possède une expression (un callable qui retournera l'objet évalué)
+        # Les autres méthodes de Lazy sont ajoutées par la métaclasse
         object.__setattr__(self, 'expr', expr)
 ```
 
-Et à l'utilisation :
+Nous sommes obligés d'utiliser `object.__getattribute__` et `object.__setattr__` pour accéder aux attributs, afin de ne pas interférer avec les méthodes redéfinies dans la classe courante.
+
+À l'utilisation, cela donne :
 
 ```python
 >>> def _eval():
@@ -172,4 +185,6 @@ evaluated
 >>> abs(l) # TypeError
 ```
 
-Ainsi, pour en revenir à notre TP précédent sur la récursivité terminale, il nous suffirait de faire retourner à notre fonction un ojet de type `Lazy`. Les appels ne seraient alors exécutés, itérativement, qu'à l'utilisation du retour (quand on chercherait à itérer dessus, à l'afficher, ou autre). Il n'y aurait ainsi plus besoin de se soucier de savoir si nous sommes dans un appel récursif ou dans le premier appel.
+Ainsi, pour en revenir à notre TP sur la récursivité terminale, il nous suffirait de faire retourner à notre fonction un objet de type `Lazy` pour ne plus avoir à différencier `call` et `__call__`.
+Les appels ne seraient alors exécutés, itérativement, qu'à l'utilisation du retour (quand on chercherait à itérer dessus, à l'afficher, ou autre).
+Il n'y aurait ainsi plus besoin de se soucier de savoir si nous sommes dans un appel récursif ou dans le premier appel.

@@ -9,6 +9,6 @@ Les *subscriptables* se divisent en deux nouvelles catégories  : les *indexabl
 
 On parle plus généralement de séquence quand un conteneur est *indexable* et *sliceable*.
 
-Une autre catégorie important de conteneurs est formée par les *mappings* : il s'agit des objets qui associent des valeurs à des clefs, comme le font les dictionnaires.
+Une autre catégorie importante de conteneurs est formée par les *mappings* : il s'agit des objets qui associent des valeurs à des clefs, comme le font les dictionnaires.
 
 Une séquence et un *mapping* se caractérisent aussi par le fait qu'ils possèdent une taille, comme nous le verrons plus loin dans ce chapitre.

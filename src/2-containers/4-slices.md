@@ -18,7 +18,7 @@ Les *slices* sont une syntaxe particulière pour l'indexation, à l'aide du cara
 Je pense que vous êtes déjà familier avec cette syntaxe. Le *slice* peut prendre jusqu'à 3 nombres :
 
 - Le premier est l'indice de départ (0 si omis) ;
-- Le second est l'indice de fin (fin de la liste si omis), l'élément correspondant à cet indice est exclus ;
+- Le second est l'indice de fin (fin de la liste si omis), l'élément correspondant à cet indice est exclu ;
 - Le dernier est le pas, le nombre d'éléments passés à chaque itération (1 par défaut) ;
 
 Parfois moins connu, les *slices* peuvent aussi servir pour la modification et la suppression :
@@ -59,4 +59,4 @@ L'objet ainsi construit contient 3 attributs : `start`, `stop`, et `step`.
 3
 ```
 
-Je vous conseille ce tutoriel de pascal.ortiz pour en savoir plus sur les slices : <https://zestedesavoir.com/tutoriels/582/les-slices-en-python/>
+Je vous conseille ce tutoriel de [**pascal.ortiz**](https://zestedesavoir.com/membres/voir/pascal.ortiz/) pour en savoir plus sur les slices : <https://zestedesavoir.com/tutoriels/582/les-slices-en-python/>

@@ -1,6 +1,6 @@
 ## TP : Itérateur sur listes chaînées
 
-Revenons maintenant sur nos listes chaînées, pour y implémenter le protocole des itérables.
+Revenons sur nos listes chaînées afin d'y implémenter le protocole des itérables.
 Notre classe `Deque` a donc besoin d'une méthode `__iter__` retournant un itérateur, que nous appellerons simplement `DequeIterator`.
 
 ```python
@@ -10,7 +10,7 @@ def __iter__(self):
 
 Cet itérateur contiendra une référence vers un maillon, puis, à chaque appel à `__next__`, renverra la valeur du maillon courant, tout en prenant soin de passer au maillon suivant pour le prochain appel. `StopIteration` sera levée si le maillon courant vaut `None`.
 
-Une pratique courante est aussi d'ajouter une méthode `__iter__` dans l'itérateur, qui retournerait le même itérateur, dans le cas où cet itérateur puisse être utilisé comme un itérable.
+On ajoutera aussi `__iter__` dans l'itérateur, comme vu plus tôt, dans le cas où cet itérateur serait utilisé comme itérable.
 
 ```python
 class DequeIterator:

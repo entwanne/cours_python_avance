@@ -1,6 +1,6 @@
 ## C'est pas la taille qui compte
 
-Un premier point commun partagé par de nombreux conteneurs est qu'ils ont une taille.
+Un autre point commun partagé par de nombreux conteneurs est qu'ils possèdent une taille.
 C'est à dire qu'ils peuvent être passés en paramètre à la fonction `len` par exemple, contrairement à d'autres objets tel qu'un nombre entier.
 
 ```python

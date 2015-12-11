@@ -42,7 +42,7 @@ Maintenant, testons notre objet, en essayant d'itérer dessus à l'aide d'un `fo
 4
 ```
 
-Voilà pour l'itération, mais maintenant, testons quelques autres *builtins* dont je parlais plus haut.
+Voilà pour l'itération, mais testons ensuite quelques autres *builtins* dont je parlais plus haut.
 
 ```python
 >>> sum(MyRange(5)) # sum réalise la somme de tous les éléments, soit 0 + 1 + 2 + 3 + 4
@@ -60,7 +60,7 @@ Mmmh, que s'est-il passé ? En fait, `map` ne retourne pas une liste, mais un n
 ['0', '1', '2', '3', '4']
 ```
 
-Vous l'aurez compris, `list` prend aussi n'importe quel itérateur en argument, tout comme `zip` ou `str.join` par exemple.
+Vous l'aurez compris, `list` prend aussi n'importe quel itérable en argument, tout comme `zip` ou `str.join` par exemple.
 
 ```python
 >>> list(MyRange(5))
@@ -75,7 +75,7 @@ J'en resterai là pour les exemples, sachez seulement que beaucoup de fonctions 
 
 ### Retour sur `iter`
 
-Nous avons vu dans la section précédente la fonction `iter`, qui crée un itérateur à partir d'un itérable.
+Je voudrais ici revenir sur la fonction `iter`, qui crée un itérateur à partir d'un itérable.
 Sachez que ce n'est pas sa seule utilité. Elle peut aussi créer un itérateur à partir d'une fonction et d'une valeur de fin.
 C'est-à-dire que la fonction sera appelée tant que la valeur de fin n'a pas été retournée, par exemple :
 

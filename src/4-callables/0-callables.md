@@ -7,6 +7,7 @@ Qu'est-ce qu'un *callable* me demanderez-vous ? C'est un objet que l'on peut app
 ```python
 >>> print('Hello', 'world', end='!\n') # Appel d'une fonction avec différents paramètres
 Hello world!
->>> pow(2, 3) # Valeur de retour
+>>> x = pow(2, 3) # Valeur de retour
+>>> x
 8
 ```

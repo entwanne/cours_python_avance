@@ -1,9 +1,9 @@
 ## Simplifions-nous la vie avec la `contextlib`
 
-Vous pourriez trouver une similitude entre les décorateurs et les gestionnaires de contextes : dans les deux cas, on cherche à exécuter quelque chose avant et après un bloc d'instructions.
+La [`contextlib`](https://docs.python.org/3/library/contextlib.html) est un module de la bibliothèque standard comportant divers outils ou gestionnaires de contexte bien utiles.
 
-Il existe dans la `contextlib` un outil qui les rapproche. Une classe, `ContextDecorator`, permet de transformer un gestionnaire de contexte en décorateur, et donc de pouvoir l'utiliser comme l'un ou comme l'autre.
-Cela peut s'avérer utile pour créer un module qui mesurerait le temps d'exécution d'un ensemble d'instructions : on peut vouloir sans servir via `with`, ou via un décorateur autour de notre fonction à mesurer.
+Par exemple, une classe, `ContextDecorator`, permet de transformer un gestionnaire de contexte en décorateur, et donc de pouvoir l'utiliser comme l'un ou comme l'autre.
+Cela peut s'avérer utile pour créer un module qui mesurerait le temps d'exécution d'un ensemble d'instructions : on peut vouloir s'en servir via `with`, ou via un décorateur autour de notre fonction à mesurer.
 
 Cet outil s'utilise très facilement, il suffit que notre gestionnaire de contexte hérite de `ContextDecorator`.
 
@@ -18,7 +18,7 @@ class spent_time(ContextDecorator):
         print('Elapsed {:.3}s'.format(time.time() - self.start))
 ```
 
-Et s'utilise comme suit :
+Et à l'utilisation :
 
 ```python
 >>> with spent_time():
@@ -35,7 +35,6 @@ x
 Elapsed 0.000108s
 ```
 
-De nombreux autres outils sont encore présents dans cette bibliothèque pour simplifier l'écriture de gestionnaires de contexte plus complexes.
 Intéressons-nous maintenant à `contextmanager`. Il s'agit d'un décorateur capable de transformer une fonction génératrice en *context manager*.
 Tout ce qui est présent avant le `yield` sera exécuté en entrée, et ce qui se situe ensuite s'exécutera en sortie.
 
@@ -87,3 +86,9 @@ Traceback (most recent call last):
   File "<stdin>", line 2, in <module>
 Exception
 ```
+
+Enfin, le module contient divers gestionnaires de contexte, qui sont :
+
+* [`closing`](https://docs.python.org/3/library/contextlib.html#contextlib.closing) qui permet de fermer automatiquement un objet (par sa méthode `close`) ;
+* [`suppress`](https://docs.python.org/3/library/contextlib.html#contextlib.suppress) afin de supprimer certaines exceptions survenues dans un contexte ;
+* [`redirect_stdout`](https://docs.python.org/3/library/contextlib.html#contextlib.redirect_stdout) pour rediriger temporairement la sortie standard du programme.
