@@ -19,7 +19,7 @@ Le constructeur d'une métaclasse devra donc prendre les mêmes paramètres que 
 
 Nous avons ainsi créé notre propre métaclasse, et l'avons utilisée pour instancier une nouvelle classe.
 
-Une autre syntaxe est possible, à l'aide du mot clef `class` : la métaclasse à utiliser peut être spécifiée entre les parenthèses derrière le nom de la classe.
+Une autre syntaxe pour instancier notre métaclasse est possible, à l'aide du mot clef `class` : la métaclasse à utiliser peut être spécifiée entre les parenthèses derrière le nom de la classe.
 
 ```python
 >>> class B(metaclass=M):

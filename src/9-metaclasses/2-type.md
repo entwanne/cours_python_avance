@@ -19,6 +19,10 @@ Pour notre autre utilisation, ses paramètres sont au nombre de 3 :
 4
 >>> A().x
 4
+>>> type(A)
+<class 'type'>
+>>> type(A())
+<class '__main__.A'>
 >>> B = type('B', (int,), {})
 >>> B()
 0
