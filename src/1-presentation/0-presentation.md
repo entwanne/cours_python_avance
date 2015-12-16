@@ -13,3 +13,5 @@ Le pré-requis pour suivre ce tutoriel est de connaître Python, même à un niv
 Connaître le mécanisme des exceptions est un plus.
 
 Ce cours se divise en chapitres consacrés chacun à une spécificité du langage. Ces dernières ne devraient plus avoir de secret pour vous une fois la lecture terminée.
+
+Je tiens aussi à préciser que ce cours s'adresse principalement aux utilisateurs de Python 3, et n'est pas valable pour les versions de Python inférieures.
