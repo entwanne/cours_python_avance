@@ -32,7 +32,7 @@ Modifions quelque peu notre générateur `fibonacci` pour nous en apercevoir.
 ...         print('retour:', ret)
 ...         a, b = b, a + b
 ...
->>> gen = fibanacci(10)
+>>> gen = fibonacci(10)
 >>> next(gen)
 0
 >>> next(gen)
