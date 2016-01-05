@@ -54,7 +54,7 @@ during
 exit
 ```
 
-Attention tout de même, une exeption levée dans le bloc d'instructions du `with` remonterait jusqu'au générateur, et empêcherait donc l'exécution du `__exit__`.
+Attention tout de même, une exception levée dans le bloc d'instructions du `with` remonterait jusqu'au générateur, et empêcherait donc l'exécution du `__exit__`.
 
 ```python
 >>> with context():

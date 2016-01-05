@@ -2,7 +2,7 @@
 
 Un contexte est ainsi un scope particulier, avec des opérations exécutées en entrée et en sortie.
 
-Un bloc d'instruction `with` se présente comme suit.
+Un bloc d'instructions `with` se présente comme suit.
 
 ```python
 with expr as x: # avec expr étant un gestionnaire de contexte
