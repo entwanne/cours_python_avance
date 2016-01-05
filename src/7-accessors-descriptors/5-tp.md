@@ -1,10 +1,10 @@
 ## TP : propriétés et méthodes
 
-Pour clore ce chapitre, je vous propose d'implémenter les descripteurs `staticmethod` et `classmethod`. J'ajouterais à cela un descripteur `method` qui reproduirait le comportement par défaut des méthodes en Python.
+Pour clore ce chapitre, je vous propose d'implémenter les descripteurs `staticmethod` et `classmethod`. J'ajouterai à cela un descripteur `method` qui reproduirait le comportement par défaut des méthodes en Python.
 
 Pour résumer :
 
-* Ces 3 descripteurs sont de type *non-data* (n'implémentent que `__get__`) ;
+* Ces trois descripteurs sont de type *non-data* (n'implémentent que `__get__`) ;
 * `my_staticmethod`
     * Retourne la fonction cible, qu'elle soit utilisée depuis la classe ou depuis l'instance ;
 * `my_classmethod`
