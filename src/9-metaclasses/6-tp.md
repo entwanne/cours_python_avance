@@ -6,7 +6,7 @@ Dans ce dernier TP, nous nous intéresserons à l'évaluation paresseuse (*lazy 
 
 Lorsque vous entrez une expression Python dans votre interpréteur et que celui-ci vous retourne une valeur, on dit que cette expression est évaluée. Évaluer une expression correspond donc à en calculer le résultat.
 
-L'évaluation paresseuse se différencie de l'évluation standard par rapport au moment où le calcul a lieu.
+L'évaluation paresseuse se différencie de l'évaluation standard par rapport au moment où le calcul a lieu.
 Lors d'une évaluation traditionnelle, le résultat est tout de suite retourné, et peut être manipulé.
 Dans le cas d'une évaluation paresseuse, celui-ci n'est calculé que lorsqu'il est réellement nécessaire (quand on commence à manipuler l'objet), d'où le terme de paresseux.
 

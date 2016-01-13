@@ -31,7 +31,7 @@ J'aimerais ici revenir sur ces concepts d'héritage et d'instanciation.
 
 Les classes (ou *type objects*) sont un ensemble d'objets qui possèdent quelques caractéristiques communes :
 
-- Elles héritent d'`object` (mis à part `object` lui-même) ;
+- Elles héritent d'`object` (mise à part `object` elle-même) ;
 - Elles sont des instances plus ou moins directes de `type` (de `type` ou de classes héritant de `type`) ;
 - Elles peuvent être instanciées (elles sont des *callables* qui retournent des objets de ce type) ;
 - On peut en hériter.
