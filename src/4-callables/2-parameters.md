@@ -102,6 +102,8 @@ def func(*args, **kwargs):
 
 Mais ces opérateurs servent aussi lors de l'appel à une fonction, via ce qu'on appelle l'*unpacking* : il est possible de transformer une liste en arguments positionnels, et un dictionnaire en arguments nommés (ou tout autres itérables compatibles). La seule règle est encore une fois de placer `*` après tous les arguments positionnels, et `**` après tous les nommés.
 
+Cette règle disparaît cependant en Python 3.5, où il devient possible d'*unpacker* plusieurs listes ou dictionnaires à la fois, et d'y interposer des arguments positionnels/nommés. Voir [l'article de *ZesteDeSavoir* sur la sortie de Python 3.5](https://zestedesavoir.com/articles/175/sortie-de-python-3-5/#2-principales-nouveautes) à ce propos.
+
 ```python
 >>> def addition_3(a, b, c):
 ...     return a + b + c
