@@ -6,7 +6,7 @@ Ils sont généralement créés par des fonctions construites à l'aide du mot c
 
 ### Le mot-clef `yield`
 
-Une générateur est donc créé à partir d'une fonction. Mais contrairement aux fonctions habituelles, celle-ci ne comprendra aucun `return`, mais un ou plusieurs `yield`.
+Un générateur est donc créé à partir d'une fonction. Mais contrairement aux fonctions habituelles, celle-ci ne comprendra aucun `return`, mais un ou plusieurs `yield`.
 
 Lors de l'appel, la fonction retournera un générateur, et à chaque appel à la fonction *builtin* `next` sur le générateur, le code jusqu'au prochain `yield` sera exécuté.
 
@@ -47,7 +47,7 @@ hej
 ```
 
 Le générateur en lui-même ne retourne rien (il n'est pas *callable*), il produit des valeurs à l'aide de `yield`.
-Pour bien faire la différence entre notre générateu et sa fonction génératrice, on peut regarder ce qu'en dit Python.
+Pour bien faire la différence entre notre générateur et sa fonction génératrice, on peut regarder ce qu'en dit Python.
 
 ```python
 >>> gen

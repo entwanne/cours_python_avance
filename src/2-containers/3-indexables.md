@@ -1,6 +1,6 @@
 ## Objets *indexables*
 
-Nous voilà bien avancés, nous savons mesurer à la taille d'un objet, mais *quid* des éléments ?
+Nous voilà bien avancés, nous savons mesurer la taille d'un objet, mais *quid* des éléments ?
 
 L'accès aux éléments se fait via l'opérateur `[]`. De même que la modification et la suppression, quand celles-ci sont possibles (c'est-à-dire que l'objet est mutable).
 

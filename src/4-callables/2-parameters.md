@@ -45,7 +45,7 @@ TypeError: function() got multiple values for argument 'b'
 
 #### Appels
 
-L'opérateur *splat* est représenté par le caractère `*`. À ne pas confondre avec la mutliplication, opérateur binaire entre deux objets, il s'agit ici d'un opérateur unaire : c'est à dire qu'il n'opère que sur un objet, en se plaçant devant.
+L'opérateur *splat* est représenté par le caractère `*`. À ne pas confondre avec la multiplication, opérateur binaire entre deux objets, il s'agit ici d'un opérateur unaire : c'est à dire qu'il n'opère que sur un objet, en se plaçant devant.
 
 Cet opérateur permet de récupérer la liste (ou plus précisément le `tuple`) des arguments positionnels passés lors d'un appel, on appelle cela le *packing*.
 
@@ -61,7 +61,7 @@ La présence d'`*args` n'est pas incompatible avec celle d'autres paramètres, s
 
 ```python
 >>> def func(foo, bar, *args):
-...     print(boo)
+...     print(foo)
 ...     print(bar)
 ...     print(args)
 ...

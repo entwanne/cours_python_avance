@@ -73,6 +73,6 @@ Il s'agit en fait d'une particularité des indexables, et de la fonction `iter` 
 Cet itérateur se contentera d'appeler `__getitem__` sur notre objet avec des indices successifs, partant de 0 et continuant jusqu'à ce que la méthode lève une `IndexError`.
 
 Dans notre cas, ça nous évite donc d'implémenter nous-même `__iter__`, mais ça complexifie aussi les traitements. Souvenez-vous de notre méthode `__getitem__` : elle parcourt la liste jusqu'à l'élément voulu.
-Ainsi, pour accéder au premier maillon, on parcour un élément, on en parcourt deux pour accéder au second, etc.
+Ainsi, pour accéder au premier maillon, on parcourt un élément, on en parcourt deux pour accéder au second, etc.
 Donc pour itérer sur une liste de 5 éléments, on va devoir parcourir `1 + 2 + 3 + 4 + 5` soit 15 maillons, là où 5 seraient suffisants.
 C'est pourquoi nous reviendrons sur `Deque` en fin de chapitre pour lui intégrer sa propre méthode `__iter__`.
