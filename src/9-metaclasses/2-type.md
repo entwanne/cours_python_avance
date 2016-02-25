@@ -3,7 +3,7 @@
 Ainsi, vous l'avez bien compris, `type` n'est pas utile que pour connaître le type d'un objet.
 `type` est une métaclasse, et sert donc à créer de nouvelles classes.
 
-Dans l'utilisation que vous connaissez, `type` prend une unique paramètre, et en retourne le type.
+Dans l'utilisation que vous connaissez, `type` prend un unique paramètre, et en retourne le type.
 
 Pour notre autre utilisation, ses paramètres sont au nombre de 3 :
 

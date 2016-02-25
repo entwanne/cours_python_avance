@@ -53,7 +53,7 @@ Mais si la métaclasse est dotée d'une méthode de classe `__prepare__`, celle-
 
 ### Une métaclasse utile
 
-Maintenant que nous savons créer et utiliser des métaclasses, servons nous-en à bon escient. Il faut bien noter que les métaclasses répondent à des problèmes bien spécifiques, leur utilisation pourrait ne pas vous sembler évidente.
+Maintenant que nous savons créer et utiliser des métaclasses, servons-nous-en à bon escient. Il faut bien noter que les métaclasses répondent à des problèmes bien spécifiques, leur utilisation pourrait ne pas vous sembler évidente.
 
 Les énumérations en Python sont implémentées à l'aide de métaclasses.
 
