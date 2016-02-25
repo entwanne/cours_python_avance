@@ -3,9 +3,9 @@
 Que font réellement `getattr`, `setattr` et `delattr` ? Elles appellent des méthodes spéciales de l'objet.
 
 `setattr` et `delattr` sont les cas les plus simples, la correspondance est faite avec les méthodes `__setattr__` et `__delattr__`.
-Ces deux méthodes prennent respectivement les mêmes paramètres (en plus de `self`) que les fonctions auxquelles elles correspondent. `__setattr__` prendra donc le nom de l'attribut et sa nouvelle valeur, et `__delattr__` le nom de l'attribut.
+Ces deux méthodes prennent les mêmes paramètres (en plus de `self`) que les fonctions auxquelles elles correspondent. `__setattr__` prendra donc le nom de l'attribut et sa nouvelle valeur, et `__delattr__` le nom de l'attribut.
 
-Quant à `getattr`, la chose est un pleu complexe, car deux méthodes spéciales lui correspondent : `__getattribute__` et `__getattr__`. Ces deux méthodes prennent en paramètre le nom de l'attribut.
+Quant à `getattr`, la chose est un peu plus complexe, car deux méthodes spéciales lui correspondent : `__getattribute__` et `__getattr__`. Ces deux méthodes prennent en paramètre le nom de l'attribut.
 La première est appelée lors de la récupération de tout attribut. La seconde est réservée aux cas où l'attribut n'a pas été trouvé (si `__getattribute__` lève une `AttributeError`).
 
 Ces méthodes sont chargées de retourner la valeur de l'attribut demandé.
@@ -69,7 +69,7 @@ Je vous invite à consulter la section de la documentation consacrée aux slots 
 
 ### MRO
 
-J'évoquais précédemment le comportement de `__getattribute__`, qui consiste à consulter le dictionnaire de l'objet puis de ces parents. Ce mécanisme est appelé *method resolution order* ou plus généralement *MRO*.
+J'évoquais précédemment le comportement de `__getattribute__`, qui consiste à consulter le dictionnaire de l'objet puis de ses parents. Ce mécanisme est appelé *method resolution order* ou plus généralement *MRO*.
 
 Chaque classe que vous définissez possède une méthode `mro`. Elle retourne un *tuple* contenant l'ordre des classes à interroger lors de la résolution d'un appel sur l'objet.
 C'est ce *MRO* qui définit la priorité des classes parentes lors d'un héritage multiple (quelle classe interroger en priorité), c'est encore lui qui est utilisé lors d'un appel à `super`, afin de savoir à quelle classe `super` fait référence.
