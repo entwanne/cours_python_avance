@@ -53,6 +53,16 @@ Je tenais ensuite à évoquer le module [`functools`](https://docs.python.org/3/
 
 Imaginons que nous ayons une fonction prenant divers paramètres, mais que nous voudrions fixer le premier : l'application partielle de la fonction nous créera un nouveau *callable* qui, quand il sera appelé avec de nouveaux arguments, nous renverra le résultat de la première fonction avec l'ensemble des arguments.
 
+Par exemple, prenons une fonction de journalisation `log` prenant quatre paramètres, un niveau de gravité, un type, un object, et un message descriptif :
+
+```python
+def log(level, type, item, message):
+    print('[{}]<{}>({}): {}'.format(level.upper(), type, item, message))
+```
+
+Une application partielle reviendrait à avoir une fonction `warning` tel que chaque appel `warning('foo', 'bar', 'baz')` équivaut à `log('warning', 'foo', 'bar', 'baz')`.
+Ou encore une fonction `warning_foo` avec `warning_foo('bar', 'baz')` équivalent à l'appel précédent.
+
 Nous allons la tester avec une fonction du module `operator` : la fonction de multiplication. En appliquant partiellement `5` à la fonction `operator.mul`, `partial` nous retourne une fonction réalisant la multiplication par 5 de l'objet passé en paramètre.
 
 ```python
@@ -62,6 +72,12 @@ Nous allons la tester avec une fonction du module `operator` : la fonction de m
 15
 >>> mul_5('z')
 'zzzzz'
+>>> warning = partial(log, 'warning')
+>>> warning('overflow', 100, 'number is too large')
+[WARNING]<overflow>(100): number is too large
+>>> overflow = partial(log, 'warning', 'overflow')
+>>> overflow(-1, 'number is too low')
+[WARNING]<overflow>(-1): number is too low
 ```
 
 Ce module comprend aussi la fonction `reduce`, un outil tiré du fonctionnel permettant de transformer un itérable en une valeur unique, en appliquant une fonction sur le prochain élément et le dernier résultat.

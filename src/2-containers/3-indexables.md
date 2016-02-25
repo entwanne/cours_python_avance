@@ -30,7 +30,9 @@ Le comportement interne est ici régi par 3 méthodes : `__getitem__`, `__setit
 [5, 6]
 ```
 
-Comme précédemment, nous pouvons donc implémenter ces méthodes dans un nouveau type. Nous allons ici nous contenter de faire un proxy autour d'une liste existante, à l'aide de l'exemple suivant :
+Comme précédemment, nous pouvons donc implémenter ces méthodes dans un nouveau type. Nous allons ici nous contenter de faire un proxy autour d'une liste existante.
+
+Un proxy^[<https://fr.wikipedia.org/wiki/Proxy_(patron_de_conception)>] est un objet prévu pour se substituer à un autre, il doit donc répondre aux mêmes méthodes, de façon transparente.
 
 ```python
 class MyList:

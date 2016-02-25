@@ -28,6 +28,8 @@ Ce qui fait qu'à l'héritage, l'appel à la métaclasse serait perdu (cet appel
 >>> class B(A):
 ...     pass
 ...
+>>> type(B)
+<class 'type'>
 ```
 
 Pour rappel, le comportement avec une « vraie » métaclasse serait le suivant :
@@ -48,4 +50,6 @@ enter metaclass
 ...     pass
 ...
 enter metaclass
+>>> type(B)
+<class '__main__.meta'>
 ```
