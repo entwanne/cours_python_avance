@@ -35,10 +35,10 @@ class Temperature:
         self.value = 0
 
     @property
-    def celsius(self):
+    def celsius(self): # le nom de la méthode devient le nom de la propriété
         return self.value
     @celsius.setter
-    def celsius(self, value): # le nom de cette méthode a peu d'importance
+    def celsius(self, value): # le setter doit porter le même nom
         self.value = value
 
     @property
