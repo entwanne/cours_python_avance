@@ -1,0 +1,3 @@
+### Collections abstraites
+
+- `collections.abc`
