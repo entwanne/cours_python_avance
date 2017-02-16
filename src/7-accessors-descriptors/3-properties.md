@@ -1,4 +1,4 @@
-## Les propriétés
+### Les propriétés
 
 Les propriétés (ou *properties*) sont un moyen de simplifier l'écriture de descripteurs.
 

@@ -1,4 +1,4 @@
-## Simplifions-nous la vie avec la `contextlib`
+### Simplifions-nous la vie avec la `contextlib`
 
 La [`contextlib`](https://docs.python.org/3/library/contextlib.html) est un module de la bibliothèque standard comportant divers outils ou gestionnaires de contexte bien utiles.
 

@@ -1,4 +1,4 @@
-## Utilisation des callables
+### Utilisation des callables
 
 De même que pour les itérables, les *callables* sont au cœur de Python en pouvant être utilisés avec un grand nombre de *builtins*.
 

@@ -1,4 +1,4 @@
-## Liens utiles
+### Liens utiles
 
 Et pour terminer ce chapitre, un dernier rappel vers la documenation Python.
 Je vous encourage vraiment à la lire le plus possible, elle est très complète et très instructive, bien que parfois un peu bordélique.

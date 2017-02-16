@@ -1,4 +1,4 @@
-# Conteneurs
+## Conteneurs
 
 En Python, on appelle conteneur (*container*) un objet ayant vocation à en contenir d'autres, comme les chaînes de caractères, les listes, les ensembles ou les dictionnaires.
 

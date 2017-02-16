@@ -1,4 +1,4 @@
-## TP : Un petit creux ?
+### TP : Un petit creux ?
 
 Dans ce TP, nous allons réaliser un frigo. Oui, mais pas n'importe quel frigo, j'en ai déjà un et ça ne me servirait pas à grand chose.
 Nous allons créer un frigo magique. Magique ? Oui, notre frigo sera capable de cuisiner tout seul.

@@ -1,4 +1,4 @@
-## Décorateurs paramétrés
+### Décorateurs paramétrés
 
 Nous avons vu comment appliquer un décorateur à une fonction, nous pourrions cependant vouloir paramétrer le comportement de ce décorateur.
 Dans notre exemple précédent (`print_decorator`), nous affichons du texte avant et après l'appel de fonction. Mais que faire si nous souhaitons modifier ce texte (pour en changer la langue, utiliser un autre terme que « fonction ») ?

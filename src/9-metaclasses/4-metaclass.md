@@ -1,4 +1,4 @@
-## Les métaclasses
+### Les métaclasses
 
 Nous avons vu qu'une métaclasse était simplement une classe héritant de `type` et permettant d'instancier des classes.
 Puisque nous voulons altérer la création et non l'initialisation, c'est dans le constructeur que le tout va s'opérer.
@@ -29,7 +29,7 @@ Une autre syntaxe pour instancier notre métaclasse est possible, à l'aide du m
 <class '__main__.M'>
 ```
 
-### Préparation de la classe
+#### Préparation de la classe
 
 Nous avons étudié dans le chapitre sur les accesseurs l'attribut `__dict__` des classes. Celui-ci est un dictionnaire, mais à quel moment est-il créé ?
 
@@ -51,7 +51,7 @@ Mais si la métaclasse est dotée d'une méthode de classe `__prepare__`, celle-
 <__main__.A object at 0x7f886cfd4e10>
 ```
 
-### Une métaclasse utile
+#### Une métaclasse utile
 
 Maintenant que nous savons créer et utiliser des métaclasses, servons-nous-en à bon escient. Il faut bien noter que les métaclasses répondent à des problèmes bien spécifiques, leur utilisation pourrait ne pas vous sembler évidente.
 

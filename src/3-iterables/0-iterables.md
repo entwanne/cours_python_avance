@@ -1,4 +1,4 @@
-# Itérables
+## Itérables
 
 Un itérable est un objet dont on peut parcourir les valeurs, à l'aide d'un `for` par exemple.
 La liste que nous venons d'implémenter est un exemple d'itérable.

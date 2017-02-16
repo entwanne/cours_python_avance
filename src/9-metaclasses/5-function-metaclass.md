@@ -1,4 +1,4 @@
-## Utiliser une fonction comme métaclasse
+### Utiliser une fonction comme métaclasse
 
 Par extension, on appelle parfois métaclasse tout *callable* qui renverrait une classe lorsqu'il serait appelé.
 

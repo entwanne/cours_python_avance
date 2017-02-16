@@ -1,4 +1,4 @@
-# Métaclasses
+## Métaclasses
 
 Il vous est peut-être arrivé de lire qu'en Python tout était objet. Il faut cependant nuancer quelque peu : tout ne l'est pas, une instruction n'est pas un objet par exemple.
 Mais toutes les valeurs que l'on peut manipuler sont des objets.

@@ -1,4 +1,4 @@
-## TP : `itemgetter`
+### TP : `itemgetter`
 
 Dans ce nouveau TP, nous allons réaliser `itemgetter` à l'aide d'une classe formant des objets *callables*.
 

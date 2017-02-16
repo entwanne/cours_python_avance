@@ -1,4 +1,4 @@
-## Instance, classe et métaclasse
+### Instance, classe et métaclasse
 
 En Python, tout objet a un type. Le type d'un objet peut être récupéré grâce à `type`.
 Quel est donc le type d'une classe ?
@@ -15,7 +15,7 @@ Une classe est ainsi une instance de la classe `type`.
 Une classe qui permet d'instancier d'autres classes est appelée une métaclasse.
 
 
-### À quoi sert une métaclasse ?
+#### À quoi sert une métaclasse ?
 
 Une métaclasse permet alors de créer de nouvelles classes, mais pour quoi faire ?
 
@@ -24,7 +24,7 @@ L'intérêt principal des métaclasses est de pouvoir modifier les classes lors 
 Nous verrons plus loin dans ce chapitre l'exemple d'`Enum`, une implémentation du [type énuméré](https://fr.wikipedia.org/wiki/Type_%C3%A9num%C3%A9r%C3%A9) en Python.
 
 
-### Héritage et instanciation
+#### Héritage et instanciation
 
 Nous avions l'habitude de créer des classes en héritant d'une classe existante, mais pas en en instanciant une.
 J'aimerais ici revenir sur ces concepts d'héritage et d'instanciation.

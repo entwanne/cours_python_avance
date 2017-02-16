@@ -1,6 +1,6 @@
-## Utilisation des iterables
+### Utilisation des iterables
 
-### Python et les itérables
+#### Python et les itérables
 
 Ce concept d'itérateurs est utilisé par Python dans une grande partie des ses [builtins](https://docs.python.org/3/library/functions.html). Plutôt que de vous forcer à utiliser une liste, Python vous permet de fournir un objet itérable, pour `sum`, `max` ou `map` par exemple.
 
@@ -73,7 +73,7 @@ Vous l'aurez compris, `list` prend aussi n'importe quel itérable en argument, t
 
 J'en resterai là pour les exemples, sachez seulement que beaucoup de fonctions sont compatibles. Seules celles nécessitant des propriétés spécifiques de l'objet ne le seront pas par défaut, comme la fonction `reversed`.
 
-### Retour sur `iter`
+#### Retour sur `iter`
 
 Je voudrais ici revenir sur la fonction `iter`, qui crée un itérateur à partir d'un itérable.
 Sachez que ce n'est pas sa seule utilité. Elle peut aussi créer un itérateur à partir d'une fonction et d'une valeur de fin.

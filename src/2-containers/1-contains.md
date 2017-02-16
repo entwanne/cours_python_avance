@@ -1,4 +1,4 @@
-## Les conteneurs, c'est `in`
+### Les conteneurs, c'est `in`
 
 Comme indiqué, les conteneurs sont donc des objets qui contiennent d'autres objets.
 Ils se caractérisent par l'opérateur `in` : `(0, 1, 2, 3)` étant un conteneur, il est possible de tester s'il contient telle ou telle valeur à l'aide de cet opérateur.

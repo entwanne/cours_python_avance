@@ -1,4 +1,4 @@
-## L'attribut de Dana
+### L'attribut de Dana
 
 Que font réellement `getattr`, `setattr` et `delattr` ? Elles appellent des méthodes spéciales de l'objet.
 
@@ -56,7 +56,7 @@ Et à l'utilisation :
 100.0
 ```
 
-### *dict* et *slots*
+#### *dict* et *slots*
 
 Le `__dict__` dont je parle plus haut est le dictionnaire contenant les attributs d'un objet Python. Par défaut, il contient tous les attributs que vous définissez sur un objet (si vous ne modifiez pas le fonctionnement de `setattr`).
 En effet, chaque fois que vous créez un attribut (`foo.bar = value`), celui-ci est enregistré dans le dictionnaire des attributs de l'objet (`foo.__dict__['bar'] = value`). La méthode `__getattribute__` de l'objet se contente donc de rechercher l'attribut dans le dictionnaire de l'objet et de ses parents (type de l'objet et classes dont ce type hérite).
@@ -67,7 +67,7 @@ Notez tout de même que si votre classe définit un `__slots__`, vous ne pourrez
 Je vous invite à consulter la section de la documentation consacrée aux slots pour plus d'informations :
 <https://docs.python.org/3/reference/datamodel.html#slots>
 
-### MRO
+#### MRO
 
 J'évoquais précédemment le comportement de `__getattribute__`, qui consiste à consulter le dictionnaire de l'objet puis de ses parents. Ce mécanisme est appelé *method resolution order* ou plus généralement *MRO*.
 

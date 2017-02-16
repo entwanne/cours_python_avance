@@ -1,6 +1,6 @@
-## Paramètres de fonctions
+### Paramètres de fonctions
 
-### Paramètres et arguments
+#### Paramètres et arguments
 
 Parlons un peu des paramètres de fonctions (et plus généralement de *callables*). Les paramètres sont décrits lors de la définition de la fonction, ils possèdent un nom, et potentiellement une valeur par défaut.
 
@@ -41,9 +41,9 @@ Traceback (most recent call last):
 TypeError: function() got multiple values for argument 'b'
 ```
 
-### L'opérateur *splat*
+#### L'opérateur *splat*
 
-#### Appels
+##### Appels
 
 L'opérateur *splat* est représenté par le caractère `*`. À ne pas confondre avec la multiplication, opérateur binaire entre deux objets, il s'agit ici d'un opérateur unaire : c'est à dire qu'il n'opère que sur un objet, en se plaçant devant.
 
@@ -134,7 +134,7 @@ Ainsi, il est possible de relayer les paramètres reçus par une fonction à une
 6
 ```
 
-#### Assignations
+##### Assignations
 
 Je tenais enfin à vous présenter une dernière utilité de l'opérateur `*` : lors d'une assignation. Vous connaissez probablement déjà l'assignation multiple (`a, b, c = 0, 1, 2`), mais saviez vous que la partie droite pouvait être un itérable quelconque ?
 

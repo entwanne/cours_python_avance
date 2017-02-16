@@ -1,4 +1,4 @@
-## `for` `for` lointain
+### `for` `for` lointain
 
 Les itérables et le mot-clef `for` sont intimement liés. C'est à partir de ce dernier que nous itérons sur les objets.
 
@@ -65,7 +65,7 @@ En interne, `iter` fait appel à la méthode `__iter__` de l'itérable, et `next
 En pratique, un itérateur est aussi bien souvent un itérable, possédant une méthode `__iter__` où il se retourne lui-même, le rendant compatible avec tout ce qui attend un intérable.
 
 
-### Le cas des indexables
+#### Le cas des indexables
 
 En début du chapitre, j'ai indiqué que notre liste `Deque` était aussi un itérable. Pourtant, nous ne lui avons pas implémenté de méthode `__iter__` permettant de la parcourir.
 

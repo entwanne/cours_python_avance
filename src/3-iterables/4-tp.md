@@ -1,4 +1,4 @@
-## TP : Itérateur sur listes chaînées
+### TP : Itérateur sur listes chaînées
 
 Revenons sur nos listes chaînées afin d'y implémenter le protocole des itérables.
 Notre classe `Deque` a donc besoin d'une méthode `__iter__` retournant un itérateur, que nous appellerons simplement `DequeIterator`.

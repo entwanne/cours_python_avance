@@ -1,4 +1,4 @@
-## TP : changement de répertoire
+### TP : changement de répertoire
 
 Dans ce TP, je vous propose d'implémenter un gestionnaire de contexte pour gérer le répertoire courant.
 En effet, on voudrait pouvoir changer temporairement de dossier courant, sans effet de bord sur la suite du programme.

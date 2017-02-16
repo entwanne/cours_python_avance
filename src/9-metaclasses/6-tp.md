@@ -1,8 +1,8 @@
-## TP : Évaluation paresseuse
+### TP : Évaluation paresseuse
 
 Dans ce dernier TP, nous nous intéresserons à l'évaluation paresseuse (*lazy evaluation*), et nous reviendrons sur un exemple qu'on avait laissé de côté après le chapitre sur les décorateurs : l'implémentation d'une récursivité terminale en Python.
 
-### L'évaluation paresseuse, c'est quoi ?
+#### L'évaluation paresseuse, c'est quoi ?
 
 Lorsque vous entrez une expression Python dans votre interpréteur et que celui-ci vous retourne une valeur, on dit que cette expression est évaluée. Évaluer une expression correspond donc à en calculer le résultat.
 
@@ -12,7 +12,7 @@ Dans le cas d'une évaluation paresseuse, celui-ci n'est calculé que lorsqu'il 
 
 En Python par exemple, nous avons étudié plus tôt le concept de générateurs, ils correspondent à de l'évaluation paresseuse : ils ne sont pas évalués avant que l'on ne commence à itérer dessus.
 
-### Objectif du TP
+#### Objectif du TP
 
 Ici, nous voulons réaliser un appel paresseux à une fonction. C'est à dire embarquer la fonction à appeler et ses paramètres, mais ne réaliser l'appel qu'au moment où nous avons besoin du résultat.
 
@@ -34,7 +34,7 @@ Et dans notre exemple, l'objet retourné devra posséder les méthodes `__add__`
 
 Ce ne sont ici que deux opérateurs, mais il en existe beaucoup d'autres, *dont l'énumération serait inutile et fastidieuse*, et il va nous falloir tous les gérer.
 
-### Opérateurs et méthodes spéciales
+#### Opérateurs et méthodes spéciales
 
 Le problème des opérateur en Python, c'est que les appels aux méthodes spéciales sont optimisés et ne passent pas par `__getattribute__`.
 

@@ -1,4 +1,4 @@
-## Utilisation avancée : le module `itertools`
+### Utilisation avancée : le module `itertools`
 
 Nous l'avons vu, les itérables sont au cœur des fonctions élémentaires de Python. Je voudrais maintenant vous présenter un module qui vous sera propablement très utile : [`itertools`](https://docs.python.org/3/library/itertools.html).
 

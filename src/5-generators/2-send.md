@@ -1,4 +1,4 @@
-## Altérer un générateur avec `send`
+### Altérer un générateur avec `send`
 
 Vous devez déjà être capable de créer un certain nombre de générateurs. Mais sachez qu'ils sont dotés d'une autre fonctionnalité : il est possible de communiquer avec eux après leur création.
 

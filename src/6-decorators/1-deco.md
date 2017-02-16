@@ -1,4 +1,4 @@
-## D&CO, une semaine pour tout changer
+### D&CO, une semaine pour tout changer
 
 En Python, vous en avez peut-être déjà croisé, les décorateurs se repèrent au caractère `@`.
 

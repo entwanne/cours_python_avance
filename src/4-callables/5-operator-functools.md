@@ -1,8 +1,8 @@
-## Modules `operator` et `functools`
+### Modules `operator` et `functools`
 
 Passons maintenant à la présentation de deux modules, contenant deux collections de *callables*.
 
-### `operator`
+#### `operator`
 
 Ce module regroupe l'ensemble des opérateurs Python sous forme de fonctions.
 Ainsi, une addition pourrait se formuler par :
@@ -15,7 +15,7 @@ Ainsi, une addition pourrait se formuler par :
 
 Outre les opérateurs habituels, nous en trouvons d'autres sur lesquels nous allons nous intéresser plus longuement, dont la particularité est de retourner des *callables*.
 
-#### `itemgetter`
+##### `itemgetter`
 
 `itemgetter` permet de récupérer un élément précis depuis un indexable, à la manière de l'opérateur `[]`.
 
@@ -32,7 +32,7 @@ b
 5
 ```
 
-#### `methodcaller`
+##### `methodcaller`
 
 `methodcaller` permet d'appeler une méthode prédéterminée d'un objet, avec ses arguments.
 
@@ -47,7 +47,7 @@ b
 [0, 'a', 4, 'b']
 ```
 
-### `functools`
+#### `functools`
 
 Je tenais ensuite à évoquer le module [`functools`](https://docs.python.org/3/library/functools.html), et plus particulièrement la fonction `partial` : celle-ci permet de réaliser un appel partiel de fonction.
 

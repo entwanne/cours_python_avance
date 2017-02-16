@@ -1,4 +1,4 @@
-## Les descripteurs
+### Les descripteurs
 
 Les descripteurs sont une manière d'avoir des comportements plus évolués lors de la récupération/édition/suppression d'un attribut.
 Un descripteur est un attribut particulier d'une classe, et dont certaines méthodes spéciales (`__get__`, `__set__`, et `__delete__`) sont appelées lorsque les accès correspondant sont réalisés sur l'attribut.

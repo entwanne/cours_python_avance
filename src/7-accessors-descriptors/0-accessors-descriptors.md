@@ -1,4 +1,4 @@
-# Accesseurs et descripteurs
+## Accesseurs et descripteurs
 
 L'expression `foo.bar` est en apparence très simple : on accède à l'attribut `bar` d'un objet `foo`.
 Cependant, divers mécanismes entrent en jeu pour nous retourner cette valeur, nous permettant d'accéder à des attributs définis à la volée.

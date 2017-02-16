@@ -1,4 +1,4 @@
-# Gestionnaires de contexte
+## Gestionnaires de contexte
 
 Avant de parler de cette spécificité du langage, je voudrais expliciter la notion de contexte.
 Un contexte est une portion de code cohérente, avec des garanties en entrée et en sortie.

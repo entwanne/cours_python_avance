@@ -1,6 +1,6 @@
-## TP : Une liste chaînée en Python
+### TP : Une liste chaînée en Python
 
-### Présentation
+#### Présentation
 
 Nous avons, dans les paragraphes précédents, créé un proxy autour d'une liste pour découvrir le fonctionnement des méthodes décrites.
 
@@ -8,7 +8,7 @@ Dans ce TP, pas à pas, nous créerons notre propre type de liste, à savoir une
 
 En plus de nos méthodes d'accès aux éléments, nous implémenterons les méthodes `insert` et `append` afin d'ajouter facilement des éléments à notre liste.
 
-### Bases
+#### Bases
 
 Nous appellerons donc notre classe `Deque` et, à la manière de `list`, le constructeur pourra prendre un objet pour pré-remplir notre liste.
 
@@ -41,7 +41,7 @@ class Deque:
 
 Notre classe `Node` étant achevée, toutes les méthodes qui seront données par la suite seront à ajouter à la classe `Deque`.
 
-### `append` et `insert`
+#### `append` et `insert`
 
 Si vous avez tenté d'instancier notre liste pour le moment (en lui précisant un paramètre), vous avez remarqué que celle-ci levait une erreur : en effet, nous appelons une méthode `append` qui n'est actuellement pas définie.
 
@@ -92,7 +92,7 @@ def insert(self, i, value):
         self.last = node
 ```
 
-### `__contains__`
+#### `__contains__`
 
 Pour faire de notre liste un conteneur, il nous faut implémenter l'opération `in` et donc la méthode `__contains__`. Celle-ci, à la manière de `get_node`, itérera sur tous les maillons jusqu'à en trouver un correspondant à la valeur passée en paramètre et ainsi retourner `True`.
 Si après avoir itéré sur toute la liste sans trouver la valeur, il convient alors de retourner `False`.
@@ -107,7 +107,7 @@ def __contains__(self, value):
     return False
 ```
 
-### `__len__`
+#### `__len__`
 
 Nous souhaitons maintenant pouvoir calculer la taille de notre liste. La méthode `__len__` sera aussi très similaire aux précédentes, elle itère simplement du début à la fin en comptant le nombre de noeuds.
 
@@ -121,7 +121,7 @@ def __len__(self):
     return size
 ```
 
-### `__getitem__` et `__setitem__`
+#### `__getitem__` et `__setitem__`
 
 Dans un premier temps, implémentons ces deux méthodes sans tenir compte des `slice`. Une grande part du travail est déjà réalisé par `get_node` :
 
@@ -170,7 +170,7 @@ Si vous ne comprenez pas bien ce que fait la fonction `zip`, celle-ci assemble d
 [(1, 'a'), (2, 'b'), (3, 'c')]
 ```
 
-### Aller plus loin
+#### Aller plus loin
 
 Ce TP touche à sa fin, mais pour aller plus loin, voici une liste non exhaustive de fonctionnalités qu'il nous reste à implémenter :
 

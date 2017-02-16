@@ -1,4 +1,4 @@
-# Conclusion
+## Conclusion
 
 Ce cours touche maintenant à sa fin.
 Puisse-t-il vous avoir fait découvrir de nouveaux concepts de Python, ou l'envie de voir encore plus loin.

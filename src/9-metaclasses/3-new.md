@@ -1,4 +1,4 @@
-## Le vrai constructeur
+### Le vrai constructeur
 
 En Python, la méthode spéciale `__init__` est souvent appelée constructeur de l'objet.
 Il s'agit en fait d'un abus de langage : `__init__` ne construit pas l'objet, elle intervient après la création de ce dernier pour l'initialiser.

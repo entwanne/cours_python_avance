@@ -1,4 +1,4 @@
-## Envelopper une fonction
+### Envelopper une fonction
 
 Une fonction n'est pas seulement un bout de code avec des paramètres. C'est aussi un nom (des noms, avec ceux des paramètres), une documentation (*docstring*), des annotations, etc.
 Quand nous décorons une fonction à l'heure actuelle (dans les cas où nous en retournons une nouvelle), nous perdons toutes ces informations annexes.
@@ -23,7 +23,7 @@ Alors, que voit-on ? Pas grand chose.
 Le nom qui apparaît est celui de `decorated`, les paramètres sont `*args` et `**kwargs` (sans annotations), et nous avons aussi perdu notre *docstring*.
 Autant dire qu'il ne reste rien pour comprendre ce que fait la fonction.
 
-### Rappel sur les annotations
+#### Rappel sur les annotations
 
 Vous avez pu trouver étrange les deux `int` placés derrière les paramètres `a` et `b` dans la ligne de définition de notre fonction, et celui placé à la fin : il s'agit d'annotations Python.
 Les annotations n'ont aucune utilité à proprement parler, je veux dire par là que Python ne s'en sert pas, il se contente de les stocker.
@@ -36,7 +36,7 @@ Tout ce qu'il y a à savoir pour le moment, c'est qu'une annotation peut-être n
 Les annotations sont utilisabes pour toutes fonctions et méthodes (mais pas pour les lambdas par exemple). Les paramètres peuvent être annotés en leur ajoutant un `:` suivi de l'annotation.
 La fonction dans son ensemble peut-être annotée à l'aide d'un `->` derrière la liste des paramètres de la définition.
 
-### `functools`
+#### `functools`
 
 Revenons-en à notre problème de perte d'informations. Plus tôt dans ce cours, je vous parlais du module [`functools`](https://docs.python.org/3/library/functools.html).
 Il ne nous a pas encore révélé tous ses mystères.

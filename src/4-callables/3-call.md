@@ -1,4 +1,4 @@
-## Call-me maybe
+### Call-me maybe
 
 Je vous le disais, plusieurs types d'objets peuvent être appelés. Que cache donc un *callable* ? Comme pour les itérables, c'est un objet qui possède une méthode spéciale, `__call__`, dont les paramètres seront les arguments passés lors de l'appel. La valeur renvoyée par `__call__` sera le retour de l'appel.
 

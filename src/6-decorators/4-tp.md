@@ -1,8 +1,8 @@
-## TP : divers décorateurs
+### TP : divers décorateurs
 
 Dans ce TP, nous allons mettre en pratique les décorateurs à l'aide de quelques petits exercices qui vous permettront je l'espère de comprendre toutes les possibilités qu'ils offrent.
 
-### Mémoïsation
+#### Mémoïsation
 
 Un des exemples les plus courants de mise en pratique des décorateurs est la réalisation d'un système de mise en cache (mémoïsation) : sauvegarder les résultats d'un calcul pour éviter de le refaire à chaque appel.
 
@@ -29,7 +29,7 @@ Je vous conseille de le tester sur une fonction procédant à des affichages, po
 
 Comme je le disais, c'est une version simple, dans le sens où s'il nous venait à l'esprit d'utiliser une fonction tantôt avec des arguments positionnels, tantôt avec des arguments nommés, nous ne bénéficierions pas des capacités du cache.
 
-#### Signatures
+##### Signatures
 
 Nous allons pour cela utiliser les signatures de fonctions. Ce sont des objets qui vont entre autres nous permettre, suivant la déclaration de la fonction, d'identifier quels arguments correspondent à quels paramètres ; et ainsi d'obtenir un couple unique `(args, kwargs)`, où tous les arguments nommés qui peuvent l'être seront transfomés en positionnels.
 
@@ -79,7 +79,7 @@ calcul
 Nous avons déjà parlé de [`functools`](https://docs.python.org/3/library/functools.html). à plusieurs reprises dans ce cours. Si vous y avez prêté attention, vous avez remarqué que le décorateur que nous venons d'implémenter ressemble beaucoup à `lru_cache` (à l'exception près que notre version gère les types non-hashables, mais avec une perte de performances et une moins bonne fiabilité).
 
 
-### Fonctions génériques
+#### Fonctions génériques
 
 Nous allons ici nous intéresser à une autre fonction de ce module : `singledispatch`, une implémentation de fonctions génériques permettant de *dispatcher* l'appel en fonction du type du premier paramètre.
 
@@ -145,7 +145,7 @@ Et enfin, il est appelable, *via* sa méthode `__call__`, qui déterminera laque
 Pour aller plus loin, nous pourrions aussi permettre de *dispatcher* en fonction du type de tous les paramètres, ou encore utiliser les annotations pour préciser les types.
 
 
-### Vérification de types
+#### Vérification de types
 
 L'intérêt de ce nouvel exercice va être de vérifier dynamiquement que les types des arguments passés à notre fonction sont les bons, à l'aide d'annotations sur les paramètres de la fonction.
 La vérification ne pourra ainsi se faire que sur les paramètres possédant un nom.
@@ -253,7 +253,7 @@ TypeError: 1 must be of type <class 'str'>
 ```
 
 
-### Récursivité terminale
+#### Récursivité terminale
 
 La récursivité terminal est un concept issu du [paradigme fonctionnel](https://fr.wikipedia.org/wiki/Programmation_fonctionnelle).
 Chaque fois que vous réalisez un appel de fonction, un contexte doit se mettre en place, afin de contenir les variables locales à la fonction (dont les paramètres), et qui doit être conservé jusqu'à la fin de l'exécution de la fonction.

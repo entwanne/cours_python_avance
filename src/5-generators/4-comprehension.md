@@ -1,6 +1,6 @@
-## Listes et générateurs en intension
+### Listes et générateurs en intension
 
-### Listes en intension
+#### Listes en intension
 
 Vous connaissez probablement déjà les listes en intension (*comprehension lists*), mais je vais me permettre un petit rappel.
 
@@ -64,7 +64,7 @@ Enfin, il est possible de parcourir plusieurs niveaux de listes dans une seule l
 
 Vous noterez que les `for` se placent dans l'ordre des dimensions que nous voulons explorer : d'abord les lignes, puis les éléments qu'elles contiennent.
 
-### Générateurs en intension
+#### Générateurs en intension
 
 De la même manière que pour les listes, nous pouvons définir des générateurs en intension (*generator expressions*) :
 

@@ -1,4 +1,4 @@
-## Déléguer à un autre générateur avec `yield from`
+### Déléguer à un autre générateur avec `yield from`
 
 Il est aussi possible de déléguer l'itération à un sous-générateur, à l'aide du mot clef `yield from`.
 

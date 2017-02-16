@@ -1,4 +1,4 @@
-## Fonctionnement interne
+### Fonctionnement interne
 
 Ça, c'est pour le cas d'utilisation, nous étudierons ici le fonctionnement interne.
 

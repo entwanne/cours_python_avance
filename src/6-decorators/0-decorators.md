@@ -1,4 +1,4 @@
-# Décorateurs
+## Décorateurs
 
 Dans ce chapitre nous allons découvrir les décorateurs et leur utilisation.
 

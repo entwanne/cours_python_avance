@@ -1,4 +1,4 @@
-## Les méthodes
+### Les méthodes
 
 Les méthodes en Python vous réservent aussi bien des surprises. Si vous avez déjà rencontré les termes de méthodes de classe (*class methods*), méthodes statiques (*static methods*), ou méthodes préparées (*bound methods*), vous avez pu vous demander comment cela fonctionnait.
 

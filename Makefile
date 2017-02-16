@@ -2,12 +2,12 @@ PDF = cours_python_avance.pdf
 ZIP = cours_python_avance.zip
 SRC = $(shell ls -v src/*/*.md)
 
-FLAGS = --chapters --toc
+FLAGS = --top-level-division=part --toc
 
 GEN = $(PDF) $(ZIP)
 
 $(PDF):	title.md $(SRC)
-	pandoc -V lang=french -V geometry:margin=1in $^ -o $@ $(FLAGS)
+	pandoc -V lang=fr -V geometry:margin=1in $^ -o $@ $(FLAGS)
 
 $(ZIP): $(SRC)
 	./gen_archive.py $@ $^

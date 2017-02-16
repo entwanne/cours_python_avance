@@ -1,10 +1,10 @@
-## Dessine-moi un générateur
+### Dessine-moi un générateur
 
 Les générateurs sont donc des itérables, mais aussi des itérateurs, ce qui implique qu'ils se consomment quand on les parcourt (et donc nous ne pouvons les parcourir qu'une fois).
 
 Ils sont généralement créés par des fonctions construites à l'aide du mot clef `yield`. Par abus de langage ces fonctions génératrices sont parfois appelées générateurs.
 
-### Le mot-clef `yield`
+#### Le mot-clef `yield`
 
 Un générateur est donc créé à partir d'une fonction. Mais contrairement aux fonctions habituelles, celle-ci ne comprendra aucun `return`, mais un ou plusieurs `yield`.
 

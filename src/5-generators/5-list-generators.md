@@ -1,4 +1,4 @@
-## Liste ou générateur ?
+### Liste ou générateur ?
 
 Une question qui revient souvent est celle de savoir quand choisir une liste et quand choisir un générateur, voici donc un petit comparatif :
 
