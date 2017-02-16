@@ -1,6 +1,6 @@
 PDF = cours_python_avance.pdf
 ZIP = cours_python_avance.zip
-SRC = $(shell ls -v src/*/*.md)
+SRC = $(shell find src -name "*.md" | sort -n)
 
 FLAGS = --top-level-division=part --toc
 
