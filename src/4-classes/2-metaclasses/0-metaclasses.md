@@ -1,8 +1,6 @@
 ## Métaclasses
 
-Il vous est peut-être arrivé de lire qu'en Python tout était objet. Il faut cependant nuancer quelque peu : tout ne l'est pas, une instruction n'est pas un objet par exemple.
-Mais toutes les valeurs que l'on peut manipuler sont des objets.
+Nous connaissons maintenant une première métaclasse, `type`.
+Une métaclasse est une classe dont les instances sont des classes.
 
-À quoi peut-on alors reconnaître un objet ? Cela correspond à tout ce qui peut être assigné à une variable.
-Ainsi, les nombres, les chaînes de caractère, les fonctions ou même les classes sont des objets.
-Et ce sont ici ces dernières qui nous intéressent.
+Ce chapitre a pour but de présenter comment créer nos propres métaclasses, et les mécanismes mis en œuvre par cela.

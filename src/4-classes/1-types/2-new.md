@@ -28,3 +28,41 @@ initialisation
 
 Nous choisissons ici de faire appel à `object.__new__` dans notre constructeur (via `super`), mais nous n'y sommes pas obligés.
 Rien ne nous oblige non plus — mise à part la logique — à retourner un objet du bon type.
+
+#### Le cas des immutables
+
+La méthode `__new__` est particulière utile pour les objets immutables.
+En effet, il est impossible d'agir sur les objets dans la méthode `__init__`, puisque celle-ci intervient après la création, et que l'objet n'est pas modifiable.
+
+Si l'on souhaite hériter d'un type immutable (`int`, `str`, `tuple`), et agir sur l'initialisation de l'objet, il est donc nécessaire de redéfinir `__new__`.
+Par exemple une classe `Point2D` immutable, qui hériterait de `tuple`.
+
+```python
+class Point2D(tuple):
+    def __new__(cls, x, y):
+        return super().__new__(cls, (x, y))
+
+    @property
+    def x(self):
+        return self[0]
+
+    @property
+    def y(self):
+        return self[1]
+```
+
+```python
+>> p = Point2D(3, 5)
+>>> p.x
+3
+>>> p.y
+5
+>>> p.x = 10
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: can't set attribute
+>>> p[0] = 10
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: 'Point2D' object does not support item assignment
+```
