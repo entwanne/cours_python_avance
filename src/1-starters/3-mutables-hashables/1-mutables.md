@@ -39,7 +39,7 @@ En revanche, la réassignation fait correspondre le nom de la variable à un nou
 [0, 1, 2]
 ```
 
-En Python, les objets de type `bool`, `int`, `str`, `tuple` et `frozenset` sont immutables.
+En Python, les objets de type `bool`, `int`, `str`, `bytes`, `tuple`, `range` et `frozenset` sont immutables.
 Tous les autres types, les listes, les dictionnaires, ou les instances de vos propres classes sont des objets mutables.
 
 Comme nous l'avons vu, les objets mutables sont à prendre avec des pincettes, car leur valeur peut changer sans que nous ne l'ayons explicitement demandé.
@@ -70,6 +70,24 @@ Cela ne pourra jamais arriver avec un *tuple* par exemple, qui est immutable et 
 (1, 2, 3, 4)
 ```
 
-Il n'est pas vraiment possible en Python de créer un nouveau type de mutables.
-- rendre méthodes inefficaces (mais pas sûr)
-- hériter d'un type immutable (namedtuple < tuple)
+Il n'est pas vraiment possible en Python de créer un nouveau type immutable.
+Cela peut être simulé en rendant les méthodes de modification/suppression (`__setattr__`, `__delattr__`, `__setitem__`, `__delitem__`, etc.) inefficaces. Mais il est toujours possible de passer outre en appelant directement les méthodes sur `object`.
+
+```python
+>>> class Immutable:
+...     def __setattr__(self, name, value):
+...         raise AttributeError
+...
+>>> obj = Immutable()
+>>> obj.foo = 'bar'
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+  File "<stdin>", line 3, in __setattr__
+AttributeError: Object is read-only
+>>> object.__setattr__(obj, 'foo', 'bar')
+>>> obj.foo
+'bar'
+```
+
+La seule manière sûre est d'hériter d'un autre type immutable, comme les `namestuple` qui héritent de `tuple`.
+Nous verrons plus loin dans ce cours comment cela est réalisable.
