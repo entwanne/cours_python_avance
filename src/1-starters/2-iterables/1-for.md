@@ -62,7 +62,7 @@ En interne, `iter` fait appel à la méthode `__iter__` de l'itérable, et `next
 - Un itérable est un objet possédant une méthode `__iter__` retournant un itérateur ;
 - Un itérateur est un objet possédant une méthode `__next__` retournant la valeur suivante à chaque appel, et levant une exception de type `StopIteration` en fin de course.
 
-En pratique, un itérateur est aussi bien souvent un itérable, possédant une méthode `__iter__` où il se retourne lui-même, le rendant compatible avec tout ce qui attend un intérable.
+La [documentation Python](https://docs.python.org/3/glossary.html#term-iterator) indique aussi qu'un itérateur doit avoir une méthode `__iter__` où il se retourne lui-même, les itérateurs étant ainsi des itérables à part entièe.
 
 
 #### Le cas des indexables

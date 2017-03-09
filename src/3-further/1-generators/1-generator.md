@@ -6,7 +6,7 @@ Ils sont généralement créés par des fonctions construites à l'aide du mot c
 
 #### Le mot-clef `yield`
 
-Un générateur est donc créé à partir d'une fonction. Mais contrairement aux fonctions habituelles, celle-ci ne comprendra aucun `return`, mais un ou plusieurs `yield`.
+Un générateur est donc créé à partir d'une fonction. Pour être génératrice, une fonction doit contenir un ou plusieurs `yield`.
 
 Lors de l'appel, la fonction retournera un générateur, et à chaque appel à la fonction *builtin* `next` sur le générateur, le code jusqu'au prochain `yield` sera exécuté.
 
@@ -44,6 +44,27 @@ Ou avec un `for` :
 4
 None
 hej
+```
+
+Il est aussi possible pour une fonction génératrice d'utiliser `return`, qui aura pour effet de le stopper (`StopIteration`).
+La valeur passer au `return` sera contenu dans l'exception levée.
+
+```python
+>>> def function():
+...     yield 4
+...     yield
+...     return 2
+...     yield 'hej'
+...
+>>> gen = function()
+>>> next(gen)
+4
+>>> next(gen)
+None
+>>> next(gen)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+StopIteration: 2
 ```
 
 Le générateur en lui-même ne retourne rien (il n'est pas *callable*), il produit des valeurs à l'aide de `yield`.

@@ -19,6 +19,9 @@ class MyRangeIterator:
         self.current = 0
         self.max = my_range.size
 
+    def __iter__(self):
+        return self
+
     def __next__(self):
         if self.current >= self.max:
             raise StopIteration
