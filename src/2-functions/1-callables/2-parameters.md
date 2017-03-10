@@ -43,11 +43,7 @@ TypeError: function() got multiple values for argument 'b'
 
 #### L'opérateur *splat*
 
-##### Appels
-
-L'opérateur *splat* est représenté par le caractère `*`. À ne pas confondre avec la multiplication, opérateur binaire entre deux objets, il s'agit ici d'un opérateur unaire : c'est à dire qu'il n'opère que sur un objet, en se plaçant devant.
-
-Cet opérateur permet de récupérer la liste (ou plus précisément le `tuple`) des arguments positionnels passés lors d'un appel, on appelle cela le *packing*.
+On retrouve l'opérateur *splat* qui permet ici de récupérer la liste (ou plus précisément le `tuple`) des arguments positionnels passés lors d'un appel, on appelle cela le *packing*.
 
 ```python
 >>> def func(*args): # Il est conventionnel d'appeler args la liste ainsi récupérée
@@ -100,7 +96,11 @@ def func(*args, **kwargs):
     pass
 ```
 
-Mais ces opérateurs servent aussi lors de l'appel à une fonction, via ce qu'on appelle l'*unpacking* : il est possible de transformer une liste en arguments positionnels, et un dictionnaire en arguments nommés (ou tout autres itérables compatibles). La seule règle est encore une fois de placer `*` après tous les arguments positionnels, et `**` après tous les nommés.
+Mais ces opérateurs servent aussi lors de l'appel à une fonction, via l'*unpacking*.
+Comme pour les assignations étudiées dans le chapitre des itérables, il est possible de transformer un itérable en arguments positionnels grâce à lopérateur *splat*.
+
+Le double-*splat* nous permet aussi ici de transformer un dictionnaire (ou autre *mpping*) en arguments nommés.
+La seule règle est encore une fois de placer `*` après tous les arguments positionnels, et `**` après tous les nommés.
 
 Cette règle disparaît cependant en Python 3.5, où il devient possible d'*unpacker* plusieurs listes ou dictionnaires à la fois, et d'y interposer des arguments positionnels/nommés. Voir [l'article de *ZesteDeSavoir* sur la sortie de Python 3.5](https://zestedesavoir.com/articles/175/sortie-de-python-3-5/#2-principales-nouveautes) à ce propos.
 
@@ -133,39 +133,3 @@ Ainsi, il est possible de relayer les paramètres reçus par une fonction à une
 >>> proxy_addition_3(1, c=3, b=2)
 6
 ```
-
-##### Assignations
-
-Je tenais enfin à vous présenter une dernière utilité de l'opérateur `*` : lors d'une assignation. Vous connaissez probablement déjà l'assignation multiple (`a, b, c = 0, 1, 2`), mais saviez vous que la partie droite pouvait être un itérable quelconque ?
-
-```python
->>> a, b, c = range(3)
->>> a
-0
->>> b
-1
->>> c
-2
-```
-
-Voyons maintenant ce que nous permet l'opérateur *splat* :
-
-```python
->>> head, *tail = range(10)
->>> head
-0
->>> tail
-[1, 2, 3, 4, 5, 6, 7, 8, 9]
->>> first, second, *tail = range(10)
->>> second
-1
->>> tail
-[2, 3, 4, 5, 6, 7, 8, 9]
->>> first, *_, last = range(10)
->>> first
-0
->>> last
-9
-```
-
-Notons enfin que les possibilités offertes par l'opérateur *splat* ont encore été étendues avec Python 3.5, pour en savoir plus : <https://zestedesavoir.com/articles/175/sortie-de-python-3-5/#2-principales-nouveautes>
