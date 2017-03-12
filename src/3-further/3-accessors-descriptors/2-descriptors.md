@@ -44,3 +44,56 @@ class Temperature:
 ```
 
 Je vous laisse exécuter à nouveau les exemples précédents pour constater que le comportement est le même.
+
+#### La méthode `__set_name__`
+
+Depuis Python 3.6, les descripteurs peuvent aussi être pourvus d'une méthode `__set_name__`.
+Cette méthode est appelée pour chaque assignation d'un descripteur à un attribut dans le corps de la classe.
+La méthode reçoit en paramètres la classe et le nom de l'attribut auquel le descripteur est assigné.
+
+```python
+>>> class Descriptor:
+...     def __set_name__(self, owner, name):
+...         print(name)
+...
+>>> class A:
+...     value = Descriptor()
+...
+value
+```
+
+Le descripteur peut ainsi agir dynamiquement sur la classe en fonction du nom de son attribut.
+
+Nous pouvons imaginer un descripteur `PositiveValue`, qui assurera qu'un attribut sera toujours positif.
+Le descripteur stockera ici sa valeur dans un attribut de l'instance, en utilisant pour cela son nom préfixé d'un *underscore*.
+
+```python
+class PositiveValue:
+    def __get__(self, instance, owner):
+        return getattr(instance, self.attr)
+
+    def __set__(self, instance, value):
+        setattr(instance, self.attr, max(0, value))
+
+    def __set_name__(self, owner, name):
+        self.attr = '_' + name
+
+class A:
+    x = PositiveValue()
+    y = PositiveValue()
+```
+
+```python
+>>> a = A()
+>>> a.x = 15
+>>> a.x
+15
+>>> a._x
+15
+>>> a.x -= 20
+>>> a.x
+0
+>>> a.y = -1
+>>> a.y
+0
+```
