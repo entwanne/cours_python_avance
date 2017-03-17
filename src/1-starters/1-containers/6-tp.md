@@ -4,7 +4,9 @@
 
 Nous avons, dans les paragraphes précédents, créé un proxy autour d'une liste pour découvrir le fonctionnement des méthodes décrites.
 
-Dans ce TP, pas à pas, nous créerons notre propre type de liste, à savoir une liste doublement chaînée, c'est-à-dire composée de maillons reliés entre eux. Très courantes dans des langages bas-niveau tels que le C, elles le sont beaucoup moins en Python, possédant tout de même une implémentation `deque` (*double-ended queue*) dans le module `collections`.
+Dans ce TP, pas à pas, nous créerons notre propre type de liste, à savoir une liste chaînée, c'est-à-dire composée de maillons reliés entre eux. Très courantes dans des langages bas-niveau tels que le C, elles le sont beaucoup moins en Python.
+
+La différence avec le type `deque` du module `collections` est que nos listes seront simplement chaînées : un maillon n'aura connaissance que du maillon suivant, pas du précédent.
 
 En plus de nos méthodes d'accès aux éléments, nous implémenterons les méthodes `insert` et `append` afin d'ajouter facilement des éléments à notre liste.
 
@@ -12,20 +14,17 @@ En plus de nos méthodes d'accès aux éléments, nous implémenterons les méth
 
 Nous appellerons donc notre classe `Deque` et, à la manière de `list`, le constructeur pourra prendre un objet pour pré-remplir notre liste.
 
-Notre liste sera composée de maillons, et nous aurons donc une seconde classe, très simple, pour représenter un maillon : `Node`. un maillon possède une valeur (`value`), un maillon précédent (`prev`), un maillon suivant (`next`), et… c'est tout. `prev` et `next` pouvant être à `None` si l'on est en début ou en fin de liste.
+Notre liste sera composée de maillons, et nous aurons donc une seconde classe, très simple, pour représenter un maillon : `Node`. un maillon possède une valeur (`value`), , un maillon suivant (`next`), et… c'est tout. `next` pouvant être à `None` si l'on est en fin de liste.
 
-Une seule chose à laquelle penser : quand nous instancions notre maillon, nous voulons que celui-ci référence ses maillons précédent et suivant. Mais aussi, et surtout, que le maillon précédent et le suivant le référencent. Ainsi, le `next` du maillon précédent devra pointer vers notre nouveau maillon, de même pour le `prev` du maillon suivant.
+La liste ne gardera qu'une référence vers le premier maillon, et vers le dernier (deux extrémités, *double-ended*).
+
+Une seule chose à laquelle penser : quand nous instancions notre maillon, nous voulons que celui-ci référence le maillon suivant. Mais aussi, et surtout, que le maillon précédent le référence. Ainsi, le `next` du maillon précédent devra pointer vers notre nouveau maillon.
 
 ```python
 class Node:
-    def __init__(self, value, prev=None, next=None):
+    def __init__(self, value, next=None):
         self.value = value
-        self.prev = prev
         self.next = next
-        if prev is not None:
-            prev.next = self
-        if next is not None:
-            next.prev = self
 ```
 
 Et notre classe `Deque`, qui contiendra une référence vers le premier et le dernier maillon, tout en itérant sur le potentiel objet passé au constructeur pour initialiser la liste.
@@ -47,13 +46,16 @@ Si vous avez tenté d'instancier notre liste pour le moment (en lui précisant u
 
 C'est par celle-ci que nous allons commencer, car son comportement est très simple : nous créons un nouveau noeud que nous ajoutons à la fin de la liste. Cela peut se résumer en :
 
-- Créer un `Node` avec la valeur spécifiée en paramètre, et comme maillon précédent l'actuelle fin de liste ;
+- Créer un `Node` avec la valeur spécifiée en paramètre, et `None` comme maillon suivant ;
+- Lier le nouveau maillon à l'actuel dernieer maillon ;
 - Faire pointer la fin de liste sur ce nouveau maillon ;
 - Et, ne pas oublier, dans le cas où notre liste est actuellement vide, de faire pointer le début de liste sur ce maillon.
 
 ```python
 def append(self, value):
-    node = Node(value, self.last)
+    node = Node(value, None)
+    if self.last is not None:
+        self.last.next = node
     self.last = node
     if self.first is None:
         self.first = node
@@ -76,7 +78,7 @@ def get_node(self, n):
 
 Notre méthode `insert` prend deux paramètres : la position et la valeur à insérer. Cette méthode aura trois comportements, suivant que l'on cherche à insérer la valeur en tête de liste, en fin, ou au milieu.
 
-- Dans le premier cas, il nous faudra créer un nouveau maillon, sans précédent, et avec `self.last` comme maillon suivant, puis faire pointer `self.first` sur ce nouveau maillon ;
+- Dans le premier cas, il nous faudra créer un nouveau maillon, avec `self.last` comme maillon suivant, puis faire pointer `self.first` sur ce nouveau maillon ;
 - Dans les deux autres, il faudra repérer le maillon précédent à l'aide de `get_node`, puis insérer notre maillon à la suite de celui-ci ;
 - Dans tous les cas, il faudra faire pointer `self.last` vers notre maillon si celui-ci est en fin de liste.
 
@@ -87,7 +89,8 @@ def insert(self, i, value):
         self.first = node
     else:
         prev = self.get_node(i - 1)
-        node = Node(value, prev, prev.next)
+        node = Node(value, prev.next)
+	prev.next = node
     if node.next is None:
         self.last = node
 ```

@@ -29,7 +29,7 @@ Point2D(x=1, y=2)
 
 #### `deque`
 
-Les queues doublement chaînées (ou *double-ended queues* contracté en *deques*), sont des objets proches des listes de Python, mais avec une structure interne différente.
+Les queues à deux extrémités (ou *double-ended queues* contracté en *deques*), sont des objets proches des listes de Python, mais avec une structure interne différente.
 
 Plutôt qu'avoir un tableau d'éléments, les éléments sont vus commes des maillons liés les uns aux autres.
 
