@@ -1,190 +1,109 @@
-### TP : Évaluation paresseuse
+### TP : Types immutables
 
-Dans ce dernier TP, nous nous intéresserons à l'évaluation paresseuse (*lazy evaluation*), et nous reviendrons sur un exemple qu'on avait laissé de côté après le chapitre sur les décorateurs : l'implémentation d'une récursivité terminale en Python.
+Nous avons vu dans le chapitre précédent comment réaliser un type immutable.
+Nous voulons maintenant aller plus loin, en mettant en place une métaclasse qui nous permettra facilement de créer de nouveaux types immutables.
 
-#### L'évaluation paresseuse, c'est quoi ?
+Déjà, à quoi ressemblerait une classe d'objets immutables ?
+Il s'agirait d'une classe dont les noms d'attributs seraient fixés à l'avance pour tous les objets.
+Et les attributs en question ne seraient bien sûr pas modifiables sur les objets.
+La classe pourrait bien sûr définir des méthodes, mais toutes ces méthodes auraient un accès en lecture seule sur les instances.
 
-Lorsque vous entrez une expression Python dans votre interpréteur et que celui-ci vous retourne une valeur, on dit que cette expression est évaluée. Évaluer une expression correspond donc à en calculer le résultat.
-
-L'évaluation paresseuse se différencie de l'évaluation standard par rapport au moment où le calcul a lieu.
-Lors d'une évaluation traditionnelle, le résultat est tout de suite retourné, et peut être manipulé.
-Dans le cas d'une évaluation paresseuse, celui-ci n'est calculé que lorsqu'il est réellement nécessaire (quand on commence à manipuler l'objet), d'où le terme de paresseux.
-
-En Python par exemple, nous avons étudié plus tôt le concept de générateurs, ils correspondent à de l'évaluation paresseuse : ils ne sont pas évalués avant que l'on ne commence à itérer dessus.
-
-#### Objectif du TP
-
-Ici, nous voulons réaliser un appel paresseux à une fonction. C'est à dire embarquer la fonction à appeler et ses paramètres, mais ne réaliser l'appel qu'au moment où nous avons besoin du résultat.
-
-Par exemple :
+On aurait par exemple quelque chose comme :
 
 ```python
->>> def square(x): return x ** 2
->>> a = square(3)
->>> b = square(4)
->>> c = square(5)
->>> a + b == c
-True
+class Point(metaclass=ImmutableMeta):
+    __fields__ = ('x', 'y')
+
+    def distance(self):
+        return (self.x**2 + self.y**2)**0.5
 ```
-
-Nous n'avons réellement besoin des valeurs `a`, `b` et `c` qu'en ligne 5.
-
-Si nous ne voulons pas calculer tout de suite le résultat, il faudra tout de même que notre fonction `square` retourne quelque chose.
-Et dans notre exemple, l'objet retourné devra posséder les méthodes `__add__` et `__eq__`. Méthodes qui se chargeront d'effectuer le calcul du carré.
-
-Ce ne sont ici que deux opérateurs, mais il en existe beaucoup d'autres, *dont l'énumération serait inutile et fastidieuse*, et il va nous falloir tous les gérer.
-
-#### Opérateurs et méthodes spéciales
-
-Le problème des opérateur en Python, c'est que les appels aux méthodes spéciales sont optimisés et ne passent pas par `__getattribute__`.
 
 ```python
->>> class A:
-...     def __add__(self, rhs):
-...         return 0
-...     def __getattribute__(self, name):
-...         print('getattribute')
-...         return super().__getattribute__(name)
-...
->>> A() + A()
-0
->>> import operator
->>> operator.add(A(), A())
-0
->>> A().__add__(A())
-getattribute
-0
+>>> p = Point(x=3, y=4)
+>>> p.x
+3
+>>> p.y
+4
+>>> p.distance()
+5.0
+>>> p.x = 0
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: can't set attribute
+>>> p.z = 0
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AttributeError: 'Point' object has no attribute 'z'
 ```
 
-Il va donc nous falloir intégrer toutes les méthodes spéciales à nos objets, et les métaclasses nous seront alors d'une grande aide pour toutes les générer.
+#### Hériter de `tuple`
 
-Une liste de méthodes spéciales nous est fournie dans la documentation Python : <https://docs.python.org/3/reference/datamodel.html#specialnames>
+Plusieurs solutions s'offrent à nous pour mener ce travail.
+Nous pouvons, comme précédemment, faire hériter tous nos immutables de `tuple`.
+Il faudra alors faire pointer chacun des noms d'attributs sur les éléments du *tuple*, *via* des propriétés par exemple.
+On peut simplifier cela avec `namedtuple`, qui réalise cette partie du travail.
 
-* `__new__`, `__init__`, `__del__`
-* `__repr__`, `__str__`, `__bytes__`, `__format__`
-* `__lt__`, `__le__`, `__eq__`, `__ne__`, `__gt__`, `__ge__`
-* `__hash__`, `__bool__`
-* `__getattr__`, `__getattribute__`, `__setattr__`, `__delattr__`, `__dir__`
-* `__get__`, `__set__`, `__delete__`
-* `__instancecheck__`, `__subclasscheck__`
-* `__call__`
-* `__len__`, `__length_hint__`, `__getitem__`, `__missing__`, `__setitem__`, `__delitem__`, `__iter__`, `__reversed__`, `__contains__`
-* `__add__`, `__sub__`, `__mul__`, `__matmul__`, `__truediv__`, `__floordiv__`, `__mod__`, `__divmod__`, `__pow__`, `__lshift__`, `__rshift__`, `__and__`, `__xor__`, `__or__`
-* `__radd__`, `__rsub__`, `__rmul__`, `__rmatmul__`, `__rtruediv__`, `__rfloordiv__`, `__rmod__`, `__rdivmod__`, `__rpow__`, `__rlshift__`, `__rrshift__`, `__rand__`, `__rxor__`, `__ror__`
-* `__iadd__`, `__isub__`, `__imul__`, `__imatmul__`, `__itruediv__`, `__ifloordiv__`, `__imod__`, `__ipow__`, `__ilshift__`, `__irshift__`, `__iand__`, `__ixor__`, `__ior__`
-* `__neg__`, `__pos__`, `__abs__`, `__invert__`, `__complex__`, `__int__`, `__float__`, `__round__`, `__index__`
-* `__enter__`, `__exit__`
-* `__await__`, `__aiter__`, `__anext__`, `__aenter__`, `__aexit__`
-
-Mais celle-ci n'est pas complète, `__next__` n'y figure par exemple pas.
-Je n'ai pas trouvé de liste exhaustive, et c'est donc celle-ci que nous utiliserons.
-Nous omettrons cependant la première ligne (constructeur, initialisateur et destructeur), car les objets que nous recevrons seront déjà construits.
-
-Il nous faut aussi différencier les opérateurs des autres méthodes spéciales. Habituellement, si une méthode spéciale est implémentée pour un opérateur et que l'opération n'est pas réalisable, celle-ci est censée retourner `NotImplemented`.
-Le module `operator` nous permettra facilement de savoir si la méthode spéciale est un opérateur, et donc d'agir en conséquence (en vérifiant que la méthode est présente dans `operator.__dict__` par exemple).
-
-La solution que je propose est la suivante.
+Notre métaclasse se chargerait ainsi d'extraire les champs du type immutable, de créer un `namedtuple` correspondant, puis en faire hériter notre classe immutable.
 
 ```python
-import operator
-
-class LazyMeta(type):
-    # Référencement de toutes les méthodes spéciales, ou presque
-    specials = [
-        '__repr__', '__str__', '__bytes__', '__format__',
-        '__lt__', '__le__', '__eq__', '__ne__', '__gt__', '__ge__',
-        '__hash__', '__bool__',
-        '__getattr__', '__getattribute__', '__setattr__', '__delattr__', '__dir__',
-        '__get__', '__set__', '__delete__',
-        '__instancecheck__', '__subclasscheck__',
-        '__call__',
-        '__len__', '__length_hint__', '__getitem__', '__missing__', '__setitem__', '__delitem__',
-        '__iter__', '__reversed__', '__contains__',
-        '__add__', '__sub__', '__mul__', '__matmul__', '__truediv__', '__floordiv__', '__mod__',
-        '__divmod__', '__pow__', '__lshift__', '__rshift__', '__and__', '__xor__', '__or__',
-        '__radd__', '__rsub__', '__rmul__', '__rmatmul__', '__rtruediv__', '__rfloordiv__', '__rmod__',
-        '__rdivmod__', '__rpow__', '__rlshift__', '__rrshift__', '__rand__', '__rxor__', '__ror__',
-        '__iadd__', '__isub__', '__imul__', '__imatmul__', '__itruediv__', '__ifloordiv__', '__imod__',
-        '__ipow__', '__ilshift__', '__irshift__', '__iand__', '__ixor__', '__ior__',
-        '__neg__', '__pos__', '__abs__', '__invert__', '__complex__', '__int__', '__float__',
-        '__round__', '__index__',
-        '__enter__', '__exit__',
-        '__await__', '__aiter__', '__anext__', '__aenter__', '__aexit__',
-        '__next__'
-    ]
-
-    def get_meth(methname):
-        "Fonction utilisée pour créer une méthode dynamiquement"
-        def meth(self, *args, **kwargs):
-            # On tente d'accéder à l'objet évalué (value)
-            try:
-                value = object.__getattribute__(self, 'value')
-            # S'il n'existe pas, il nous faut alors le calculer puis le stocker
-            except AttributeError:
-                value = object.__getattribute__(self, 'expr')()
-                object.__setattr__(self, 'value', value)
-            # Appel à l'opérateur si la méthode est un opérateur
-            if methname in operator.__dict__:
-                return getattr(operator, methname)(value, *args, **kwargs)
-            # Sinon, appel à la méthode de l'objet
-            return getattr(value, methname)(*args, **kwargs)
-        return meth
-
-    @classmethod
-    def __prepare__(cls, name, bases):
-        # On prépare la classe en lui ajoutant toutes les méthodes référencées
-        methods = {}
-        for methname in cls.specials:
-            methods[methname] = cls.get_meth(methname)
-        return methods
-
-# Le type Lazy est celui que nous utiliserons pour l'évaluation paresseuse
-class Lazy(metaclass=LazyMeta):
-    def __init__(self, expr):
-        # Il possède une expression (un callable qui retournera l'objet évalué)
-        # Les autres méthodes de Lazy sont ajoutées par la métaclasse
-        object.__setattr__(self, 'expr', expr)
+class ImmutableMeta(type):
+    def __new__(cls, name, bases, dict):
+        fields = dict.pop('__fields__', ())
+        bases += (namedtuple(name, fields),)
+        return super().__new__(cls, name, bases, dict)
 ```
 
-Nous sommes obligés d'utiliser `object.__getattribute__` et `object.__setattr__` pour accéder aux attributs, afin de ne pas interférer avec les méthodes redéfinies dans la classe courante.
-
-À l'utilisation, cela donne :
+Si l'on implémente une classe `Point` comme dans l'exemple plus haut, on remarque que la classe se comporte comme convenu jusqu'au `p.z = 0`.
+En effet, il nous est ici possible d'ajouter de nouveaux attributs à nos objets, pourtant voulus immutables.
 
 ```python
->>> def _eval():
-...     print('evaluated')
-...     return 4
-...
->>> l = Lazy(_eval)
->>> l + 5
-evaluated
-9
->>> l + 5
-9
->>> l = Lazy(lambda: [])
->>> l
-[]
->>> l.append(5)
->>> l
-[5]
->>> type(l)
-<class '__main__.Lazy'>
->>> class A:
-...     pass
-...
->>> l = Lazy(lambda: A())
->>> l
-<__main__.A object at 0x7f7e3d7376a0>
->>> type(l)
-<class '__main__.Lazy'>
->>> l.x = 0
->>> l.x
-0
->>> l.y # AttributeError
->>> l + 1 # TypeError
->>> abs(l) # TypeError
+>>> p = Point(x=3, y=4)
+>>> p.z = 5
+>>> p.z
+5
 ```
 
-Ainsi, pour en revenir à notre TP sur la récursivité terminale, il nous suffirait de faire retourner à notre fonction un objet de type `Lazy` pour ne plus avoir à différencier `call` et `__call__`.
-Les appels ne seraient alors exécutés, itérativement, qu'à l'utilisation du retour (quand on chercherait à itérer dessus, à l'afficher, ou autre).
-Il n'y aurait ainsi plus besoin de se soucier de savoir si nous sommes dans un appel récursif ou dans le premier appel.
+#### Les slots à la rescousse
+
+Comme nous l'avons vu avec les accesseurs, il est possible de définir un ensemble `__slots__` des attributs possibles des instances de cette classe.
+Celui-ci a entre autres pour effet d'empêcher de définir d'autres attributs à nos objets.
+
+C'est donc dans ce sens que nous allons maintenant l'utiliser.
+Nos types immutables n'ont besoin d'aucun attribut : tout ce qu'ils stockent est contenu dans un *tuple*, et les accesseurs sont des propriétés.
+Ainsi, notre métaclasse `ImmutableMeta` peut simplement définir un attribut `__slots__ = ()` à nos classes.
+
+```python
+class ImmutableMeta(type):
+    def __new__(cls, name, bases, dict):
+        fields = dict.pop('__fields__', ())
+        bases += (namedtuple(name, fields),)
+        dict['__slots__'] = ()
+        return super().__new__(cls, name, bases, dict)
+```
+
+#### Le problème des méthodes de `tuple`
+
+Nous avons maintenant entre les mains une classe de types immutables répondant aux critères décrits plus haut.
+Mais si on y regarde de plus près, on remarque un léger problème :
+nos classes possèdent des méthodes incongrues héritées de `tuple` et `namedtuple`.
+On voit par exemple des méthodes `__getitem__`, `count` ou `index` qui ne nous sont d'aucune utilité et polluent les classes.
+`__getitem__` est d'autant plus problématique qu'il s'agit d'un opérateur du langage, qui se retrouve automatiquement surchargé.
+
+```python
+>>> dir(Point)
+['__add__', '__class__', '__contains__', '__delattr__', '__dict__', '__dir__',
+'__doc__', '__eq__', '__format__', '__ge__', '__getattribute__', '__getitem__',
+'__getnewargs__', '__getstate__', '__gt__', '__hash__', '__init__', '__iter__',
+'__le__', '__len__', '__lt__', '__module__', '__mul__', '__ne__', '__new__',
+'__reduce__', '__reduce_ex__', '__repr__', '__rmul__', '__setattr__',
+'__sizeof__', '__slots__', '__str__', '__subclasshook__', '_asdict', '_fields',
+'_make', '_replace', '_source', 'count', 'index', 'x', 'y']
+```
+
+Alors on peut dans un premier temps choisir d'hériter de `tuple` plutôt que d'un `namedtuple` pour faire un premier tri, mais ça ne règle pas le soucis.
+Et il nous est impossible de supprimer ces méthodes, puisqu'elles ne sont pas définies dans nos classes mais dans une classe parente.
+
+Il faut alors bidouiller, en remplaçant les méthodes par des attributs levant des `AttributeError` pour faire croire à leur absence, en redéfinissant `__dir__` pour les en faire disparaître, etc.
+Mais nos objets continueront à être des *tuples* et ces méthodes resteront accessibles d'une manière ou d'une autre (en appelant directement `tuple.__getitem__`, par exemple).
+
+Nous verrons dans les exercices complémentaires une autre piste pour créer nos propres types immutables.
