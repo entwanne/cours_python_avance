@@ -20,6 +20,7 @@ def big_queue():
 ```
 
 À la différence près qu'avec `yield from`, les paramètres passés lors d'un `send` sont aussi relégués aux sous-générateurs.
+Tout comme sont relayés aux sous-générateurs les appels aux méthodes `throw` et `close`.
 
 Dans notre première version, nous pouvons nous permettre ceci :
 

@@ -9,6 +9,7 @@ Ils sont généralement créés par des fonctions construites à l'aide du mot c
 Un générateur est donc créé à partir d'une fonction. Pour être génératrice, une fonction doit contenir un ou plusieurs `yield`.
 
 Lors de l'appel, la fonction retournera un générateur, et à chaque appel à la fonction *builtin* `next` sur le générateur, le code jusqu'au prochain `yield` sera exécuté.
+Comme pour tout itérateur, la fonction `next` appelle donc la méthode spéciale `__next__` du générateur.
 
 `yield` peut-être ou non suivi d'une expression. La valeur retournée par `next` sera celle apposée au `yield`, ou `None` dans le cas où aucune valeur n'est spécifiée.
 
