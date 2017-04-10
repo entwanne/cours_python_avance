@@ -1,4 +1,4 @@
-### TP : propriétés et méthodes
+### TP : Méthodes
 
 Pour clore ce chapitre, je vous propose d'implémenter les descripteurs `staticmethod` et `classmethod`. J'ajouterai à cela un descripteur `method` qui reproduirait le comportement par défaut des méthodes en Python.
 
