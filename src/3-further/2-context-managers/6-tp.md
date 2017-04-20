@@ -1,43 +1,98 @@
-### TP : changement de répertoire
+### TP : Redirection de sortie (`redirect_stdout`)
 
-Dans ce TP, je vous propose d'implémenter un gestionnaire de contexte pour gérer le répertoire courant.
-En effet, on voudrait pouvoir changer temporairement de dossier courant, sans effet de bord sur la suite du programme.
+Nous allons ici mettre en place un gestionnaire de context équivalent à `redirect_stdout` pour rediriger la sortie standard vers un autre fichier.
+Il sera aussi utilisable en tant que décorateur pour rediriger la sortie standard de fonctions.
 
-Ainsi, à la construction de l'objet, on enregistrerait le dossier cible.
-Puis, à l'entrée du contexte, on garderait une trace du dossier courant avant de se déplacer vers la cible (`os.chdir`).
-En sortie, il nous suffirait de nous déplacer à nouveau vers le précédent dossier courant.
+La redirection de sortie est une opération assez simple en Python.
+La sortie standard est identifiée par l'attribut/fichier `stdout` du module `sys`.
+Pour rediriger la sortie standard, il suffit alors de faire pointer `sys.stdout` vers un autre fichier.
 
-On peut aussi hériter de `ContextDecorator` afin de l'utiliser en tant que décorateur.
+Notre gestionnaire de contexte sera construit avec un fichier dans lequel rediriger la sortie.
+Nous enregistrerons donc ce fichier dans un attribut de l'objet.
+
+À l'entrée du contexte, on gardera une trace de la sortie courante (`sys.stdout`) avant de la remplacer par notre cible.
+Et en sortie, il suffira de faire à nouveau pointer `sys.stdout` vers la précédente sortie standard, préalablement enregistrée.
+
+Nous pouvons faire hériter notre classe de `ContextDecorator` afin de pouvoir l'utiliser comme décorateur.
 
 ```python
-import os
+import sys
 from contextlib import ContextDecorator
 
-class changedir(ContextDecorator):
-    def __init__(self, target):
-        self.target = target
+class redirect_stdout(ContextDecorator):
+    def __init__(self, file):
+        self.file = file
+
     def __enter__(self):
-        self.current = os.getcwd()
-        os.chdir(self.target)
-    def __exit__(self, *_):
-        os.chdir(self.current)
+        self.old_output = sys.stdout
+        sys.stdout = self.file
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        sys.stdout = self.old_output
+```
+
+Pour tester notre gestionnaire de contexte, nous allons nous appuyer sur les `StringIO` du module `io`.
+Il s'agit d'objets se comportant comme des fichiers, mais dont tout le contenu est stocké en mémoire, et accessible à l'aide d'une méthode `getvalue`.
+
+```python
+>>> from io import StringIO
+>>> output = StringIO()
+>>> with redirect_stdout(output):
+...     print('ceci est écrit dans output')
+...
+>>> print('ceci est écrit sur la console')
+ceci est écrit sur la console
+>>> output.getvalue()
+'ceci est écrit dans output\n'
 ```
 
 ```python
->>> os.getcwd()
-'/home/antoine'
->>> with changedir('/tmp'):
-...     os.getcwd()
-...
-'/tmp'
->>> os.getcwd()
-'/home/antoine'
->>> @changedir('/')
-... def func():
-...     return os.getcwd()
-...
->>> func()
-'/'
->>> os.getcwd()
-'/home/antoine'
 ```
+
+Notre gestionnaire de contexte se comporte comme nous le souhaitions, mais possède cependant une lacune : il n'est pas réentrant.
+
+```python
+>>> output = StringIO()
+>>> redir = redirect_stdout(output)
+>>> with redir:
+...     with redir:
+...         print('ceci est écrit dans output')
+...
+>>> print('ceci est écrit sur la console')
+```
+
+```python
+>>> output = StringIO()
+>>> @redirect_stdout(output)
+... def addition(a, b):
+...     print('result =', a + b)
+...
+>>> addition(3, 5)
+>>> output.getvalue()
+'result = 8\n'
+```
+
+Comme on le voit, ou plutôt comme on ne le voit pas, le dernier affichage n'est pas imprimé sur la console, mais toujours dans `output`.
+En effet, lors de la deuxième entrée dans `redir`, `sys.stdout` ne pointait plus vers la console mais déjà vers notre `StringIO`, et la trace sauvegardée (`self.old_output`) est alors perdue puisqu'assignée à `sys.stdout`.
+
+Pour avoir un gestionnaire de contexte réentrant, il nous faudrait gérer une pile de fichiers de sortie.
+Ainsi, en entrée, la sortie actuelle serait ajoutée à la pile avant d'être remplacée par le fichier cible.
+Et en sortie, il suffirait de retirer le dernier élément de la pile et de l'assigner à `sys.stdout`.
+
+```python
+import sys
+
+class redirect_stdout(ContextDecorator):
+    def __init__(self, file):
+        self.file = file
+        self.stack = []
+
+    def __enter__(self):
+        self.stack.append(sys.stdout)
+        sys.stdout = self.file
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        sys.stdout = self.stack.pop()
+```
+
+Vous pouvez constater en reprenant les tests précédent que cette version est parfaitement fonctionnelle (pensez juste à réinitialiser votre interpréteur suite aux tests qui ont définitivement redirigé `sys.stdout` vers une `StringIO`).
