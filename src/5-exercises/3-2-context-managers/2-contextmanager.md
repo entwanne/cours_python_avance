@@ -255,4 +255,4 @@ def __exit__(self, exc_type, exc_value, traceback):
 
 Code final ? Oui, dans le sens où nous en resterons là pour notre exercice.
 Mais d'autres cas sont normalement gérés par `contextmanager`, notamment celui où `exc_value` vaudrait `None` ou le cas d'exceptions qui en auraient causé d'autres.
-Pour une version vraiment complète, je vous invite à consulter [les sources de la classe `GeneratorContextManager` du module `contextlib`]().
+Pour une version vraiment complète, je vous invite à consulter [les sources de la classe `_GeneratorContextManager` du module `contextlib`](https://github.com/python/cpython/blob/33a5568f69301562d536852d12b9e03cd8dfc3a4/Lib/contextlib.py#L57).

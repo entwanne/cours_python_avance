@@ -16,7 +16,7 @@ Ces interfaces et méthodes seront décrites dans le cours.
 Le pré-requis pour suivre ce tutoriel est de connaître Python, même à un niveau intermédiaire.
 Il est simplement nécessaire de savoir manipuler les structures du langage (conditions, boucles, fonctions),
 les types de base (nombres, chaînes de caractères, listes, dictionnaires),
-et d'avoir des notions de [programmation objet en Python]().
+et d'avoir des notions de [programmation objet en Python](https://zestedesavoir.com/tutoriels/954/notions-de-python-avancees/).
 Connaître le mécanisme des exceptions est un plus.
 
 Ce cours se divise en chapitres consacrés chacun à une spécificité du langage.

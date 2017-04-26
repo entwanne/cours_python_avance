@@ -62,7 +62,8 @@ True
 L'opérateur d'identité testant si deux objets sont une même instance, il n'est bien sûr pas possibe de le surcharger.
 En absence de surcharge, l'opérateur d'égalité donnera la même résultat que l'identité.
 
-Pour plus d'informations sur la surcharge d'opérateurs : <>
+Vous pouvez vous référer à [ce chapitre du cours sur la POO en Python](https://zestedesavoir.com/tutoriels/1253/la-programmation-orientee-objet-en-python/4-operators/)
+pour davantage d'informations sur la surcharge d'opérateurs.
 
 #### Quel opérateur utiliser ?
 

@@ -1,6 +1,6 @@
 ### Module `collections`
 
-Avant d'en terminer sur les conteneurs, je voulais vous présenter le module `collections`.
+Avant d'en terminer sur les conteneurs, je voulais vous présenter le [module `collections`]((https://docs.python.org/3/library/collections.html).
 Ce module, parfois méconnu, comprend différent conteneurs utiles de la bibliothèque standard, que je vais essayer de vous présenter brièvement.
 
 #### `namedtuple`
@@ -175,7 +175,7 @@ Les dictionnaires ordonnées (`OrderedDict`) sont comme leur nom l'indique des d
 
 Certaines implémentations (pypy, CPython 3.6) disposent de dictionaires ordonnés par défaut, mais il est préférable de passer par `OrderedDict` pour s'en assurer.
 
-Depuis Python 3.6, on peut construire un dictionnaire ordonné de la manière suivante :
+Depuis Python 3.6[^article36], on peut construire un dictionnaire ordonné de la manière suivante :
 
 ```python
 >>> from collections import OrderedDict
@@ -201,6 +201,10 @@ c 5
 a 1
 d 4
 ```
+
+[^article36]: Je vous invite à consulter cet article sur la sortie de Python 3.6
+pour en savoir plus sur les nouveautés apportées par cette version :
+<https://zestedesavoir.com/articles/1540/sortie-de-python-3-6/>
 
 #### `defaultdict`
 
