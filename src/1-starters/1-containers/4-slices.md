@@ -18,10 +18,10 @@ Les *slices* sont une syntaxe particulière pour l'indexation, à l'aide du cara
 Je pense que vous êtes déjà familier avec cette syntaxe. Le *slice* peut prendre jusqu'à 3 nombres :
 
 - Le premier est l'indice de départ (0 si omis) ;
-- Le second est l'indice de fin (fin de la liste si omis), l'élément correspondant à cet indice est exclu ;
+- Le second est l'indice de fin (fin de la liste si omis), l'élément correspondant à cet indice étant exclu ;
 - Le dernier est le pas, le nombre d'éléments passés à chaque itération (1 par défaut) ;
 
-Parfois moins connu, les *slices* peuvent aussi servir pour la modification et la suppression :
+Notons que les *slices* peuvent aussi servir pour la modification et la suppression :
 
 ```python
 >>> letters = ['a', 'b', 'c', 'd', 'e', 'f']
@@ -33,7 +33,8 @@ Parfois moins connu, les *slices* peuvent aussi servir pour la modification et l
 ['d', 'z', 'f']
 ```
 
-Une bonne chose pour nous, même avec les *slices*, ce sont les 3 mêmes méthodes `__getitem__`, `__setitem__` et `__delitem__` qui sont appelées. Cela signifie que la classe `MyList` que nous venons d'implémenter est déjà compatible avec les *slices*.
+Une bonne chose pour nous est que, même avec les *slices*, ce sont les 3 mêmes méthodes `__getitem__`, `__setitem__` et `__delitem__` qui sont appelées lors des accès.
+Cela signifie que la classe `MyList` que nous venons d'implémenter est déjà compatible avec les *slices*.
 
 En fait, c'est simplement que le paramètre `key` passé ne représente pas un nombre, mais est un objet de type `slice` :
 

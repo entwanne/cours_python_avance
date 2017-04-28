@@ -29,7 +29,7 @@ class Point(metaclass=ImmutableMeta):
 >>> p.x = 0
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
-AttributeError: can't set attribute
+AttributeError: can´t set attribute
 >>> p.z = 0
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>

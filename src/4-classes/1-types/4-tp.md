@@ -30,14 +30,14 @@ class ImmutableNode(tuple):
 Passons maintenant à `ImmutableDeque`.
 Au final, il s'agit aussi d'un ensemble de deux éléments : `first` et `last`, les deux extrêmités de la liste.
 
-Mais `ImmutableDeque` présente un autre défi, c'est cette classe qui est chargée de créer les maillons, qui sont ici immutable.
+Mais `ImmutableDeque` présente un autre défi, c'est cette classe qui est chargée de créer les maillons, qui sont ici immutables.
 Cela signifie que le `next` de chaque maillon doit être connu lors de sa création.
 
 Pour rappel, la classe sera instanciée avec un itérable en paramètre, celui-ci servant à créer les maillons.
 Il nous faudra donc itérer sur cet ensemble en connaissant l'élément suivant.
 
 Je vous propose pour cela une méthode de classe récursive, `create_node`.
-Cette méthode recevra un itérateur en paramètre, récupérera la valeur actuelle avec `next`, puis appelera la méthode sur le reste de l'itérateur.
+Cette méthode recevra un itérateur en paramètre, récupérera la valeur actuelle avec la fonction `next`, puis appelera la méthode sur le reste de l'itérateur.
 `create_node` retournera un objet `ImmutableNode`, qui sera donc utilisé comme maillon `next` dans l'appel parent.
 En cas de `StopIteration` (fin de l'itérateur), `create_node` renverra simplement `None`.
 
@@ -76,7 +76,7 @@ def last(self):
 Les autres méthodes (`__contains__`, `__len__`, `__getitem__`, `__iter__` et `__eq__`) seront identiques à celles de la classe `Deque`.
 On prendra seulement soin, dans `__getitem__`, de remplacer les occurrence de `Deque` par `ImmutableDeque` en cas de *slicing*, ou de faire appel au type de `self` pour construire la nouvelle liste.
 
-Les méthodes de modification (`append`, `insert`, `__setitem__`) ne sont bien sûr pas à implmenter.
+Les méthodes de modification (`append`, `insert`, `__setitem__`) ne sont bien sûr pas à implémenter.
 On remarque d'ailleurs que l'attribut `last` de nos listes n'a pas vraiment d'intérêt ici, puisqu'il n'est pas utilisé pour faciliter l'ajout d'élements en fin de liste.
 
 Enfin, on peut maintenant ajouter une méthode `__hash__`, pour rendre nos objets *hashables*.

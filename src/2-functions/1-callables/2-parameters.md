@@ -2,16 +2,22 @@
 
 #### Paramètres et arguments
 
-Parlons un peu des paramètres de fonctions (et plus généralement de *callables*). Les paramètres sont décrits lors de la définition de la fonction, ils possèdent un nom, et potentiellement une valeur par défaut.
+Parlons un peu des paramètres de fonctions (et plus généralement de *callables*).
+Les paramètres sont décrits lors de la définition de la fonction, ils possèdent un nom et potentiellement une valeur par défaut.
 
 Il faut les distinguer des arguments : les arguments sont les valeurs passées lors de l'appel.
+
+##### Paramètres
 
 ```python
 def function(a, b, c, d=1, e=2):
     return
 ```
 
-`a`, `b`, `c`, `d` et `e` sont les paramètres de la fonction `function`. `a`, `b` et `c` n'ont pas de valeur par défaut, il faut donc en préciser explicitement lors de l'appel, pour que celui-ci soit valide. Les paramètres avec valeur par défaut se placent obligatoirement après les autres.
+`a`, `b`, `c`, `d` et `e` sont les paramètres de la fonction `function`. `a`, `b` et `c` n'ont pas de valeur par défaut, il faut donc préciser explicitement une valeur lors de l'appel, pour que celui-ci soit valide.
+Les paramètres avec valeur par défaut se placent obligatoirement après les autres.
+
+##### Arguments
 
 ```python
 function(3, 4, d=5, c=3)
@@ -160,7 +166,7 @@ On notera que contrairement au simple *splat* qui servait aussi pour les assigna
 #### L'appel du *splat*
 
 Mais ces opérateurs servent aussi lors de l'appel à une fonction, via l'*unpacking*.
-Comme pour les assignations étudiées dans le chapitre des itérables, il est possible de transformer un itérable en arguments positionnels grâce à lopérateur *splat*.
+Comme pour les assignations étudiées dans le chapitre des itérables, il est possible de transformer un itérable en arguments positionnels avec l'opérateur *splat*.
 
 Le double-*splat* nous permet aussi ici de transformer un dictionnaire (ou autre *mapping*) en arguments nommés.
 

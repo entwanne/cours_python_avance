@@ -53,10 +53,10 @@ Traceback (most recent call last):
 AttributeError: readonly attribute
 ```
 
-Aussi, les objets `super` disposent de peu d'attributs et méthodes, contrairement aux *tuples*.
+Aussi, les objets `super` disposent de peu de méthodes, contrairement aux *tuples*.
 
 ```python
->>> dir(obj) # obj a peu d'attributs/méthodes
+>>> dir(obj)
 ['__class__', '__delattr__', '__dir__', '__doc__', '__eq__', '__format__', '__ge__',
 '__get__', '__getattribute__', '__gt__', '__hash__', '__init__', '__le__', '__lt__',
 '__ne__', '__new__', '__reduce__', '__reduce_ex__', '__repr__', '__self__',
@@ -89,7 +89,7 @@ def field_property(i):
     return property(get_field) # On enveloppe la fonction get_field dans une property
 ```
 
-Il nous faudra aussi gérer l'initialisateur de notre classe, associant les arguments positionnels et nommés aux champs de nos objets.
+Il nous faudra aussi gérer l'initialiseur de notre classe, associant les arguments positionnels et nommés aux champs de nos objets.
 
 Vient alors la méthode `__new__` de la métaclasse, qui se déroulera en plusieurs temps :
 
@@ -109,8 +109,7 @@ class ImmutableMeta(type):
         dict['__signature__'] = inspect.Signature(
           inspect.Parameter(field, inspect.Parameter.POSITIONAL_OR_KEYWORD) for field in fields)
         dict['__slots__'] = ()
-        c = super().__new__(cls, name, bases, dict)
-        return c
+        return super().__new__(cls, name, bases, dict)
 
     @staticmethod
     def field_property(i):
@@ -120,13 +119,13 @@ class ImmutableMeta(type):
 ```
 
 Et pour l'utiliser, nous créons une classe `Immutable`, héritant de `super` et définissant une méthode `__init__` pour initialiser nos objets immutables.
-Cette méthode devra vérifier les arguments conformément à la signature, puis créer un *tuple* des attributs, à passer à l'initialisateur parent (celui de `super`).
+Cette méthode devra vérifier les arguments conformément à la signature, puis créer un *tuple* des attributs, à passer à l'initialiseur parent (celui de `super`).
 
 ```python
 class Immutable(super, metaclass=ImmutableMeta):
     def __init__(self, *args, **kwargs):
         t = self.__signature__.bind(*args, **kwargs).args
-        # Rappel : l'intialisateur prend un type et une instance de ce type
+        # Rappel : l'initialiseur prend un type et une instance de ce type
         super().__init__(tuple, t)
 ```
 
@@ -151,7 +150,7 @@ class Point(Immutable):
 >>> p.x = 0
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
-AttributeError: can't set attribute
+AttributeError: can´t set attribute
 >>> p.z = 0
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
@@ -207,7 +206,7 @@ def __repr__(self):
     return f'{type(self).__name__}{self.__self__!r}'
 ```
 
-Deuxième amélioration, masquer les méthodes inutiles.
+Seconde amélioration, masquer les méthodes inutiles.
 Pour cela, on on peut définir une méthode `__dir__` dans `Immutable`.
 Cette méthode spéciale est celle appelée par la fonction `dir`.
 Nous pouvons alors en filtrer les méthodes pour supprimer celles définies par `super` (comme nous l'avons fait plus tôt en regardant l'attribut `__objclass__` des méthodes).
@@ -215,6 +214,7 @@ Nous pouvons alors en filtrer les méthodes pour supprimer celles définies par 
 ```python
 def __dir__(self):
     d = super().__dir__()
-    d = [meth for meth in d if getattr(getattr(type(self), meth, None), '__objclass__', None) is not super]
+    d = [meth for meth in d
+      if getattr(getattr(type(self), meth, None), '__objclass__', None) is not super]
     return d
 ```

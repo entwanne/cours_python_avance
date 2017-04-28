@@ -1,15 +1,16 @@
 ### Dessine-moi un générateur
 
-Les générateurs sont donc des itérables, mais aussi des itérateurs, ce qui implique qu'ils se consomment quand on les parcourt (et donc nous ne pouvons les parcourir qu'une fois).
+Les générateurs sont donc des itérables, mais aussi des itérateurs, ce qui implique qu'ils se consomment quand on les parcourt (et que nous ne pouvons donc les parcourir qu'une seule fois).
 
-Ils sont généralement créés par des fonctions construites à l'aide du mot clef `yield`. Par abus de langage ces fonctions génératrices sont parfois appelées générateurs.
+Ils sont généralement créés par des fonctions construites à l'aide du mot clef `yield`.
+Par abus de langage ces fonctions génératrices sont parfois elles-mêmes appelées générateurs.
 
 #### Le mot-clef `yield`
 
-Un générateur est donc créé à partir d'une fonction. Pour être génératrice, une fonction doit contenir un ou plusieurs `yield`.
+Un générateur est donc construit à partir d'une fonction. Pour être génératrice, une fonction doit contenir un ou plusieurs `yield`.
 
-Lors de l'appel, la fonction retournera un générateur, et à chaque appel à la fonction *builtin* `next` sur le générateur, le code jusqu'au prochain `yield` sera exécuté.
-Comme pour tout itérateur, la fonction `next` appelle donc la méthode spéciale `__next__` du générateur.
+Lors de l'appel, la fonction retournera un générateur, et à chaque appel à la fonction *builtin* `next` sur ce générateur, le code jusqu'au prochain `yield` sera exécuté.
+Comme pour tout itérateur, la fonction `next` appelle la méthode spéciale `__next__` du générateur.
 
 `yield` peut-être ou non suivi d'une expression. La valeur retournée par `next` sera celle apposée au `yield`, ou `None` dans le cas où aucune valeur n'est spécifiée.
 
@@ -48,7 +49,7 @@ hej
 ```
 
 Il est aussi possible pour une fonction génératrice d'utiliser `return`, qui aura pour effet de le stopper (`StopIteration`).
-La valeur passer au `return` sera contenu dans l'exception levée.
+La valeur passée au `return` sera contenue dans l'exception levée.
 
 ```python
 >>> def function():

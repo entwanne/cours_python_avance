@@ -14,7 +14,7 @@ En plus de nos méthodes d'accès aux éléments, nous implémenterons les méth
 
 Nous appellerons donc notre classe `Deque` et, à la manière de `list`, le constructeur pourra prendre un objet pour pré-remplir notre liste.
 
-Notre liste sera composée de maillons, et nous aurons donc une seconde classe, très simple, pour représenter un maillon : `Node`. un maillon possède une valeur (`value`), , un maillon suivant (`next`), et… c'est tout. `next` pouvant être à `None` si l'on est en fin de liste.
+Notre liste sera composée de maillons, et nous aurons donc une seconde classe, très simple, pour représenter un maillon : `Node`. un maillon possède une valeur (`value`), un maillon suivant (`next`), et… c'est tout. `next` pouvant être à `None` si l'on est en fin de liste.
 
 La liste ne gardera qu'une référence vers le premier maillon, et vers le dernier (deux extrémités, *double-ended*).
 
@@ -78,7 +78,7 @@ def get_node(self, n):
 
 Notre méthode `insert` prend deux paramètres : la position et la valeur à insérer. Cette méthode aura trois comportements, suivant que l'on cherche à insérer la valeur en tête de liste, en fin, ou au milieu.
 
-- Dans le premier cas, il nous faudra créer un nouveau maillon, avec `self.last` comme maillon suivant, puis faire pointer `self.first` sur ce nouveau maillon ;
+- Dans le premier cas, il nous faudra créer un nouveau maillon, avec `self.first` comme maillon suivant, puis faire pointer `self.first` sur ce nouveau maillon ;
 - Dans les deux autres, il faudra repérer le maillon précédent à l'aide de `get_node`, puis insérer notre maillon à la suite de celui-ci ;
 - Dans tous les cas, il faudra faire pointer `self.last` vers notre maillon si celui-ci est en fin de liste.
 
@@ -98,7 +98,7 @@ def insert(self, i, value):
 #### `__contains__`
 
 Pour faire de notre liste un conteneur, il nous faut implémenter l'opération `in` et donc la méthode `__contains__`. Celle-ci, à la manière de `get_node`, itérera sur tous les maillons jusqu'à en trouver un correspondant à la valeur passée en paramètre et ainsi retourner `True`.
-Si après avoir itéré sur toute la liste sans trouver la valeur, il convient alors de retourner `False`.
+Si la valeur n'est pas trouvée après avoir itéré sur toute la liste, il convient alors de retourner `False`.
 
 ```python
 def __contains__(self, value):

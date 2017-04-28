@@ -74,3 +74,6 @@ True
 >>> 'a' in m
 False
 ```
+
+Dans un genre similaire, on notera aussi les classes du module `numbers` : `Number`, `Complex`, `Real`, `Rational`, `Integral`.
+Ces classes abstraites, en plus de reconnaître l'ensemble des types numériques, permettent par héritage de créer nos propres types de nombres.

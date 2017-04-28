@@ -5,9 +5,9 @@ Dans l'utilisation que vous connaissiez, `type` prend un unique paramètre, et e
 
 Pour notre autre utilisation, ses paramètres sont au nombre de 3 :
 
-- Une chaîne de caractères représentant le nom de la classe à créer ;
-- Un tuple contenant les classes dont nous héritons (`object` est implicite) ;
-- Le dictionnaire des attributs et méthodes de la nouvelle classe.
+- `name` -- une chaîne de caractères représentant le nom de la classe à créer ;
+- `bases` -- un tuple contenant les classes dont nous héritons (`object` est implicite) ;
+- `dict` -- le dictionnaire des attributs et méthodes de la nouvelle classe.
 
 ```python
 >>> type('A', (), {})

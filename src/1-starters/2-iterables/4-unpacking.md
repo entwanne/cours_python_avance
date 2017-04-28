@@ -1,6 +1,6 @@
 ### L'*unpacking*
 
-Une fonctionnalité courante de Python, liée aux itérables, est celle de 'l*unpacking*.
+Une fonctionnalité courante de Python, liée aux itérables, est celle de l'*unpacking*.
 Il s'agit de l'opération qui permet de décomposer un itérable en plusieurs variables.
 
 Prenons `values` une liste de 3 valeurs, il est possible en une ligne d'assigner chaque valeur à une variable différente.
@@ -53,8 +53,8 @@ Les assignations suivantes sont d'ailleurs équivalentes.
 
 #### Structures imbriquées
 
-Les cas d'*unpacking* sont les plus simples : nous avons un itérable à droite et un ensemble « plat » de variables à gauche.
-Je dis « plat » parce qu'il n'y a qu'un niveau.
+Ces cas d'*unpacking* sont les plus simples : nous avons un itérable à droite et un ensemble « plat » de variables à gauche.
+Je dis « plat » parce qu'il n'y a qu'un niveau, aucune imbrication.
 
 Mais il est possible de faire bien plus que cela, en décomposant aussi des itérables imbriqués les uns dans les autres.
 
@@ -112,7 +112,7 @@ Utilisé à gauche lors d'une assignation, il permet de récupérer plusieurs é
 Vous l'avez compris, la variable précédée du *splat* devient une liste, dont la taille s'ajuste en fonction du nombre d'éléments.
 
 Il est donc impossible d'avoir deux variables précédées d'un *splat*, cela mènerait à une ambigüité.
-Ou plutôt, devrais-je préciser, un seul par niveau d'imbrication.
+Ou plutôt, devrais-je préciser, une seul par niveau d'imbrication.
 
 ```python
 >>> *a, (b, *c) = (0, 1, 2, (3, 4, 5))
@@ -126,7 +126,7 @@ Ou plutôt, devrais-je préciser, un seul par niveau d'imbrication.
 
 #### Encore du *splat*
 
-Nous avons vu l'opérateur *splat* utilisé à gauche de l'assignation, mais il est aussi possible depuis Python 3.5 de l'utiliser à droite.
+Nous avons vu l'opérateur *splat* utilisé à gauche de l'assignation, mais il est aussi possible depuis Python 3.5[^python_35] de l'utiliser à droite.
 Il aura simplement l'effet inverse, et décomposera un itérable comme si ses valeurs avaient été entrées une à une.
 
 ```python
@@ -147,4 +147,4 @@ Il est bien sûr possible de combiner les deux.
 7
 ```
 
-Pour plus d'informations sur les possibilités étendues de l'opérateur *splat* offertes par Python 3.5 : <https://zestedesavoir.com/articles/175/sortie-de-python-3-5/#2-principales-nouveautes>
+[^python_35]: Pour plus d'informations sur les possibilités étendues de l'opérateur *splat* offertes par Python 3.5 : <https://zestedesavoir.com/articles/175/sortie-de-python-3-5/#2-principales-nouveautes>

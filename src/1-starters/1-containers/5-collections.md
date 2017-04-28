@@ -1,7 +1,7 @@
 ### Module `collections`
 
-Avant d'en terminer sur les conteneurs, je voulais vous présenter le [module `collections`]((https://docs.python.org/3/library/collections.html).
-Ce module, parfois méconnu, comprend différent conteneurs utiles de la bibliothèque standard, que je vais essayer de vous présenter brièvement.
+Avant d'en terminer avec les conteneurs, je voulais vous présenter le [module `collections`](https://docs.python.org/3/library/collections.html).
+Ce module, parfois méconnu, comprend différents conteneurs utiles de la bibliothèque standard, que je vais essayer de vous présenter brièvement.
 
 #### `namedtuple`
 
@@ -33,9 +33,9 @@ Les queues à deux extrémités (ou *double-ended queues* contracté en *deques*
 
 Plutôt qu'avoir un tableau d'éléments, les éléments sont vus commes des maillons liés les uns aux autres.
 
-L'intérêt des *deques* par rapport aux listes est d'offrir de meilleures performances pour l'insertion/suppression d'éléments en tête et queue de liste, mais moins bonnes pour accéder à un élément en milieu de liste.
+L'intérêt des *deques* par rapport aux listes est d'offrir de meilleures performances pour l'insertion/suppression d'éléments en tête et queue de liste, mais moins bonnes pour l'accès à un élément en milieu de liste.
 
-Pour bénéficier de ces optimisations, les *deques* sont pourvues de méthodes `appendleft`, `extendleft` et `popleft` en plus des habituelles `append`/`extend`/`pop` qui travaillent sur les éléments de droite.
+Pour bénéficier de ces optimisations, les *deques* sont pourvues de méthodes `appendleft`, `extendleft` et `popleft` qui travaillent sur l'extrêmité gauche de la séquence, en plus des habituelles `append`/`extend`/`pop` qui travaillent sur celle de droite.
 
 ```python
 >>> from collections import deque
@@ -124,7 +124,7 @@ ChainMap({'c': 3, 'b': 2, 'f': 6}, {'d': 4})
 ```
 
 Les `ChainMap` se révèlent alors très utiles pour gérer des contextes / espaces de noms imbriqués,
-comme [présenté dans la documentation](https://docs.python.org/3/library/collections.html#chainmap-examples-and-recipes)
+comme [présenté dans la documentation](https://docs.python.org/3/library/collections.html#chainmap-examples-and-recipes).
 
 #### `Counter`
 
@@ -208,26 +208,28 @@ pour en savoir plus sur les nouveautés apportées par cette version :
 
 #### `defaultdict`
 
-Un dernier type de dictionnaires, les `defaultdict` (dictionnaires à valeurs par défaut).
-Nous l'avons vu avec les compteurs : quand on accède à un élément qui n'existe pas, on récupère 0.
+Voyons maintenant un dernier type de dictionnaires, les `defaultdict` (dictionnaires à valeurs par défaut).
+Les compteurs décrits plus haut sont un exemple de dictionnaires à valeurs par défaut : quand un élément n'existe pas, c'est `0` qui est retourné.
 
-Les `defaultdict`, lors de leur construction, prennent en premier paramètre une fonction qui servira à initialiser les éléments manquants.
+Les `defaultdict` sont plus génériques que cela.
+Lors de leur construction, ils prennent en premier paramètre une fonction qui servira à initialiser les éléments manquants.
 
 ```python
 >>> from collections import defaultdict
->>> d = defaultdict(lambda: None)
+>>> d = defaultdict(lambda: 'x')
 >>> d[0] = 'a'
 >>> d[1] = 'b'
 >>> d[2]
+'x'
 >>> d
-defaultdict(<function <lambda> at 0x7ffa55be42f0>, {0: 'a', 1: 'b', 2: None})
+defaultdict(<function <lambda> at 0x7ffa55be42f0>, {0: 'a', 1: 'b', 2: 'x'})
 ```
 
 #### *Wrappers*
 
 Enfin, 3 classes (`UserDict`, `UserList` et `UserString`) sont présentes dans ce module.
 Elles permettent par héritage de créer vos propres types de dictionnaires, listes ou chaînes de caractères, pour leur ajouter des méthodes par exemple.
-Eles gardent une référence vers l'objet qu'elles étendent par leur attribut `data`.
+Elles gardent une référence vers l'objet qu'elles étendent dans leur attribut `data`.
 
 ```python
 >>> from collections import UserList

@@ -10,7 +10,8 @@ True
 False
 ```
 
-Comment cela fonctionne ? C'est très simple. Comme pour de nombreux comportements, Python se base sur des méthodes spéciales des objets, vous en connaissez déjà probablement, ce sont les méthodes dont les noms débutent et s'achèvent par `__`.
+Comment cela fonctionne ? C'est très simple. Comme pour de nombreux comportements, Python se base sur des méthodes spéciales des objets.
+Vous en connaissez déjà probablement, ce sont les méthodes dont les noms débutent et s'achèvent par `__`.
 
 Ici, l'opérateur `in` fait simplement appel à la méthode `__contains__` de l'objet, qui prend en paramètre l'opérande gauche, et retourne un booléen.
 
@@ -24,14 +25,14 @@ True
 Il nous suffit ainsi d'implémenter cette méthode pour faire de notre objet un conteneur.
 
 ```python
->>> class MyObject:
+>>> class MyContainer:
 ...     def __contains__(self, value):
 ...         return value is not None # contient tout sauf None
 ...
->>> 'salut' in MyObject()
+>>> 'salut' in MyContainer()
 True
->>> 1.5 in MyObject()
+>>> 1.5 in MyContainer()
 True
->>> None in MyObject()
+>>> None in MyContainer()
 False
 ```

@@ -49,12 +49,11 @@ La définitition d'annotations ne doit normalement rien changer sur le déroulem
 
 Toutefois, les annotations ont l'utilité que l'on veut bien leur donner.
 Il existe des outils d'analyse statique tels que `mypy` qui peuvent en tirer partie.
-
 Ces outils n'exécutent pas le code, mais se contentent de vérifier que les types utilisés n'entrent pas en conflit avec les annotations.
 
 #### Des types plus complexes (module `typing`)
 
-Nous avons définie une fonction addition opérant sur deux nombres, mais l'avons annotée comme ne pouvant recevoir que des nombres entiers (`int`).
+Nous avons défini une fonction addition opérant sur deux nombres, mais l'avons annotée comme ne pouvant recevoir que des nombres entiers (`int`).
 
 En effet, les annotations utilisées jusqu'ici étaient plutôt simples.
 Mais elles peuvent accueillir des expressions plus complexes.
@@ -64,7 +63,7 @@ Ce module a été introduit dans Python 3.5, et n'est donc pas disponible dans l
 
 Dans notre fonction `addition`, nous voudrions en fait que les `int`, `float` et `complex` soient admis.
 Nous pouvons pour cela utiliser le type `Union` du module `typing`.
-Il nous permet de définir un ensemble de types valides pour notre paramètres, et s'utilise comme suit.
+Il nous permet de définir un ensemble de types valides pour nos paramètres, et s'utilise comme suit.
 
 ```python
 Number = Union[int, float, complex]
@@ -80,7 +79,7 @@ Outre `Union`, le module `typing` présente d'autres types génériques pour avo
 Nous pourrions avoir, par exemple :
 
 * `List[str]` -- Une liste de chaînes de caractères ;
-* `Sequence[str]` -- Un itérable de chaînes de caractères ;
+* `Sequence[str]` -- Une séquence (liste/*tuple*/etc.) de chaînes de caractères ;
 * `Callable[[str, int], str]` -- Un *callable* prenant deux paramètres de types `str` et `int` respectivement, et retournant un objet `str` ;
 * Et bien d'autres à découvrir dans la [documentation du module](https://docs.python.org/3/library/typing.html).
 
@@ -88,7 +87,7 @@ Attention encore, le module `typing` ne doit servir que dans le cadre des annota
 Les types fournis par ce module ne doivent pas être utilisées au sein d'expressions avec `isinstance` ou `issubclass`.
 
 Dans le cas précis de notre fonction `addition`, nous aurions aussi pu utiliser le type `Number` du [module `numbers`](https://docs.python.org/3/library/numbers.html).
-Nous y reviendrons plus tard dans ce cours, mais il s'agit d'un type qui regroupe tous les types numériques.
+Nous y reviendrons plus tard dans ce cours, mais il s'agit d'un type qui regroupe et hiérarchise tous les types numériques.
 
 #### Annotations de variables
 
@@ -96,7 +95,7 @@ Les annotations sont ici abodées sous l'angle des fonctions et de leurs paramè
 Mais il est à noter que depuis Python 3.6, il est aussi possible d'annoter les variables et attributs.
 
 La syntaxe est la même que pour les paramètres de fonction.
-Encore une fois, les annotations sont là à titre indicatif, et pour la analyseurs statiques.
+Encore une fois, les annotations sont là à titre indicatif, et pour les analyseurs statiques.
 Elles sont toutefois stockées dans le dictionnaire `__annotations__` du module ou de la classe qui les contient.
 
 ```python

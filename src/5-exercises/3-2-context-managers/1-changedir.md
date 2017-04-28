@@ -33,13 +33,13 @@ On constate que ce gestionnaire répond bien aux utilisations simples…
 
 ```python
 >>> os.getcwd()
-'/home/antoine'
+'/home/entwanne'
 >>> with changedir('/tmp'):
 ...     os.getcwd()
 ...
 '/tmp'
 >>> os.getcwd()
-'/home/antoine'
+'/home/entwanne'
 ```
 
 … comme aux complexes.
@@ -47,12 +47,12 @@ On constate que ce gestionnaire répond bien aux utilisations simples…
 ```python
 >>> cd = changedir('/tmp')
 >>> os.getcwd()
-'/home/antoine'
+'/home/entwanne'
 >>> with cd:
 ...     with cd:
 ...         os.getcwd()
 ...
 '/tmp'
 >>> os.getcwd()
-'/home/antoine'
+'/home/entwanne'
 ```

@@ -71,22 +71,27 @@ Cela ne pourra jamais arriver avec un *tuple* par exemple, qui est immutable et 
 ```
 
 Il n'est pas vraiment possible en Python de créer un nouveau type immutable.
-Cela peut être simulé en rendant les méthodes de modification/suppression (`__setattr__`, `__delattr__`, `__setitem__`, `__delitem__`, etc.) inefficaces. Mais il est toujours possible de passer outre en appelant directement les méthodes sur `object`.
+Cela peut être simulé en rendant les méthodes de modification/suppression inefficaces.
+Mais il est toujours possible de passer outre en appelant directement les méthodes d'une classe parente.
 
 ```python
->>> class Immutable:
-...     def __setattr__(self, name, value):
-...         raise AttributeError
+>>> class ImmutableDeque(Deque):
+...     def append(self, value):
+...         raise TypeError('Object is read-only')
+...     def insert(self, index, value):
+...         raise TypeError('Object is read-only')
+...     def __setitem__(self, key, value):
+...         raise TypeError('Object is read-only')
 ...
->>> obj = Immutable()
->>> obj.foo = 'bar'
+>>> deque = ImmutableDeque()
+>>> deque.append('foo')
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
-  File "<stdin>", line 3, in __setattr__
-AttributeError: Object is read-only
->>> object.__setattr__(obj, 'foo', 'bar')
->>> obj.foo
-'bar'
+  File "<stdin>", line 3, in append
+TypeError: Object is read-only
+>>> Deque.append(deque, 'foo')
+>>> deque[0]
+'foo'
 ```
 
 La seule manière sûre est d'hériter d'un autre type immutable, comme les `namestuple` qui héritent de `tuple`.

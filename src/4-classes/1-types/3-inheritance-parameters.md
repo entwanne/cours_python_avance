@@ -16,7 +16,7 @@ class A(B, C, foo='bar', x=3):
 ```
 
 Cette fonctionnalité existait déjà en Python 3.5, mais était assez étrange et se gérait au niveau de la métaclasse.
-La comportement est simplifié avec Python 3.6 qui ajoute une méthode spéciale pour gérer ces arguments.
+La comportement est simplifié avec [Python 3.6 qui ajoute une méthode spéciale pour gérer ces arguments](https://zestedesavoir.com/articles/1540/sortie-de-python-3-6/#principales-nouveautes).
 
 Il est donc maintenant possible d'implémenter la méthode de classe `__init_subclass__`, qui recevra tous les arguments nommés.
 La méthode ne sera pas appelée pour la classe courante, mais le sera pour toutes ses classes filles.

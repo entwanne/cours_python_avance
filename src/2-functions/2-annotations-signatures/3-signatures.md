@@ -66,7 +66,7 @@ j 5.0 <class 'float'> KEYWORD_ONLY
 kwargs <class 'inspect._empty'> <class 'inspect._empty'> VAR_KEYWORD
 ```
 
-Notons aussi qu'il est possible d'avoir des paramètres *keyword-only* sans pour autant définir `*args`.
+Rappelons qu'il est possible d'avoir des paramètres *keyword-only* sans pour autant définir `*args`.
 Il faut pour cela avoir un simple `*` dans la liste des paramètres, juste à gauche des *keyword-only*.
 
 ```python

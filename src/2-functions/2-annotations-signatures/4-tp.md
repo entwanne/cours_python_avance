@@ -47,7 +47,7 @@ def signature_check(*args, **kwargs):
 #### Paramètres
 
 Attachons-nous maintenant à remplacer ces points de suspension par le traitement des paramètres.
-Pour rappel, on retrouve 5 sortes de paramètres, qui seront traités différemment.
+Pour rappel, on retrouve 5 sortes de paramètres, qui seront traitées différemment.
 
 ##### `VAR_POSITIONAL`
 

@@ -2,7 +2,7 @@
 
 L'égalité et l'identité sont deux concepts dont la distinction est parfois confuse.
 Deux valeurs sont égales lorsqu'elles partagent un même état : par exemple, deux chaînes qui contiennent les mêmes caractères sont égales.
-Deux valeurs sont identiques lorsqu'elles sont une même instance
+Deux valeurs sont identiques lorsqu'elles sont une même instance, c'est à dire un même objet en mémoire.
 
 En Python, on retrouve ces concepts sous les opérateurs `==` (égalité) et `is` (identité).
 
@@ -67,11 +67,11 @@ pour davantage d'informations sur la surcharge d'opérateurs.
 
 #### Quel opérateur utiliser ?
 
-Un question légitime à se poser suite à ces lignes et de savoir quel opérateur utiliser pour comparer nos valeurs.
+Une question légitime à se poser suite à ces lignes est de savoir quel opérateur utiliser pour comparer nos valeurs.
 La réponse est que cela dépend des valeurs et des cas d'utilisation.
 
 En règle générale, c'est l'opérateur d'égalité (`==`) qui est à utiliser.
-Quand nous comparons un nombre entré par l'utilisateur avec un nombre à deviner, nous ne cherchons pas à savoir s'ils sont une même instance, mais s'ils représentent la même chose.
+Quand nous comparons un nombre entré par l'utilisateur avec un nombre à deviner, nous ne cherchons pas à savoir s'ils sont un même objet, mais s'ils représentent la même chose.
 
 L'opérateur `is` s'utilise principalement avec `None`.
 `None` est une valeur unique (*singleton*), il n'en existe qu'une instance.

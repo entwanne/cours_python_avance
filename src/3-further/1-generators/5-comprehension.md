@@ -1,5 +1,7 @@
 ### Listes et générateurs en intension
 
+Intéressons-nous maintenant aux sucres syntaxiques que sont les listes et générateurs en intension.
+
 #### Listes en intension
 
 Vous connaissez probablement déjà les listes en intension (*comprehension lists*), mais je vais me permettre un petit rappel.
@@ -66,7 +68,8 @@ Vous noterez que les `for` se placent dans l'ordre des dimensions que nous voulo
 
 #### Générateurs en intension
 
-De la même manière que pour les listes, nous pouvons définir des générateurs en intension (*generator expressions*) :
+De la même manière que pour les listes, nous pouvons définir des générateurs en intension (*generator expressions*).
+La syntaxe est très similaire, il suffit de remplacer les crochets par des parenthèses pour passer d'une liste à un générateur.
 
 ```python
 >>> squares = (x**2 for x in range(10))
@@ -74,7 +77,7 @@ De la même manière que pour les listes, nous pouvons définir des générateur
 <generator object <genexpr> at 0x7f8b8a9a7090>
 ```
 
-Et nous pouvons les utiliser tel que les autres itérables.
+Et nous pouvons les utiliser tels que les autres itérables.
 
 ```python
 >>> list(squares)
@@ -83,7 +86,7 @@ Et nous pouvons les utiliser tel que les autres itérables.
 []
 ```
 
-Et pour finir, il est possible de simplifier encore la syntaxe quand un générateur en intension est seul paramètre d'une fonction :
+Et pour finir, il est possible de simplifier encore la syntaxe quand un générateur en intension est seul paramètre d'une fonction, en supprimant les parenthèses redondantes.
 
 ```python
 >>> sum((x**2 for x in range(10)))

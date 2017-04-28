@@ -8,7 +8,7 @@ et retourne un nouvel itérable correspondant à l'application de la fonction su
 
 Un générateur se prête donc très bien à cet exercice : nous ferons de `my_map` une fonction génératrice.
 
-Elle se contentera dans un premier temps d'itérer sur l'entrée, et de *yelder* le résultat obtenu pour chaque élément.
+Elle se contentera dans un premier temps d'itérer sur l'entrée, et de *yielder* le résultat obtenu pour chaque élément.
 
 ```python
 def my_map(f, iterable):

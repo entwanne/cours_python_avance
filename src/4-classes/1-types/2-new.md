@@ -9,9 +9,6 @@ Les autres paramètres sont identiques à ceux reçus par `__init__`.
 
 C'est aussi `__new__` qui est chargée d'appeler l'initialiseur `__init__` (ce que fait `object.__new__` par défaut, en lui passant aussi la liste d'arguments).
 
-Certains objets en Python ne sont pas mutables (modifiables), tels que les nombres, les chaînes de caractères ou les *tuples*, et ne peuvent donc pas avoir de méthode `__init__` pour initialiser l'objet.
-Pour ces classes, ainsi que celles qui en héritent, il est impératif de passer par `__new__` pour gérer les paramètres de construction d'un objet.
-
 ```python
 >>> class A:
 ...     def __new__(cls):
@@ -31,7 +28,7 @@ Rien ne nous oblige non plus — mise à part la logique — à retourner un obj
 
 #### Le cas des immutables
 
-La méthode `__new__` est particulière utile pour les objets immutables.
+La méthode `__new__` est particulièrement utile pour les objets immutables.
 En effet, il est impossible d'agir sur les objets dans la méthode `__init__`, puisque celle-ci intervient après la création, et que l'objet n'est pas modifiable.
 
 Si l'on souhaite hériter d'un type immutable (`int`, `str`, `tuple`), et agir sur l'initialisation de l'objet, il est donc nécessaire de redéfinir `__new__`.
@@ -60,7 +57,7 @@ class Point2D(tuple):
 >>> p.x = 10
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
-AttributeError: can't set attribute
+AttributeError: can´t set attribute
 >>> p[0] = 10
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>

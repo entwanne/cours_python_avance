@@ -100,7 +100,7 @@ Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
   File "<stdin>", line 19, in decorated
 TypeError: y must be of type <class 'int'>
->>> concat(1, 'y')
+>>> concat(1, 2)
 Traceback (most recent call last):
   File "<stdin>", line 1, in <module>
   File "<stdin>", line 19, in decorated

@@ -2,8 +2,11 @@
 
 En Python, vous en avez peut-être déjà croisé, les décorateurs se repèrent au caractère `@`.
 
-Le principe de la décoration en Python est d'appliquer un décorateur à une fonction, afin de retourner un nouvel objet (généralement appelable).
-Un décorateur est donc un *callable* prenant une fonction en paramètre et retournant un *callable*.
+Le principe de la décoration en Python est d'appliquer un décorateur à une fonction, afin de retourner un nouvel objet (généralement une fonction).
+On peut donc voir le décorateur comme une fonction prenant une fonction en paramètre, et retournant une nouvelle fonction[^approximation_decorateur]
+
+[^approximation_decorateur]: Bien que la définition soit plus large que cela.
+Le décorateur est un *callable* prenant un *callable* en paramètre, et pouvant retourner tout type d'objet.
 
 ```python
 def decorator(f): # decorator est un décorateur
@@ -21,7 +24,7 @@ Pour appliquer un décorateur, on précède la ligne de définition de la foncti
 addition
 ```
 
-Cela a pour effet de remplacer `addition` par le retour de la fonction `decorator` appelée avec `addition` en paramètre, c'est donc strictement équivalent à :
+Cela a pour effet de remplacer `addition` par le retour de la fonction `decorator` appelée avec `addition` en paramètre, ce qui est strictement équivalent à :
 
 ```python
 def addition(a, b):
@@ -30,10 +33,10 @@ def addition(a, b):
 addition = decorator(addition)
 ```
 
-On voit donc bien que le décorateur est appliqué à la définition de la fonction, et non lors de ses appels.
-Nous utilisons ici un décorateur très simple qui retourne la même fonction, mais il se pourrait très bien qu'il en retourne une autre, qui pourrait être créée à la volée.
+On voit donc bien que le décorateur est appliqué au moment de la définition de la fonction, et non lors de ses appels.
+Nous utilisons ici un décorateur très simple qui retourne la même fonction, mais il se pourrait très bien qu'il en retourne une autre, qui serait par exemple créée à la volée.
 
-Disons que nous aimerions modifier notre fonction `addition` pour afficher les opérandes puis le résultat, sans toucher au corps de notre fonction. Nous pouvons réalier un décorateur qui retournera une nouvelle fonction se chargeant d'afficher les paramètres, d'appeler notre fonction originale, puis d'afficher le retour et de le retourner (afin de conserver le comportement original).
+Disons que nous aimerions modifier notre fonction `addition` pour afficher les opérandes puis le résultat, sans toucher au corps de notre fonction. Nous pouvons réaliser un décorateur qui retournera une nouvelle fonction se chargeant d'afficher les paramètres, d'appeler notre fonction originale, puis d'afficher le retour et de le retourner (afin de conserver le comportement original).
 
 Ainsi, notre décorateur devient :
 
@@ -84,7 +87,7 @@ def useless():
     pass
 ```
 
-L'ordre dans lequel ils sont spécifiés importe, le code précédent équivaut à :
+L'ordre dans lequel ils sont spécifiés est important, le code précédent équivaut à :
 
 ```python
 def useless():

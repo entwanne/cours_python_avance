@@ -1,6 +1,6 @@
 ### Méthodes des générateurs
 
-Nous avons vus que les générateurs possédaient des méthodes `__next__` et `send`.
+Nous avons vu que les générateurs possédaient des méthodes `__next__` et `send`.
 Nous allons maintenant nous intéresser aux deux autres méthodes de ces objets : `throw` et `close`.
 
 #### `throw`

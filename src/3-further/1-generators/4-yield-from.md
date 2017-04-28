@@ -1,6 +1,9 @@
 ### Déléguer à un autre générateur avec `yield from`
 
-Il est aussi possible de déléguer l'itération à un sous-générateur, à l'aide du mot clef `yield from`.
+Nous savons produire les valeurs d'un générateur à l'aide du mot clef `yield`.
+Voyons maintenant quelque chose d'un peu plus complexe avec `yield from`.
+Ce nouveau mot clef permet de déléguer l'itération à un sous-générateur pris en paramètre.
+La rencontre du `yield from` provoque une interruption du générateur courant, le temps d'itérer et produire les valeurs du générateur délégué.
 
 ```python
 def big_queue():
@@ -45,18 +48,19 @@ Traceback (most recent call last):
 StopIteration
 ```
 
-Je vous laisse essayer avec la seconde implémentation de `big_queue` (sans `yield from`), pour bien observer l'effet de la délégation du `send`.
+Où l'on voit bien que le `send` est pris en compte par la sous-queue, et la valeur ajoutée à la file.
+Je vous invite à essayer avec la seconde implémentation de `big_queue` (celle sans `yield from`), pour bien observer l'effet de la délégation du `send`.
 
-On peut aussi noter que `yield from` n'attend pas nécessairement un générateur, mais n'importe quel type d'itérable.
+On peut aussi noter que `yield from` n'attend pas nécessairement un générateur en paramètre, mais n'importe quel type d'itérable.
 
 ```python
-def gen_iterables():
+def gen_from_iterables():
     yield from [1, 2, 3]
     yield from 'abcdef'
     yield from {'x': 1, 'y': -1}
 ```
 
-Et par exemple, si nous voulions réécrire la fonction `itertools.chain`, nous pourrions procéder ainsi :
+Et par exemple, si nous voulions réécrire la fonction `chain` du module `itertools`, nous pourrions procéder ainsi :
 
 ```python
 def chain(*iterables):

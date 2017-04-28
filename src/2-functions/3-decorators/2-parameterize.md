@@ -17,7 +17,7 @@ def test_func(x):
 ```
 
 Il nous faudra posséder un *callable* `param_print_decorator` qui, quand il sera appelé, retournera un décorateur qui pourra ensuite être appliqué à notre fonction.
-Un décorateur paramétéré n'est ainsi qu'un *callable* retournant un décorateur simple.
+Un décorateur paramétré n'est ainsi qu'un *callable* retournant un décorateur simple.
 
 Le code de `param_print_decorator` ressemblerait ainsi à :
 

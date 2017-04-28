@@ -1,6 +1,6 @@
 ### Objets *indexables*
 
-Nous voilà bien avancés, nous savons mesurer la taille d'un objet, mais *quid* des éléments ?
+Nous voilà bien avancés : nous savons mesurer la taille d'un objet, mais pas voir les éléments qu'il contient.
 
 L'accès aux éléments se fait via l'opérateur `[]`. De même que la modification et la suppression, quand celles-ci sont possibles (c'est-à-dire que l'objet est mutable).
 
@@ -40,12 +40,16 @@ Un proxy[^proxy] est un objet prévu pour se substituer à un autre, il doit don
 class MyList:
     def __init__(self, value=()): # Émulation du constructeur de list
         self.internal = list(value)
+
     def __len__(self): # Sera utile pour les tests
         return len(self.internal)
+
     def __getitem__(self, key):
         return self.internal[key] # Équivalent à return self.internal.__getitem__(key)
+
     def __setitem__(self, key, value):
         self.internal[key] = value
+
     def __delitem__(self, key):
         del self.internal[key]
 ```

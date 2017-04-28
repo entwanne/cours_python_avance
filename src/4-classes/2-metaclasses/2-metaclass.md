@@ -11,7 +11,9 @@ Par exemple pour ajouter à la classe de nouvelles méthodes ou des attributs su
 Ou encore pour transformer les attributs définis dans le corps de la classe.
 
 Je vous propose plus loin dans ce chapitre l'exemple d'`Enum`, une implémentation du [type énuméré](https://fr.wikipedia.org/wiki/Type_%C3%A9num%C3%A9r%C3%A9) en Python, pour illustrer l'utilité des métaclasses.
-Un autre exemple est celui des *ORM*, où les classes représentent des tables d'une base de données. Les attributs de classe y sont transformés pour réaliser le schéma de la table, et de nouvelles méthodes sont ajoutées pour manipuler les entrées.
+Un autre exemple est celui des *ORM*[^orm], où les classes représentent des tables d'une base de données. Les attributs de classe y sont transformés pour réaliser le schéma de la table, et de nouvelles méthodes sont ajoutées pour manipuler les entrées.
+
+[^orm]: [*Object-Relational mapping*, ou *Mapping* objet-relationnel](https://fr.wikipedia.org/wiki/Mapping_objet-relationnel), technique fournissant une interface orientée objet aux bases de données.
 
 #### Notre première métaclasse
 
@@ -126,7 +128,7 @@ class EnumMeta(type):
         for key, value in members.items():
             value = enum(value)
             value.name = key # On spécifie le nom du membre
-            setattr(enum, key, value)
+            setattr(enum, key, value) # On le définit comme atribut de classe
         return enum
 
 class Enum(metaclass=EnumMeta):

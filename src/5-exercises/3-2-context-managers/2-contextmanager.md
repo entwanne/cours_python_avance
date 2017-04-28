@@ -36,7 +36,7 @@ class GeneratorContextManager:
         next(self.generator)
 ```
 
-Le code est ici assez simple : `__enter__` provoque une première itération du générateur, afin d'aller jusqu'au `yield`.
+Le code est ici plutôt simple : `__enter__` provoque une première itération du générateur, afin d'aller jusqu'au `yield`.
 Et `__exit__` en provoque une seconde, pour exécuter la code qui suit ce `yield`.
 
 Mais nous pouvons déjà constater un premier problème.
@@ -139,7 +139,7 @@ On distingue alors 4 cas :
 - Le générateur ne lève aucune exception, il ne s'est donc pas terminé, on lève une `RuntimeError`.
 
 Ces cas n'interviennent bien sûr que si une exception s'est produite dans le bloc `with`, et donc que le paramètre `exc_type` fourni à `__exit__` ne vaut pas `None`.
-Dans ce dernier cas, nous gardons le comportement actuel de notre méthode.
+Dans le cas où il vaut `None`, nous gardons le comportement actuel de notre méthode.
 
 Nous complétons donc le code de notre méthode `__exit__` pour ajouter cette gestion d'erreurs.
 

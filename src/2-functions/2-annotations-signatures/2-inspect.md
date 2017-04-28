@@ -32,7 +32,7 @@ Elles deviennent aussi accessibles par l'attribut spécial `__doc__` de l'objet.
 [`inspect`](https://docs.python.org/3/library/inspect.html) est un module de la bibliothèque standard qui permet d'extraire des informations complémentaires sur les objets Python.
 Il est notamment dédié aux modules, classes et fonctions.
 
-Il comporte en effet des fonctions pour vérifier le type d'un objet : `ismodule`, `isclass`, 'isfunction`, etc.
+Il comporte en effet des fonctions pour vérifier le type d'un objet : `ismodule`, `isclass`, `isfunction`, etc.
 
 ```python
 >>> import inspect
@@ -67,17 +67,16 @@ Depuis la fonction `addition` importée du module, nous pourrons grâce à `insp
 ```python
 >>> import inspect
 >>> from operations import addition
->>>
 >>> inspect.getdoc(addition)
 'Return the sum of the two numbers `a` and `b`\n\nex: addition(3, 5) -> 8'
 >>> inspect.getsource(addition)
-'def addition(a:int, b:int) -> int:\n    """\n    Return the sum of the two numbers `a` and `b`\n\n    ex: addition(3, 5) -> 8\n    """\n    return a + b\n'
+'def addition(a:int, b:int) -> int:\n    [...]\n    return a + b\n'
 >>> inspect.getsourcefile(addition)
 '/home/entwanne/operations.py'
 >>> inspect.getmodule(addition)
 <module 'operations' from '/home/entwanne/operations.py'>
 >>> inspect.getsourcelines(addition)
-(['def addition(a:int, b:int) -> int:\n', '    """\n', '    Return the sum of the two numbers `a` and `b`\n', '\n', '    ex: addition(3, 5) -> 8\n', '    """\n', '    return a + b\n'], 3)
+(['def addition(a:int, b:int) -> int:\n', ..., '    return a + b\n'], 3)
 ```
 
 L'intérêt de `getdoc` par rapport à l'attribut `__doc__` étant que la documentation est nettoyée (suppression des espaces en début de ligne) par la fonction `cleandoc`.

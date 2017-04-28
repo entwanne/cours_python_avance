@@ -40,7 +40,8 @@ False
 
 Quelques dernières précisions sur `isinstance` : l'opérateur est un peu plus complexe que ce qui a été montré.
 
-Premièrement, `isinstance` peut recevoir en deuxième paramètre un *tuple* de types. Il regardera alors si l'object donné en premier paramètre est une instance de l'un de ces types.
+Premièrement, `isinstance` peut recevoir en deuxième paramètre un *tuple* de types plutôt qu'un type simple.
+Il regardera alors si l'object donné en premier paramètre est une instance de l'un de ces types.
 
 ```python
 >>> isinstance(4, (int, str))
@@ -89,4 +90,4 @@ def isinstance(obj, cls):
     return type(cls).__instancecheck__(cls, obj)
 ```
 
-[^PyObject_IsInstance]: Voir à ce propos la fonction `PyObject_IsInstance` du fichier `Objects/abstract.c` des sources de CPython.
+[^PyObject_IsInstance]: Voir à ce propos la fonction `PyObject_IsInstance` du fichier [`Objects/abstract.c`](https://github.com/python/cpython/blob/master/Objects/abstract.c) des sources de CPython.

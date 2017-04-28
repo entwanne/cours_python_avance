@@ -6,7 +6,7 @@ Un bloc d'instructions `with` se présente comme suit.
 
 ```python
 with expr as x: # avec expr étant un gestionnaire de contexte
-    # operations sur x
+    ... # operations sur x
 ```
 
 La syntaxe est assez simple à appréhender, `x` permettra ici de contenir des données propres au contexte (`x` vaudra `expr` dans la plupart des cas).
@@ -16,7 +16,7 @@ Il est aussi possible de gérer plusieurs contextes dans un même bloc :
 
 ```python
 with expr1 as x, expr2 as y:
-    # traitements sur x et y
+    ... # traitements sur x et y
 ```
 
 équivalent à
@@ -24,5 +24,5 @@ with expr1 as x, expr2 as y:
 ```python
 with expr1 as x:
     with expr2 as y:
-        # traitements sur x et y
+        ... # traitements sur x et y
 ```

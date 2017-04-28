@@ -1,6 +1,6 @@
 ### Les propriétés
 
-Les propriétés (ou *properties*) sont un moyen de simplifier l'écriture de descripteurs.
+Les propriétés (ou *properties*) sont un moyen de simplifier l'écriture de descripteurs et de leurs 3 méthodes spéciales.
 
 En effet, `property` est une classe qui, à la création d'un objet, prend en paramètre les fonctions `fget`, `fset` et `fdel` qui seront respectivement appelées par `__get__`, `__set__` et `__delete__`.
 
@@ -22,10 +22,9 @@ class my_property:
 
 Pour faire de `my_property` un clone parfait de `property`, il nous faudrait gérer le cas où `instance` vaut `None` dans la méthode `__get__` ;
 et permettre à `my_property` d'être utilisé en tant que décorateur autour du *getter*.
+Nous verrons dans la section exercices comment compléter notre classe à cet effet.
 
-Logiquement, en rendant les paramètres `fset` et `fdel` optionnels, lorsque `my_property` serait appelée en tant que décorateur autour d'une fonction, cette fonction correspondrait à `fget`, et un objet `my_property` serait donc instancié puis retourné.
-
-Ajoutons à cela les décorateurs `getter`, `setter` et `deleter` de l'objet `property` pour redéfinir les fonctions à appeler.
+Les propriétés disposent aussi de décorateurs `getter`, `setter` et `deleter` pour redéfinir les fonctions `fget`/`fset`/`fdel`.
 
 À l'utilisation, les propriétés nous offrent donc un moyen simple et élégant de réécrire notre classe `Temperature`.
 
@@ -48,3 +47,5 @@ class Temperature:
     def fahrenheit(self, value):
         self.value = (value - 32) / 1.8
 ```
+
+Pour plus d'informations sur l'utilisation des propriétés, je vous renvoie [ici](https://zestedesavoir.com/tutoriels/1253/la-programmation-orientee-objet-en-python/5-advanced-oo/#5-5-properties).

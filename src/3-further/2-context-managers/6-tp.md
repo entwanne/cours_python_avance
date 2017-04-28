@@ -1,6 +1,6 @@
 ### TP : Redirection de sortie (`redirect_stdout`)
 
-Nous allons ici mettre en place un gestionnaire de context équivalent à `redirect_stdout` pour rediriger la sortie standard vers un autre fichier.
+Nous allons ici mettre en place un gestionnaire de contexte équivalent à `redirect_stdout` pour rediriger la sortie standard vers un autre fichier.
 Il sera aussi utilisable en tant que décorateur pour rediriger la sortie standard de fonctions.
 
 La redirection de sortie est une opération assez simple en Python.
@@ -47,6 +47,14 @@ ceci est écrit sur la console
 ```
 
 ```python
+>>> output = StringIO()
+>>> @redirect_stdout(output)
+... def addition(a, b):
+...     print('result =', a + b)
+...
+>>> addition(3, 5)
+>>> output.getvalue()
+'result = 8\n'
 ```
 
 Notre gestionnaire de contexte se comporte comme nous le souhaitions, mais possède cependant une lacune : il n'est pas réentrant.
@@ -59,17 +67,6 @@ Notre gestionnaire de contexte se comporte comme nous le souhaitions, mais poss�
 ...         print('ceci est écrit dans output')
 ...
 >>> print('ceci est écrit sur la console')
-```
-
-```python
->>> output = StringIO()
->>> @redirect_stdout(output)
-... def addition(a, b):
-...     print('result =', a + b)
-...
->>> addition(3, 5)
->>> output.getvalue()
-'result = 8\n'
 ```
 
 Comme on le voit, ou plutôt comme on ne le voit pas, le dernier affichage n'est pas imprimé sur la console, mais toujours dans `output`.

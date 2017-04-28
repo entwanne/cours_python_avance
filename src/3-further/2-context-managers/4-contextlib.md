@@ -36,6 +36,7 @@ Elapsed 0.000108s
 ```
 
 Intéressons-nous maintenant à `contextmanager`. Il s'agit d'un décorateur capable de transformer une fonction génératrice en *context manager*.
+Cette fonction génératrice devra disposer d'un seul et unique `yield`.
 Tout ce qui est présent avant le `yield` sera exécuté en entrée, et ce qui se situe ensuite s'exécutera en sortie.
 
 ```python

@@ -36,7 +36,7 @@ Puis observons à quoi correspondent les différents accès à ces méthodes.
 <bound method type.clsmeth of <class '__main__.A'>>
 ```
 
-On remarque que certains appels retournent des fonctions, et d'autres des *bound methods*, mais quelle différence ?
+On remarque que certains accès retournent des fonctions, et d'autres des *bound methods*, mais quelle différence ?
 En fait, la différence survient lors de l'appel, pour le passage du premier paramètre.
 
 Ne vous êtes-vous jamais demandé comment l'objet courant arrivait dans `self` lors de l'appel d'une méthode ? C'est justement parce qu'il s'agit d'une *bound method*.

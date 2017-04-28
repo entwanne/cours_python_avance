@@ -10,14 +10,11 @@ Nous allons alors développer un décorateur pour pallier à ce manque.
 Ce décorateur modifiera la signature de la fonction reçue pour transformer en *positional-only* ses `n` premiers paramètres.
 `n` sera un paramètre du décorateur.
 
-Python permet en effet de redéfinir la signature d'une fonction, en assignant la nouvelle signature à son attribut `__signature__`.
+Python nous permet de redéfinir la signature d'une fonction, en assignant la nouvelle signature à son attribut `__signature__`.
 Mais cette redéfinition n'est que cosmétique (elle apparaît par exemple dans l'aide de la fonction).
 Ici, nous voulons que la modification ait un effet.
 
 Nous créerons donc une fonction *wrapper*, qui se chargera de vérifier la conformité des arguments avec la nouvelle signature.
-
-* Fonction `rewrite_signature` (trouver meilleur nom)
-* Méthode replace des Signature et Parameter
 
 Nous allons diviser le travail en deux parties :
 
