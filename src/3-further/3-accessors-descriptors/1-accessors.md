@@ -125,7 +125,7 @@ Puis observons.
 
 On constate bien que les classes les plus à gauche sont proritaires lors d'un héritage, mais aussi que le mécanisme de *MRO* évite la présence de doublons dans la hiérarchie.
 
-On remarque qu'en cas de doublon, les classes sont placées le plus loin possible du début de la liste : par exemple, `A` est placée après `B` et non après `D` dans le *MRO* de `E`.
+On remarque qu'en cas de doublon, les classes sont placées le plus loin possible du début de la liste : par exemple, `A` est placée après `B` et non après `D` dans le *MRO* de `F`.
 
 Cela peut nous poser problème dans certains cas.
 

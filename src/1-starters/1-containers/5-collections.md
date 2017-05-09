@@ -6,7 +6,7 @@ Ce module, parfois méconnu, comprend différents conteneurs utiles de la biblio
 #### `namedtuple`
 
 Les *tuples* nommés (ou *named tuples*), sont très semblables aux *tuples*, dont ils héritent.
-Ils ajoutent simplement la possibilité de référencer les champs du *tuple* par un nom plutôt que par un index.
+Ils ajoutent simplement la possibilité de référencer les champs du *tuple* par un nom plutôt que par un index, pour gagner en lisibilité.
 
 On instancie `namedtuple` pour créer un nouveau type de *tuples* nommés.
 `namedtuple` prend en paramètre le nom du type et la liste des noms de champs.
@@ -34,6 +34,7 @@ Les queues à deux extrémités (ou *double-ended queues* contracté en *deques*
 Plutôt qu'avoir un tableau d'éléments, les éléments sont vus commes des maillons liés les uns aux autres.
 
 L'intérêt des *deques* par rapport aux listes est d'offrir de meilleures performances pour l'insertion/suppression d'éléments en tête et queue de liste, mais moins bonnes pour l'accès à un élément en milieu de liste.
+Elles peuvent donc être indiquées pour gérer des piles ou des files.
 
 Pour bénéficier de ces optimisations, les *deques* sont pourvues de méthodes `appendleft`, `extendleft` et `popleft` qui travaillent sur l'extrêmité gauche de la séquence, en plus des habituelles `append`/`extend`/`pop` qui travaillent sur celle de droite.
 
@@ -61,6 +62,7 @@ deque([0, 1, 2, 3, 5])
 ```
 
 Les *deques* ont aussi la possibilité d'être limitées en taille, en supprimant les éléments les plus à droite lors d'une insertion à gauche et inversement.
+Cela permet la réalisation de tampons circulaires.
 
 ```python
 >>> d = deque([], 2)
