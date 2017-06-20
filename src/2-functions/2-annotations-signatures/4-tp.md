@@ -51,7 +51,7 @@ Pour rappel, on retrouve 5 sortes de paramètres, qui seront traitées différem
 
 ##### `VAR_POSITIONAL`
 
-Si un paramètre `VAR_POSITIONAL` est présent, il aura pour effet de consommer tous les arguments restant, c'est à dire de vider `args`.
+Si un paramètre `VAR_POSITIONAL` est présent, il aura pour effet de consommer tous les arguments restant, c'est-à-dire de vider `args`.
 
 ```python
 if param.kind == param.VAR_POSITIONAL:

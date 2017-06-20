@@ -7,7 +7,7 @@ Pour rappel, la surchage d'opérateur se fait par la définition d'une méthode 
 Par exemple, il est possible d'utiliser `+` sur le nombre `4` parce que `4` est de type `int`, et qu'`int` implémente la méthode `__add__`.
 
 `isinstance` est un opérateur qui s'applique à une classe (la classe dont on cherche à savoir si tel objet en est l'instance).
-La surcharge se fera donc dans le type de cette classe, c'est à dire dans la métaclasse.
+La surcharge se fera donc dans le type de cette classe, c'est-à-dire dans la métaclasse.
 
 La méthode spéciale correspondant à l'opérateur est `__instancecheck__`, qui reçoit en paramètre l'objet à tester, et retourne un booléen (`True` si l'objet est du type en question, `False` sinon).
 

@@ -66,7 +66,7 @@ False
 
 #### Le cas des classes `ABC`
 
-Pour les classes abstraites `ABC`, c'est à dire qui ont `abc.ABCMeta` comme métaclasse, une facilité est mise en place.
+Pour les classes abstraites `ABC`, c'est-à-dire qui ont `abc.ABCMeta` comme métaclasse, une facilité est mise en place.
 En effet, `ABCMeta` définit une méthode `__subclasscheck__`
 (qui s'occupe entre autres de gérer les classes enregistrées *via* `register`).
 

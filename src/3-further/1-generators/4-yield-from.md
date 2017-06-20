@@ -48,7 +48,7 @@ Traceback (most recent call last):
 StopIteration
 ```
 
-Où l'on voit bien que le `send` est pris en compte par la sous-queue, et la valeur ajoutée à la file.
+Où l'on voit bien que le `send` est pris en compte par la sous-*queue*, et la valeur ajoutée à la file.
 Je vous invite à essayer avec la seconde implémentation de `big_queue` (celle sans `yield from`), pour bien observer l'effet de la délégation du `send`.
 
 On peut aussi noter que `yield from` n'attend pas nécessairement un générateur en paramètre, mais n'importe quel type d'itérable.

@@ -31,7 +31,7 @@ Traceback (most recent call last):
 RecursionError: maximum recursion depth exceeded in comparison
 ```
 
-Certains langages, notamment les langages fonctionnels, ont réussi à résoudre ce problème, à l'aide de la récursivité terminale. Il s'agit en fait d'identifier les appels terminaux dans la fonction (c'est à dire quand aucune autre opération n'est effectuée après l'appel récursif).
+Certains langages, notamment les langages fonctionnels, ont réussi à résoudre ce problème, à l'aide de la récursivité terminale. Il s'agit en fait d'identifier les appels terminaux dans la fonction (c'est-à-dire quand aucune autre opération n'est effectuée après l'appel récursif).
 Si l'appel est terminal, cela signifie que l'on ne fera plus rien d'autre dans la fonction, et il est alors possible de supprimer son contexte de la pile, et ainsi économiser de l'espace à chaque appel récursif.
 
 Prenons la fonction `factorial` codée plus haut : elle ne peut pas être optimisée par récursivité terminale.

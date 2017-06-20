@@ -16,7 +16,7 @@ En Python par exemple, nous avons étudié plus tôt le concept de générateurs
 
 #### Objectif du TP
 
-Ici, nous voulons réaliser un appel paresseux à une fonction. C'est à dire embarquer la fonction à appeler et ses paramètres, mais ne réaliser l'appel qu'au moment où nous avons besoin du résultat.
+Ici, nous voulons réaliser un appel paresseux à une fonction. C'est-à-dire embarquer la fonction à appeler et ses paramètres, mais ne réaliser l'appel qu'au moment où nous avons besoin du résultat.
 
 Par exemple :
 

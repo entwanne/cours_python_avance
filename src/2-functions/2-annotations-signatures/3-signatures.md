@@ -4,7 +4,7 @@ Le module `inspect` ne nous a pas encore révélé toutes ses surprises.
 Il contient aussi une méthode `signature`, retournant la signature d'une fonction.
 
 La signature est l'ensemble des paramètres (avec leurs noms, positions, valeurs par défaut et annotations), ainsi que l'annotation de retour d'une fonction.
-C'est à dire toutes les informations décrites à droite du nom de fonction lors d'une définition.
+C'est-à-dire toutes les informations décrites à droite du nom de fonction lors d'une définition.
 
 ```python
 >>> sig = inspect.signature(addition)

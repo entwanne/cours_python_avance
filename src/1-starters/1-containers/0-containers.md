@@ -5,7 +5,7 @@ En Python, on appelle conteneur (*container*) un objet ayant vocation à en cont
 Il existe plusieurs catégories de conteneurs, notamment celle des *subscriptables*. Ce nom barbare regroupe tous les objets sur lesquels l'opérateur `[]` peut être utilisé.
 L'ensemble des types cités dans le premier paragraphe sont *subscriptables*, à l'exception de l'ensemble (*set*), qui n'implémente pas l'opération `[]`.
 
-Les *subscriptables* se divisent en deux nouvelles catégories non distinctes : les *indexables* et les *sliceables*. Les premiers sont ceux pouvant être indexés avec des nombres entiers, les seconds pouvant l'être avec des `slice` (voir plus loin).
+Les *subscriptables* se divisent en deux nouvelles catégories non exclusives : les *indexables* et les *sliceables*. Les premiers sont ceux pouvant être indexés avec des nombres entiers, les seconds pouvant l'être avec des `slice` (voir plus loin).
 
 On parle plus généralement de séquence quand un conteneur est *indexable* et *sliceable*.
 

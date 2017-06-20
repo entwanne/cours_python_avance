@@ -22,7 +22,7 @@ Attention donc, un appel à `send` produit une itération supplémentaire dans l
 2
 ```
 
-Comme je le disais, une valeur peut-être retournée par l'instruction `yield`, c'est à dire dans le corps même de la fonction génératrice.
+Comme je le disais, une valeur peut-être retournée par l'instruction `yield`, c'est-à-dire dans le corps même de la fonction génératrice.
 Modifions quelque peu notre générateur `fibonacci` pour nous en apercevoir.
 
 ```python
@@ -58,8 +58,8 @@ Traceback (most recent call last):
 TypeError: can´t send non-None value to a just-started generator
 ```
 
-Pour comprendre un peu mieux l'intérêt de `send`, nous allons implémenter une file (queue) par l'intermédiaire d'un générateur. Celle-ci sera construite à l'aide des arguments donnés  à l'appel, retournera le premier élément à chaque itération (en le retirant de la file).
-On pourra aussi ajouter de nouveaux éléments à cette queue *via* `send`.
+Pour comprendre un peu mieux l'intérêt de `send`, nous allons implémenter une file (*queue*) par l'intermédiaire d'un générateur. Celle-ci sera construite à l'aide des arguments donnés  à l'appel, retournera le premier élément à chaque itération (en le retirant de la file).
+On pourra aussi ajouter de nouveaux éléments à cette *queue* *via* `send`.
 
 ```python
 def queue(*args):

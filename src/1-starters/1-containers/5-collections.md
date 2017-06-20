@@ -29,9 +29,9 @@ Point2D(x=1, y=2)
 
 #### `deque`
 
-Les queues à deux extrémités (ou *double-ended queues* contracté en *deques*), sont des objets proches des listes de Python, mais avec une structure interne différente.
+Les *queues* à deux extrémités (ou *double-ended queues* contracté en *deques*), sont des objets proches des listes de Python, mais avec une structure interne différente.
 
-Plutôt qu'avoir un tableau d'éléments, les éléments sont vus commes des maillons liés les uns aux autres.
+Plutôt qu'avoir un tableau d'éléments, les éléments sont vus comme des maillons liés les uns aux autres.
 
 L'intérêt des *deques* par rapport aux listes est d'offrir de meilleures performances pour l'insertion/suppression d'éléments en tête et queue de liste, mais moins bonnes pour l'accès à un élément en milieu de liste.
 Elles peuvent donc être indiquées pour gérer des piles ou des files.
@@ -112,7 +112,7 @@ Les `ChainMap` ajoutent quelques fonctionnalités pratiques :
 
 * L'attribut `maps` pour obtenir la liste des *mappings* ;
 * La méthode `new_child` pour créer un nouveau `ChainMap` à partir de l'actuel, ajoutant un dictionnaire à gauche ;
-* L'attribut `parents` pour obtenir les « parents » de l'actuel, c'est à dire le `ChainMap` composé des mêmes *mappings* excepté le plus à gauche.
+* L'attribut `parents` pour obtenir les « parents » de l'actuel, c'est-à-dire le `ChainMap` composé des mêmes *mappings* excepté le plus à gauche.
 
 ```python
 >>> c.maps

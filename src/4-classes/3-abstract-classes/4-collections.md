@@ -29,7 +29,7 @@ Outre la vérification d'interfaces, certaines de ces classes servent aussi de *
 La classe `MutableMapping`, par exemple, a pour méthodes abstraites `__getitem__`, `__setitem__`, `__delitem__`, `__iter__` et `__len__`.
 Mais la classe fournit en plus l'implémentation d'autres méthodes utiles aux *mappings* : `__contains__`, `keys`, `items`, `values`, `get`, `__eq__`, `__ne__`, `pop`, `popitem`, `clear`, `update`, et `setdefault`.
 
-C'est à dire qu'il suffit de redéfinir les 5 méthodes abstraites pour avoir un type de dictionnaires parfaitement utilisable.
+C'est-à-dire qu'il suffit de redéfinir les 5 méthodes abstraites pour avoir un type de dictionnaires parfaitement utilisable.
 
 ```python
 class MyMapping(collections.abc.MutableMapping):

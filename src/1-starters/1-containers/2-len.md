@@ -1,7 +1,7 @@
 ### C'est pas la taille qui compte
 
 Un autre point commun partagé par de nombreux conteneurs est qu'ils possèdent une taille.
-C'est à dire qu'ils contiennent un nombre fini et connu d'éléments, et peuvent être passés en paramètre à la fonction `len` par exemple.
+C'est-à-dire qu'ils contiennent un nombre fini et connu d'éléments, et peuvent être passés en paramètre à la fonction `len` par exemple.
 
 ```python
 >>> len([1, 2, 3])

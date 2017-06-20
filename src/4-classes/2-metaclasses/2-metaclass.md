@@ -69,7 +69,7 @@ Une autre syntaxe pour instancier notre métaclasse est possible, à l'aide du m
 Nous avons étudié dans le chapitre sur les accesseurs l'attribut `__dict__` des classes. Celui-ci est un dictionnaire, mais à quel moment est-il créé ?
 
 Lors de la définition d'une classe, avant même de s'attaquer à ce que contient son corps, celle-ci est préparée.
-C'est à dire que le dictionnaire `__dict__` est instancié, afin d'y stocker tout ce qui sera défini dans le corps.
+C'est-à-dire que le dictionnaire `__dict__` est instancié, afin d'y stocker tout ce qui sera défini dans le corps.
 
 Par défaut, la préparation d'une classe est donc un appel à `dict`, qui retourne un dictionnaire vide.
 Mais si la métaclasse est dotée d'une méthode de classe `__prepare__`, celle-ci sera appelée en lieu et place de `dict`. Cette méthode doit toutefois retourner un dictionnaire ou objet similaire. Elle peut par exemple initialiser ce dictionnaire avec des valeurs par défaut.

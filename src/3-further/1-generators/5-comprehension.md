@@ -8,7 +8,7 @@ Vous connaissez probablement déjà les listes en intension (*comprehension list
 
 Les listes en intension sont une syntaxe courte pour définir des listes à partir d'un itérable et d'une expression à appliquer sur chaque élément (un peu à la manière de `map`, qui lui ne permet que d'appeler un *callable* pour chaque l'élément).
 
-Une expression étant en Python tout ce qui possède une valeur (même `None`), c'est à dire ce qui n'est pas une instruction (`if`, `while`, etc.).
+Une expression étant en Python tout ce qui possède une valeur (même `None`), c'est-à-dire ce qui n'est pas une instruction (`if`, `while`, etc.).
 Il faut noter que les ternaires sont des expressions (`a if predicat() else b`), et peuvent donc y être utilisés.
 
 Ainsi,

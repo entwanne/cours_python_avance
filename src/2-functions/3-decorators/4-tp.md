@@ -1,7 +1,7 @@
 ### TP : Arguments positionnels
 
 Nous avons vu avec les signatures qu'il existait en Python des paramètres *positional-only*,
-c'est à dire qui ne peuvent recevoir que des arguments positionnels.
+c'est-à-dire qui ne peuvent recevoir que des arguments positionnels.
 
 Mais il n'existe à ce jour aucune syntaxe pour écrire en Python une fonction avec des paramètres *positional-only*.
 Il est seulement possible, comme nous l'avons fait au TP précédent, de récupérer les arguments positionnels avec `*args` et d'en extraire les valeurs qui nous intéressent.

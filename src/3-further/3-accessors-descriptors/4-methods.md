@@ -2,7 +2,7 @@
 
 Les méthodes en Python vous réservent aussi bien des surprises. Si vous avez déjà rencontré les termes de méthodes de classe (*class methods*), méthodes statiques (*static methods*), ou méthodes préparées (*bound methods*), vous avez pu vous demander comment cela fonctionnait.
 
-En fait, les méthodes sont des descripteurs vers les fonctions que vous définissez à l'intérieur de votre classe. Elles sont même ce qu'on appelle des *non-data descriptors*, c'est à dire des descripteurs qui ne définissent ni *setter*, ni *deleter*.
+En fait, les méthodes sont des descripteurs vers les fonctions que vous définissez à l'intérieur de votre classe. Elles sont même ce qu'on appelle des *non-data descriptors*, c'est-à-dire des descripteurs qui ne définissent ni *setter*, ni *deleter*.
 
 Définissons une simple classe `A` possédant différents types de méthodes.
 

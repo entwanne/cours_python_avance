@@ -81,7 +81,7 @@ Mais il est possible de faire bien plus que cela, en décomposant aussi des ité
 Mais on peut aller encore plus loin avec l'opérateur *splat*.
 Cet opérateur est représenté par le caractère `*`.
 
-À ne pas confondre avec la multiplication, opérateur binaire entre deux objets, il s'agit ici d'un opérateur unaire : c'est à dire qu'il n'opère que sur un objet, en se plaçant devant.
+À ne pas confondre avec la multiplication, opérateur binaire entre deux objets, il s'agit ici d'un opérateur unaire : c'est-à-dire qu'il n'opère que sur un objet, en se plaçant devant.
 
 Utilisé à gauche lors d'une assignation, il permet de récupérer plusieurs éléments lors d'une décomposition.
 

@@ -41,7 +41,7 @@ Tous les autres types d'objets sont par défaut hashables.
 
 On remarque une certaine corrélation entre types mutables et hashables.
 En effet, il est plus facile d'assurer l'invariabilité du condensat quand l'objet est lui-même immutable.
-Pour les objets mutables, le *hash* n'est possible que si la modification n'altère pas l'égalité entre deux objets, c'est à dire que deux objets égaux le resteront même si l'un est modifié.
+Pour les objets mutables, le *hash* n'est possible que si la modification n'altère pas l'égalité entre deux objets, c'est-à-dire que deux objets égaux le resteront même si l'un est modifié.
 
 Il faut aussi garder à l'esprit que des types immutables peuvent contenir des mutables. Par exemple une liste dans un *tuple*.
 Dans ce genre de cas, la non-hashabilité des valeurs contenues rend non-hashable le conteneur.

@@ -2,7 +2,7 @@
 
 L'égalité et l'identité sont deux concepts dont la distinction est parfois confuse.
 Deux valeurs sont égales lorsqu'elles partagent un même état : par exemple, deux chaînes qui contiennent les mêmes caractères sont égales.
-Deux valeurs sont identiques lorsqu'elles sont une même instance, c'est à dire un même objet en mémoire.
+Deux valeurs sont identiques lorsqu'elles sont une même instance, c'est-à-dire un même objet en mémoire.
 
 En Python, on retrouve ces concepts sous les opérateurs `==` (égalité) et `is` (identité).
 

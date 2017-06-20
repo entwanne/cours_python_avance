@@ -6,10 +6,10 @@ C'est probablement ce que l'on vous a dit de nombreuses fois, et ce que vous ave
 Mais derrière cette simplicité apparante existent un certain nombre de concepts plus complexes qui forment la puissance de ce langage.
 
 En Python, on s'intéresse plus au comportement des objets qu'à leur nature.
-Ainsi, l'interface des objets (c'est à dire l'ensemble de leurs attributs et méthodes) est quelque chose de très important,
+Ainsi, l'interface des objets (c'est-à-dire l'ensemble de leurs attributs et méthodes) est quelque chose de très important,
 c'est entre autres ce qui les définit.
 
-En effet, une grande partie des outils du langage sont génériques — tels les appels de fonctions ou les boucles `for` — c'est à dire qu'ils peuvent s'appliquer à des types différents.
+En effet, une grande partie des outils du langage sont génériques — tels les appels de fonctions ou les boucles `for` — c'est-à-dire qu'ils peuvent s'appliquer à des types différents.
 Python demande simplement à ces types de respecter une interface en implémentant un certain nombre de méthodes spéciales.
 Ces interfaces et méthodes seront décrites dans le cours.
 
