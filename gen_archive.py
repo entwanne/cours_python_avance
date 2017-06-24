@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 import json
 import sys
@@ -11,9 +11,6 @@ archive_name = sys.argv[1]
 sections = sys.argv[2:]
 
 manifest = {
-    'introduction': sections.pop(0),
-    'conclusion': sections.pop(-1),
-    'object': 'container',
     'slug': 'notions-de-python-avancees',
     'title': 'Notions de Python avancées',
     'version': 2,
@@ -22,35 +19,67 @@ manifest = {
     'licence': 'CC BY-SA'
 }
 
+from collections import OrderedDict
+container = OrderedDict()
+# Number of nested levels
+document_depth = 0
 trans = str.maketrans('','','#*_`\n')
 
-def reduce_title_level(line):
-    if line.startswith('###'):
-        return line[2:]
-    return line
+# Split filenames into a dict that represent file hierarchy
+for section in sections:
+    *path, filename = section.split('/')
+    document_depth = max(document_depth, len(path))
+    parent = container
+    for p in path:
+        parent = parent.setdefault(p, OrderedDict())
+    parent[filename] = section
+
+# Prefix for 1st-level titles
+title_prefix = '#' * (document_depth + 1)
+
+# Rewrite titles of files
+def rewrite_titles(f):
+    code = False
+    for i, line in enumerate(f):
+        if line.startswith('```'):
+            code = not code
+        elif not code and line.startswith('#'):
+            if line.startswith(title_prefix):
+                line = line[document_depth:]
+            else:
+                print('Warning with title {!r} in file {}:{}'.format(line, f.name, i))
+        yield line
+
+# Write a file in the archive
+def write_file(archive, filename):
+    with open(filename, 'r') as f:
+        title = next(f).translate(trans).strip()
+        content = ''.join(rewrite_titles(f))
+    archive.writestr(filename, content)
+    return title
+
+# Recursively construct a document
+def make_document(archive, obj, name=None):
+    if isinstance(obj, str):
+        extract = {'object': 'extract', 'text': obj}
+        extract['slug'], _ = os.path.splitext(name)
+        extract['title'] = write_file(archive, obj)
+        return extract
+    container = {'object': 'container'}
+    if name:
+        container['slug'] = name
+    keys = list(obj.keys())
+    if keys[0].startswith('0-'):
+        container['introduction'] = obj.pop(keys[0])
+        container['title'] = write_file(archive, container['introduction'])
+    if keys[-1].startswith('x-'):
+        container['conclusion'] = obj.pop(keys[-1])
+        write_file(archive, container['conclusion'])
+    if obj:
+        container['children'] = [make_document(archive, child, name) for name, child in obj.items()]
+    return container
 
 with ZipFile(archive_name, 'w') as archive:
-    for section in (manifest['introduction'], manifest['conclusion']):
-        with open(section, 'r') as f:
-            next(f)
-            archive.writestr(section, f.read())
-
-    parts = OrderedDict()
-    for section in sections:
-        *_, part_name, sec_name = section.split('/')
-        sec_name, _ = os.path.splitext(sec_name)
-        part = parts.setdefault(part_name, {'object': 'container', 'slug': part_name, 'title': part_name, 'children': []})
-        with open(section, 'r') as f:
-            title = next(f).translate(trans).strip()
-            content = ''.join(reduce_title_level(line) for line in f)
-            archive.writestr(section, content)
-        if sec_name.startswith('0'):
-            part['introduction'] = section
-            part['title'] = title
-        elif sec_name.endswith('-conclusion'):
-            part['conclusion'] = section
-        else:
-            part['children'].append({'object': 'extract', 'slug': sec_name, 'title': title, 'text': section})
-
-    manifest['children'] = list(parts.values())
-    archive.writestr('manifest.json', json.dumps(manifest, indent=4))
+    document = make_document(archive, container['src'])
+    document.update(manifest)
+    archive.writestr('manifest.json', json.dumps(document, indent=4))
