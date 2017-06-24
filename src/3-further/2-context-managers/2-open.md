@@ -4,9 +4,9 @@ L'un des gestionnaires de contexte les plus connus est probablement le fichier, 
 Jusque là, vous avez pu l'utiliser de la manière suivante :
 
 ```python
-f = open('filename', 'r')
+f = open('filename', 'w')
 # traitement sur le fichier
-# ...
+...
 f.close()
 ```
 
@@ -15,9 +15,9 @@ Mais sachez que ça n'est pas la meilleure façon de procéder. En effet, si une
 Il est donc conseillé de plutôt procéder de la sorte, avec `with` :
 
 ```python
-with open('filename', 'r') as f:
+with open('filename', 'w') as f:
     # traitement sur le fichier
-    # ...
+    ...
 ```
 
 Ici, la fermeture du fichier est implicite, nous verrons plus loin comment cela fonctionne en interne.
@@ -26,9 +26,9 @@ Nous pourrions reproduire un comportement similaire sans gestionnaire de context
 
 ```python
 try:
-    f = open('filename', 'r')
+    f = open('filename', 'w')
     # traitement sur le fichier
-    # ...
+    ...
 finally:
     f.close()
 ```

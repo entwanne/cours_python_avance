@@ -4,7 +4,7 @@ Passons maintenant à la présentation de deux modules, contenant deux collectio
 
 #### `operator`
 
-Ce module regroupe l'ensemble des opérateurs Python sous forme de fonctions.
+Ce premier module, [`operator`](https://docs.python.org/3/library/operator.html) regroupe l'ensemble des opérateurs Python sous forme de fonctions.
 Ainsi, une addition pourrait se formuler par :
 
 ```python
@@ -20,7 +20,7 @@ Outre les opérateurs habituels, nous en trouvons d'autres sur lesquels nous all
 `itemgetter` permet de récupérer un élément précis depuis un indexable, à la manière de l'opérateur `[]`.
 
 ```python
->>> get_second = operator.itemgetter(1) # Récupère le 2ème élément de l'indexable donné en paramètre
+>>> get_second = operator.itemgetter(1) # Récupère le 2ème élément de l'indexable donné en argument
 >>> get_second([5, 8, 0, 3, 1])
 8
 >>> get_second('abcdef')
@@ -60,7 +60,7 @@ def log(level, type, item, message):
     print('[{}]<{}>({}): {}'.format(level.upper(), type, item, message))
 ```
 
-Une application partielle reviendrait à avoir une fonction `warning` tel que chaque appel `warning('foo', 'bar', 'baz')` équivaut à `log('warning', 'foo', 'bar', 'baz')`.
+Une application partielle reviendrait à avoir une fonction `warning` tel que chaque appel `warning('foo', 'bar', 'baz')` équivaudrait à `log('warning', 'foo', 'bar', 'baz')`.
 Ou encore une fonction `warning_foo` avec `warning_foo('bar', 'baz')` équivalent à l'appel précédent.
 
 Nous allons la tester avec une fonction du module `operator` : la fonction de multiplication. En appliquant partiellement `5` à la fonction `operator.mul`, `partial` nous retourne une fonction réalisant la multiplication par 5 de l'objet passé en paramètre.
@@ -80,7 +80,8 @@ Nous allons la tester avec une fonction du module `operator` : la fonction de m
 [WARNING]<overflow>(-1): number is too low
 ```
 
-Ce module comprend aussi la fonction `reduce`, un outil tiré du fonctionnel permettant de transformer un itérable en une valeur unique, en appliquant une fonction sur le prochain élément et le dernier résultat.
+Le module `functools` comprend aussi la fonction `reduce`, un outil tiré du fonctionnel permettant de transformer un itérable en une valeur unique.
+Pour cela, elle itère sur l'ensemble et applique une fonction à chaque valeur, en lui précisant la valeur courante et le résultat précédent.
 
 Imaginons par exemple que nous disposions d'une liste de nombres `[5, 8, 0, 3, 1]` et que nous voulions en calculer la somme. Nous savons faire la somme de deux nombres, il s'agit d'une addition, donc de la fonction `operator.add`.
 

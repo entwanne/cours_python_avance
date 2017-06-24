@@ -25,7 +25,7 @@ C'est aussi simple que cela, et nous pouvons le tester :
 [(0, 0), (4, 0), (3, 3), (1, 4)]
 ```
 
-Nous aurions aussi pu profiter des fermetures (`closures`) de Python pour réaliser `itemgetter` sous la forme d'une fonction retournant une fonction.
+Nous aurions aussi pu profiter des fermetures (*closures*) de Python pour réaliser `itemgetter` sous la forme d'une fonction retournant une fonction.
 
 ```python
 def itemgetter(key):
@@ -46,4 +46,5 @@ Si vous vous êtes intéressés de plus près à `operator.itemgetter`, vous ave
 (9, 6)
 ```
 
-Je vous propose, pour aller un peu plus loin, d'ajouter cette fonctionnalité à notre classe, et donc d'utiliser les listes d'arguments positionnels. Vous trouverez la solution dans la documentation du module `operator`.
+Je vous propose, pour aller un peu plus loin, d'ajouter cette fonctionnalité à notre classe, et donc d'utiliser les listes d'arguments positionnels.
+Vous trouverez la solution dans la [documentation du module `operator`](https://docs.python.org/3/library/operator.html).

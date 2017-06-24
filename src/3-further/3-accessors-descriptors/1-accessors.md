@@ -21,6 +21,8 @@ Il faut aussi penser à relayer les appels au méthodes parentes *via* `super` p
 Le cas de `__getattr__` est un peu plus délicat : n'étant pas implémentée dans la classe `object`, il n'est pas toujours possible de relayer l'appel.
 Il convient alors de travailler au cas par cas, en utilisant `super` si la classe parente implémente `__getattr__`, ou en levant une `AttributeError` sinon.
 
+L'exemple suivant présente une classe `Temperature` dont les instances possèdent deux attributs `celsius` et `fahrenheit` qui sont générés à la volée, et non stockés dans l'objet.
+
 ```python
 class Temperature:
     def __init__(self):
@@ -61,8 +63,10 @@ Et à l'utilisation :
 Le `__dict__` dont je parle plus haut est le dictionnaire contenant les attributs d'un objet Python. Par défaut, il contient tous les attributs que vous définissez sur un objet (si vous ne modifiez pas le fonctionnement de `setattr`).
 En effet, chaque fois que vous créez un attribut (`foo.bar = value`), celui-ci est enregistré dans le dictionnaire des attributs de l'objet (`foo.__dict__['bar'] = value`). La méthode `__getattribute__` de l'objet se contente donc de rechercher l'attribut dans le dictionnaire de l'objet et de ses parents (type de l'objet et classes dont ce type hérite).
 
-Les slots sont une seconde manière de procéder, en vue de pouvoir optimiser le stockage de l'objet. Par défaut, lors de la création d'un objet, le dictionnaire `__dict__` est créé afin de pouvoir y stocker l'ensemble des attributs. Si la classe définit un itérable `__slots__` contenant l'ensemble des attributs possibles de l'objet, le `__dict__` n'aura plus besoin d'être instancié lors de la création d'un nouvel objet.
-Notez tout de même que si votre classe définit un `__slots__`, vous ne pourrez plus par défaut définir d'attributs autres sur l'objet que ceux décrits dans les slots.
+Les slots sont une seconde manière de procéder, en vue de pouvoir optimiser le stockage de l'objet.
+Par défaut, lors de la création d'un objet, le dictionnaire `__dict__` est créé afin de pouvoir y stocker l'ensemble des attributs.
+Si la classe définit un itérable `__slots__` contenant les noms des attributs possibles de l'objet, une structure dynamique telle que le dictionnaire n'est plus nécessaire, `__dict__` ne sera donc pas instancié lors de la création d'un nouvel objet.
+Notez tout de même que si votre classe définit un `__slots__`, vous ne pourrez plus définir d'autres attributs sur l'objet que ceux décrits dans les slots.
 
 Je vous invite à consulter la section de la documentation consacrée aux slots pour plus d'informations :
 <https://docs.python.org/3/reference/datamodel.html#slots>
@@ -121,7 +125,7 @@ Puis observons.
 
 On constate bien que les classes les plus à gauche sont proritaires lors d'un héritage, mais aussi que le mécanisme de *MRO* évite la présence de doublons dans la hiérarchie.
 
-On remarque qu'en cas de doublon, les classes sont placées le plus loin possible du début de la liste : par exemple, `A` est placée après `B` et non après `D` dans le *MRO* de `E`.
+On remarque qu'en cas de doublon, les classes sont placées le plus loin possible du début de la liste : par exemple, `A` est placée après `B` et non après `D` dans le *MRO* de `F`.
 
 Cela peut nous poser problème dans certains cas.
 

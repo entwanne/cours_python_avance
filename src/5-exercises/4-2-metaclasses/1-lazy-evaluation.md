@@ -1,6 +1,8 @@
-### TP : Évaluation paresseuse
+### Évaluation paresseuse
 
-Dans ce dernier TP, nous nous intéresserons à l'évaluation paresseuse (*lazy evaluation*), et nous reviendrons sur un exemple qu'on avait laissé de côté après le chapitre sur les décorateurs : l'implémentation d'une récursivité terminale en Python.
+**Pré-requis : Attributs, Métaclasses**
+
+Dans ce TP, nous nous intéresserons à l'évaluation paresseuse (*lazy evaluation*).
 
 #### L'évaluation paresseuse, c'est quoi ?
 
@@ -14,12 +16,14 @@ En Python par exemple, nous avons étudié plus tôt le concept de générateurs
 
 #### Objectif du TP
 
-Ici, nous voulons réaliser un appel paresseux à une fonction. C'est à dire embarquer la fonction à appeler et ses paramètres, mais ne réaliser l'appel qu'au moment où nous avons besoin du résultat.
+Ici, nous voulons réaliser un appel paresseux à une fonction. C'est-à-dire embarquer la fonction à appeler et ses paramètres, mais ne réaliser l'appel qu'au moment où nous avons besoin du résultat.
 
 Par exemple :
 
 ```python
->>> def square(x): return x ** 2
+>>> def square(x):
+...     return x ** 2
+...
 >>> a = square(3)
 >>> b = square(4)
 >>> c = square(5)
@@ -78,9 +82,11 @@ Une liste de méthodes spéciales nous est fournie dans la documentation Python�
 
 Mais celle-ci n'est pas complète, `__next__` n'y figure par exemple pas.
 Je n'ai pas trouvé de liste exhaustive, et c'est donc celle-ci que nous utiliserons.
-Nous omettrons cependant la première ligne (constructeur, initialisateur et destructeur), car les objets que nous recevrons seront déjà construits.
+Nous omettrons cependant la première ligne (constructeur, initialiseur et destructeur), car les objets que nous recevrons seront déjà construits.
 
-Il nous faut aussi différencier les opérateurs des autres méthodes spéciales. Habituellement, si une méthode spéciale est implémentée pour un opérateur et que l'opération n'est pas réalisable, celle-ci est censée retourner `NotImplemented`.
+Il nous faut aussi différencier les opérateurs des autres méthodes spéciales.
+En effet, les méthodes spéciales associées aux opérateurs peuvent dans certains cas retourner `NotImplemented` et laisser l'opérateur décider d'un comportement (comme appeler une méthode de l'autre opérande dans le cas d'un opérateur binaire).
+Pour nous faciliter la tâche et ne pas avoir à gérer nous-même ces comportements, nous ferons donc appel à l'opérateur plutôt qu'à la méthode spéciale.
 Le module `operator` nous permettra facilement de savoir si la méthode spéciale est un opérateur, et donc d'agir en conséquence (en vérifiant que la méthode est présente dans `operator.__dict__` par exemple).
 
 La solution que je propose est la suivante.
@@ -185,6 +191,6 @@ evaluated
 >>> abs(l) # TypeError
 ```
 
-Ainsi, pour en revenir à notre TP sur la récursivité terminale, il nous suffirait de faire retourner à notre fonction un objet de type `Lazy` pour ne plus avoir à différencier `call` et `__call__`.
+Aussi, pour en revenir au TP sur la récursivité terminale, il nous suffirait de faire retourner à notre fonction un objet de type `Lazy` pour ne plus avoir à différencier `call` et `__call__`.
 Les appels ne seraient alors exécutés, itérativement, qu'à l'utilisation du retour (quand on chercherait à itérer dessus, à l'afficher, ou autre).
 Il n'y aurait ainsi plus besoin de se soucier de savoir si nous sommes dans un appel récursif ou dans le premier appel.

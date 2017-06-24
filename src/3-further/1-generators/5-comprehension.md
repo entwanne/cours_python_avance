@@ -1,12 +1,14 @@
 ### Listes et générateurs en intension
 
+Intéressons-nous maintenant aux sucres syntaxiques que sont les listes et générateurs en intension.
+
 #### Listes en intension
 
 Vous connaissez probablement déjà les listes en intension (*comprehension lists*), mais je vais me permettre un petit rappel.
 
 Les listes en intension sont une syntaxe courte pour définir des listes à partir d'un itérable et d'une expression à appliquer sur chaque élément (un peu à la manière de `map`, qui lui ne permet que d'appeler un *callable* pour chaque l'élément).
 
-Une expression étant en Python tout ce qui possède une valeur (même `None`), c'est à dire ce qui n'est pas une instruction (`if`, `while`, etc.).
+Une expression étant en Python tout ce qui possède une valeur (même `None`), c'est-à-dire ce qui n'est pas une instruction (`if`, `while`, etc.).
 Il faut noter que les ternaires sont des expressions (`a if predicat() else b`), et peuvent donc y être utilisés.
 
 Ainsi,
@@ -66,7 +68,8 @@ Vous noterez que les `for` se placent dans l'ordre des dimensions que nous voulo
 
 #### Générateurs en intension
 
-De la même manière que pour les listes, nous pouvons définir des générateurs en intension (*generator expressions*) :
+De la même manière que pour les listes, nous pouvons définir des générateurs en intension (*generator expressions*).
+La syntaxe est très similaire, il suffit de remplacer les crochets par des parenthèses pour passer d'une liste à un générateur.
 
 ```python
 >>> squares = (x**2 for x in range(10))
@@ -74,7 +77,7 @@ De la même manière que pour les listes, nous pouvons définir des générateur
 <generator object <genexpr> at 0x7f8b8a9a7090>
 ```
 
-Et nous pouvons les utiliser tel que les autres itérables.
+Et nous pouvons les utiliser tels que les autres itérables.
 
 ```python
 >>> list(squares)
@@ -83,7 +86,7 @@ Et nous pouvons les utiliser tel que les autres itérables.
 []
 ```
 
-Et pour finir, il est possible de simplifier encore la syntaxe quand un générateur en intension est seul paramètre d'une fonction :
+Et pour finir, il est possible de simplifier encore la syntaxe quand un générateur en intension est seul paramètre d'une fonction, en supprimant les parenthèses redondantes.
 
 ```python
 >>> sum((x**2 for x in range(10)))

@@ -2,16 +2,22 @@
 
 #### Paramètres et arguments
 
-Parlons un peu des paramètres de fonctions (et plus généralement de *callables*). Les paramètres sont décrits lors de la définition de la fonction, ils possèdent un nom, et potentiellement une valeur par défaut.
+Parlons un peu des paramètres de fonctions (et plus généralement de *callables*).
+Les paramètres sont décrits lors de la définition de la fonction, ils possèdent un nom et potentiellement une valeur par défaut.
 
 Il faut les distinguer des arguments : les arguments sont les valeurs passées lors de l'appel.
+
+##### Paramètres
 
 ```python
 def function(a, b, c, d=1, e=2):
     return
 ```
 
-`a`, `b`, `c`, `d` et `e` sont les paramètres de la fonction `function`. `a`, `b` et `c` n'ont pas de valeur par défaut, il faut donc en préciser explicitement lors de l'appel, pour que celui-ci soit valide. Les paramètres avec valeur par défaut se placent obligatoirement après les autres.
+`a`, `b`, `c`, `d` et `e` sont les paramètres de la fonction `function`. `a`, `b` et `c` n'ont pas de valeur par défaut, il faut donc préciser explicitement une valeur lors de l'appel, pour que celui-ci soit valide.
+Les paramètres avec valeur par défaut se placent obligatoirement après les autres.
+
+##### Arguments
 
 ```python
 function(3, 4, d=5, c=3)
@@ -20,6 +26,9 @@ function(3, 4, d=5, c=3)
 Nous sommes là dans un appel de fonction, donc les valeurs sont des arguments.
 `3` et `4` sont des arguments positionnels, car ils sont repérés par leur position, et seront donc associés aux deux premiers paramètres de la fonction (`a` et `b`).
 `d=5` et `c=3` sont des arguments nommés, car la valeur est précédée du nom du paramètre associé. Ils peuvent ainsi être placés dans n'importe quel ordre (pour peu qu'ils soient placés après les arguments positionnels).
+
+Des paramètres avec valeur par défaut peuvent recevoir des arguments positionnels, et des paramètres sans valeur par défaut peuvent recevoir des arguments nommés.
+Les deux notions, même si elles partagent une notation commune, sont distinctes.
 
 Voici enfin différents cas d'appels posant problème :
 
@@ -41,13 +50,10 @@ Traceback (most recent call last):
 TypeError: function() got multiple values for argument 'b'
 ```
 
-#### L'opérateur *splat*
+#### Opérateur *splat*, le retour
 
-##### Appels
-
-L'opérateur *splat* est représenté par le caractère `*`. À ne pas confondre avec la multiplication, opérateur binaire entre deux objets, il s'agit ici d'un opérateur unaire : c'est à dire qu'il n'opère que sur un objet, en se plaçant devant.
-
-Cet opérateur permet de récupérer la liste (ou plus précisément le `tuple`) des arguments positionnels passés lors d'un appel, on appelle cela le *packing*.
+On retrouve l'opérateur *splat* que nous avions vu lors des assignations dans le chapitre sur les Itérables.
+Il nous permet ici de récupérer la liste (ou plus précisément le `tuple`) des arguments positionnels passés lors d'un appel, on appelle cela le *packing*.
 
 ```python
 >>> def func(*args): # Il est conventionnel d'appeler args la liste ainsi récupérée
@@ -57,7 +63,7 @@ Cet opérateur permet de récupérer la liste (ou plus précisément le `tuple`)
 (1, 2, 3, 'a', 'b', None)
 ```
 
-La présence d'`*args` n'est pas incompatible avec celle d'autres paramètres, s'ils sont placés avant.
+La présence d'`*args` n'est pas incompatible avec celle d'autres paramètres.
 
 ```python
 >>> def func(foo, bar, *args):
@@ -71,15 +77,70 @@ La présence d'`*args` n'est pas incompatible avec celle d'autres paramètres, s
 (3, 'a', 'b', None)
 ```
 
-`*args` peut néanmoins se placer n'importe où par rapport aux paramètres ayant une valeur par défaut (avant, après, au milieu).
+Les paramètres placés avant `*args` pourront toujours recevoir des arguments positionnels comme nommés.
+Mais ceux placés après ne seront éligibles qu'aux arguments nommés (puisqu'`*args` aura récupéré le reste des positionnels).
 
 ```python
-def func1(a, *args, b=1): pass
-def func2(a, b=1, *args): pass
-def func3(a, b=1, *args, c=2): pass
+>>> def func(foo, *args, bar):
+...     print(foo)
+...     print(args)
+...     print(bar)
+...
+>>> func(1, 2, 3, 'a', 'b', None)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: func() missing 1 required keyword-only argument: 'bar'
+>>> func(1, 2, 3, 'a', 'b', None, bar='c')
+1
+(2, 3, 'a', 'b', None)
+c
 ```
 
-Enfin, il existe aussi l'opérateur double-*splat* (`**`), pour récupérer le dictionnaire des arguments nommés. Celui-ci doit se placer après tous les paramètres, et se nomme habituellement `kwargs`.
+On notera aussi que *splat* peut s'utiliser sans nom de paramètre, pour marquer une distinction entre les types d'arguments.
+
+```python
+def func(foo, *, bar):
+    print(foo)
+    print(bar)
+```
+
+Ici, aucune récupération de la liste des arguments nommés n'est opérée.
+Mais `foo`, placé à gauche de `*`, peut prendre un argument positionnel ou nommé, alors que `bar` placé à droite ne peut recevoir qu'un argument nommé.
+
+```python
+>>> func(1, bar=2)
+1
+2
+>>> func(foo=1, bar=2)
+1
+2
+>>> func(bar=2, foo=1)
+1
+2
+```
+
+Je disais plus haut que les paramètres avec valeur par défaut se plaçaient obligatoirement après ceux sans.
+Ceci est à nuancer avec l'opérateur *splat*, qui sépare en deux parties la liste des paramètres : cela n'est vrai qu'à gauche du *splat*.
+À droite, cela n'importe pas puisque tous les paramètres recevront des arguments nommés (donc sans notion d'ordre).
+
+```python
+>>> def f(a, b=1, *, d): pass
+...
+>>> def f(a, b=1, *, d=2): pass
+...
+>>> def f(a, b=1, *, d=2, e): pass
+...
+>>> def f(a, b=1, *, d=2, e, f=3): pass
+...
+>>> def f(a, b=1, *, d, e=2, f, g=3): pass
+...
+```
+
+#### Le double-*splat*
+
+Enfin, outre l'opérateur *splat* que nous connaissions déjà, on découvre ici le double-*splat* (`**`).
+Cet opérateur sert à récupérer le dictionnaire des arguments nommés.
+Celui-ci doit se placer après tous les paramètres, et se nomme habituellement `kwargs`.
 
 ```python
 >>> def func(a, b=1, **kwargs):
@@ -93,16 +154,21 @@ Enfin, il existe aussi l'opérateur double-*splat* (`**`), pour récupérer le d
 {'c': 3}
 ```
 
-Une fonction peut donc récupérer tous ses arguments (positionnels et nommés) en combinant ces deux opérateurs.
+En combinant ces deux opérateurs, une fonction est donc en mesure de récupérer l'ensemble de ses arguments (positionnels et nommés).
 
 ```python
 def func(*args, **kwargs):
     pass
 ```
 
-Mais ces opérateurs servent aussi lors de l'appel à une fonction, via ce qu'on appelle l'*unpacking* : il est possible de transformer une liste en arguments positionnels, et un dictionnaire en arguments nommés (ou tout autres itérables compatibles). La seule règle est encore une fois de placer `*` après tous les arguments positionnels, et `**` après tous les nommés.
+On notera que contrairement au simple *splat* qui servait aussi pour les assignations, le double n'a aucune signification en dehors des arguments de fonctions.
 
-Cette règle disparaît cependant en Python 3.5, où il devient possible d'*unpacker* plusieurs listes ou dictionnaires à la fois, et d'y interposer des arguments positionnels/nommés. Voir [l'article de *ZesteDeSavoir* sur la sortie de Python 3.5](https://zestedesavoir.com/articles/175/sortie-de-python-3-5/#2-principales-nouveautes) à ce propos.
+#### L'appel du *splat*
+
+Mais ces opérateurs servent aussi lors de l'appel à une fonction, via l'*unpacking*.
+Comme pour les assignations étudiées dans le chapitre des itérables, il est possible de transformer un itérable en arguments positionnels avec l'opérateur *splat*.
+
+Le double-*splat* nous permet aussi ici de transformer un dictionnaire (ou autre *mapping*) en arguments nommés.
 
 ```python
 >>> def addition_3(a, b, c):
@@ -118,7 +184,7 @@ Cette règle disparaît cependant en Python 3.5, où il devient possible d'*unpa
 6
 >>> addition_3(1, *[2], **{'c': 3})
 6
->>> addition_3(*range(3)) # Valable avec tous les itérables
+>>> addition_3(*range(3)) # Splat est valable avec tous les itérables
 3
 ```
 
@@ -134,38 +200,15 @@ Ainsi, il est possible de relayer les paramètres reçus par une fonction à une
 6
 ```
 
-##### Assignations
+Avant Python 3.5, chaque opérateur *splat* ne pouvait être utilisé qu'une fois dans un appel, et `*` devait être placé après tous les arguments positionnels.
 
-Je tenais enfin à vous présenter une dernière utilité de l'opérateur `*` : lors d'une assignation. Vous connaissez probablement déjà l'assignation multiple (`a, b, c = 0, 1, 2`), mais saviez vous que la partie droite pouvait être un itérable quelconque ?
-
-```python
->>> a, b, c = range(3)
->>> a
-0
->>> b
-1
->>> c
-2
-```
-
-Voyons maintenant ce que nous permet l'opérateur *splat* :
+Ces règles ont depuis disparu, comme relaté dans [cet article sur la sortie de Python 3.5](https://zestedesavoir.com/articles/175/sortie-de-python-3-5/#2-principales-nouveautes).
 
 ```python
->>> head, *tail = range(10)
->>> head
-0
->>> tail
-[1, 2, 3, 4, 5, 6, 7, 8, 9]
->>> first, second, *tail = range(10)
->>> second
-1
->>> tail
-[2, 3, 4, 5, 6, 7, 8, 9]
->>> first, *_, last = range(10)
->>> first
-0
->>> last
-9
+>>> addition_3(*[1, 2], 3)
+6
+>>> addition_3(*[1], 2, *[3])
+6
+>>> addition_3(*[1], **{'b': 2}, **{'c': 3})
+6
 ```
-
-Notons enfin que les possibilités offertes par l'opérateur *splat* ont encore été étendues avec Python 3.5, pour en savoir plus : <https://zestedesavoir.com/articles/175/sortie-de-python-3-5/#2-principales-nouveautes>
