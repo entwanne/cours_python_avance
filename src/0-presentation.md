@@ -3,7 +3,7 @@
 Python est simple.
 
 C'est probablement ce que l'on vous a dit de nombreuses fois, et ce que vous avez constaté en apprenant et pratiquant ce langage.
-Mais derrière cette simplicité apparante existent un certain nombre de concepts plus complexes qui forment la puissance de ce langage.
+Mais derrière cette simplicité apparente existent un certain nombre de concepts plus complexes qui forment la puissance de ce langage.
 
 En Python, on s'intéresse plus au comportement des objets qu'à leur nature.
 Ainsi, l'interface des objets (c'est-à-dire l'ensemble de leurs attributs et méthodes) est quelque chose de très important,
