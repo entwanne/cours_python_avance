@@ -16,3 +16,7 @@ Le *Makefile* présente des règles de compilation vers deux formats :
 * Archive *ZIP* *Zeste de savoir* : `make cours_python_avance.zip` (nécessite *python*).
 
 ![Logo](logo_cours.png)
+
+## Licence
+
+Cours sous licence [CC BY-SA](https://creativecommons.org/licenses/by-sa/4.0/deed.fr).
